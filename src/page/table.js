@@ -22,16 +22,16 @@ const columns = [
     { id: 'city', label: 'Tỉnh/Thành phố', minWidth: 100 },
     { id: 'room', label: 'Phòng bệnh', minWidth: 100 },
     { id: 'phoneNumber', label: 'Số điện thoại', minWidth: 100 },
-    { id: 'action', label: 'Action', minWidth: 50 },
+    { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
+const action = 'action';
 
 function createData(name, id, bhyt, city, room, phoneNumber) {
-    return { name, id, bhyt, city, room, phoneNumber };
+    return { name, id, bhyt, city, room, phoneNumber, action };
 }
 
 const rows = [
-    createData('Đào Duy Quý', '007', '123-123-456', 'Thừa Thiên Huế', '001', '0373071643'),
     createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
     createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
     createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
@@ -75,7 +75,7 @@ export default function ColumnGroupingTable() {
     };
 
     return (
-        <div style={{}}>
+        <div>
 
             <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px' }}>
                 <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px' }}>
@@ -106,20 +106,21 @@ export default function ColumnGroupingTable() {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center' }}>
-                                                        {column.format && typeof value === 'number'
-                                                            ? column.format(value)
-                                                            : value}
+
+                                                        {
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px' }} >
+                                                                <EditIcon />
+                                                            </Fab> : value
+                                                        }
+                                                        {
+                                                            column.id == 'action' ? <Fab color="default" aria-label="edit">
+                                                                <DeleteIcon />
+                                                            </Fab> : <div></div>
+                                                        }
 
                                                     </TableCell>
                                                 );
                                             })}
-
-                                            <Fab color="secondary" aria-label="edit">
-                                                <EditIcon />
-                                            </Fab>
-                                            <Fab color="secondary" aria-label="edit">
-                                                <DeleteIcon />
-                                            </Fab>
                                         </TableRow>
                                     );
                                 })}

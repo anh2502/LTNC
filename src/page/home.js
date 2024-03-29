@@ -15,11 +15,11 @@ const HomePage = () => {
           </div>
           <div className="justify">
             <div className="drop-down">
-              <select>
-                <option value="Mới nhất">JavaScript</option>
-                <option value="Bộ lọc 1">Python</option>
-                <option value="Bộ lọc 2" disabled>C++</option>
-                <option value="Bộ lọc 3" selected>Java</option>
+              <select >
+                <option value="Mới nhất">Mới nhất</option>
+                <option value="Bộ lọc 1">Bộ lọc 1</option>
+                <option value="Bộ lọc 2">Bộ lọc 2</option>
+                <option value="Bộ lọc 3">Bộ lọc 3</option>
               </select>
             </div>
             <a href="./" className="link-button">
