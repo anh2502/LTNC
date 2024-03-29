@@ -32,7 +32,135 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+* {
+  box-sizing: border-box;
+  /* Heading/Heading 4 */
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+}
+
+body {
+  background-color: #f3f4ff;
+}
+
+.search-bar-block {
+  display: flex;
+  height: 50px;
+  width: 450px;
+  padding: 2px 32px 2px 0px;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.search-bar {
+  display: flex;
+  padding: 23px 32px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.search-bar input[type="text"] {
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: #fff;
+  border: 2px none;
+}
+
+.search-bar-block svg {
+  margin: 10px;
+}
+
+.drop-down {
+  display: flex;
+  width: 207px;
+  height: 60px;
+  padding: 16px 43px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 2px solid var(--Color-Purple, #4D44B5);
+  /* Shadow */
+  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
+  margin-right: 20px;
+}
+
+.drop-down select {
+  border: 1px none;
+  background-color: #f3f4ff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+}
+
+.buttons {
+  display: flex;
+  width: 207px;
+  height: 60px;
+  padding: 16px 43px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: var(--Color-Purple, #4D44B5);
+  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
+
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.new-patient {
+  background: var(--Color-Purple, #4D44B5);
+  border-style: none;
+  font-size: 19px;
+  color: white;
+}
+
+.new-patient svg {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.link-button {
+  text-decoration: none;
+}
+
+.justify {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.table-container {
+  text-align: center;
+}
+
+.table {
+  width: 95%;
+  margin: 0 auto;
 }

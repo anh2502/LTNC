@@ -6,30 +6,33 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 const Navbar = () => {
   return (
-    <AppBar position="static" style={{backgroundColor: "#fff", padding: "10px"}}>
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#303972", fontSize: "32px", fontWeight: 700 }}>
-          Quản lý bệnh nhân
-        </Typography>
-        <Button component={Link} to="/" style={{color: "gray", padding: "0px 3px", minWidth: "unset"}}>
-          <NotificationsIcon style={{width: "28px", height: "28px"}}/>
-        </Button>
-        <Button component={Link} to="/about" style={{color: "gray", padding: "0px 3px", minWidth: "unset"}}>
-          <SettingsIcon style={{width: "28px", height: "28px"}}/>
-        </Button>
-        <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
-          <div style={{ textAlign: "right", marginRight: "10px", marginLeft: "5px" }}>
-            <Typography variant="body1" style={{color: "#303972", fontSize: "14px"}}>
-              Tên Người Dùng
-            </Typography>
-            <Typography variant="caption" color="textSecondary">
-              Chức Vụ
-            </Typography>
+    <div className="header-title">
+
+      <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 10px 10px", boxShadow: 'none' }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#303972", fontSize: "32px", fontWeight: 700 }}>
+            Quản lý bệnh nhân
+          </Typography>
+          <Button component={Link} to="/" style={{ color: "gray", padding: "0px 3px", minWidth: "unset" }}>
+            <NotificationsIcon style={{ width: "28px", height: "28px" }} />
+          </Button>
+          <Button component={Link} to="/about" style={{ color: "gray", padding: "0px 3px", minWidth: "unset" }}>
+            <SettingsIcon style={{ width: "28px", height: "28px" }} />
+          </Button>
+          <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
+            <div style={{ textAlign: "right", marginRight: "10px", marginLeft: "5px" }}>
+              <Typography variant="body1" style={{ color: "#303972", fontSize: "14px" }}>
+                Tên Người Dùng
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                Chức Vụ
+              </Typography>
+            </div>
+            <Avatar alt="User Avatar" />
           </div>
-          <Avatar alt="User Avatar" />
-        </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 };
 

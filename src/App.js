@@ -9,14 +9,14 @@ import { ThemeProvider } from '@mui/material/styles';
 
 function App() {
   return (
-    <ThemeProvider  theme={theme}>
-    <HelmetProvider>
-      <BrowserRouter >
-      <Box>
-          <Router />
-      </Box>
-      </BrowserRouter >
-    </HelmetProvider>
+    <ThemeProvider theme={theme}>
+      <HelmetProvider>
+        <BrowserRouter >
+          <Box>
+            <Router />
+          </Box>
+        </BrowserRouter >
+      </HelmetProvider>
     </ThemeProvider>
   );
 }

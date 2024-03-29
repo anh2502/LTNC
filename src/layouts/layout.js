@@ -24,7 +24,7 @@ const Layout = () => {
         <Sidebar />
       </SidebarContainer>
       <ContentContainer>
-        <Navbar/>
+        <Navbar />
         <Outlet />
       </ContentContainer>
     </LayoutContainer>
