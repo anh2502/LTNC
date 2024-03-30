@@ -17,49 +17,48 @@ import { Button, buttonBaseClasses } from '@mui/material';
 
 
 const columns = [
-    { id: 'name', label: 'Họ và tên', minWidth: 150 },
+    { id: 'name', label: 'Tên thiết bị', minWidth: 150 },
     { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'bhyt', label: 'Bảo hiểm y tế', minWidth: 100 },
-    { id: 'city', label: 'Tỉnh/Thành phố', minWidth: 100 },
-    { id: 'room', label: 'Phòng bệnh', minWidth: 100 },
-    { id: 'phoneNumber', label: 'Số điện thoại', minWidth: 100 },
+    { id: 'status', label: 'Trạng thái', minWidth: 100 },
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
 const action = 'action';
 
-function createData(name, id, bhyt, city, room, phoneNumber) {
-    return { name, id, bhyt, city, room, phoneNumber, action };
+function createData(name, id, status) {
+    return { name, id, status, action };
 }
 
 const rows = [
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy hút bụi', '909', 'Hỏng'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy hút bụi', '909', 'Hỏng'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái búa', '123', 'Đang bảo trì'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
 ];
 
 export default function ColumnGroupingTable() {
@@ -79,7 +78,7 @@ export default function ColumnGroupingTable() {
         <div>
 
             <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px', overflowY: 'scroll' }}>
+                <TableContainer sx={{ maxHeight: 600, borderRadius: '20px', paddingLeft: '20px', overflowY: 'hidden' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
                             <TableRow hover role="checkbox" tabIndex={-1} >
@@ -129,7 +128,7 @@ export default function ColumnGroupingTable() {
 
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPageOptions={[]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}

@@ -17,12 +17,12 @@ import { Button, buttonBaseClasses } from '@mui/material';
 
 
 const columns = [
-    { id: 'name', label: 'Họ và tên', minWidth: 150 },
-    { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'bhyt', label: 'Bảo hiểm y tế', minWidth: 100 },
-    { id: 'city', label: 'Tỉnh/Thành phố', minWidth: 100 },
-    { id: 'room', label: 'Phòng bệnh', minWidth: 100 },
-    { id: 'phoneNumber', label: 'Số điện thoại', minWidth: 100 },
+    { id: 'name', label: 'Tên thuốc', minWidth: 150 },
+    { id: 'id', label: 'Mã lô hàng', minWidth: 100 },
+    { id: 'bhyt', label: 'Ngày nhập kho', minWidth: 100 },
+    { id: 'city', label: 'Hạn sử dụng', minWidth: 100 },
+    { id: 'room', label: 'Số lượng', minWidth: 100 },
+    { id: 'phoneNumber', label: 'Đơn vị nhập', minWidth: 100 },
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
@@ -33,33 +33,53 @@ function createData(name, id, bhyt, city, room, phoneNumber) {
 }
 
 const rows = [
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
-    createData('Nguyễn Văn A', '010', '123-123-901', 'Hồ Chí Minh', '002', '1234567890'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
+    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
 ];
 
 export default function ColumnGroupingTable() {
@@ -79,7 +99,7 @@ export default function ColumnGroupingTable() {
         <div>
 
             <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px', overflowY: 'scroll' }}>
+                <TableContainer sx={{ maxHeight: 600, borderRadius: '20px', paddingLeft: '20px', overflowY: 'hidden' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
                             <TableRow hover role="checkbox" tabIndex={-1} >
@@ -129,7 +149,7 @@ export default function ColumnGroupingTable() {
 
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPageOptions={[]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}

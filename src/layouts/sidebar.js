@@ -8,6 +8,7 @@ import ConstructionIcon from "@mui/icons-material/Construction";
 import PersonIcon from "@mui/icons-material/Person";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalHotelIcon from '@mui/icons-material/LocalHotel';
+import '../App.css'
 
 const Side = styled(Box)({
   width: "325px",
@@ -67,27 +68,27 @@ const Sidebar = () => {
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>
-      <LinkItem to="/manage-patients">
+      <LinkItem to="/manage-patients" id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
-      <LinkItem to="/manage-medicines">
+      <LinkItem to="/manage-medicines" id="medicines">
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees">
+      <LinkItem to="/manage-employees" id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices">
+      <LinkItem to="/manage-devices" id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>
-      <LinkItem to="/manage-preventions">
+      <LinkItem to="/manage-preventions" id="preventions">
         <LocalHotelIcon style={{ marginRight: "5px" }} />
         Quản lý phòng bệnh
       </LinkItem>
-      <LinkItem to="/admin">
+      <LinkItem to="/admin" id="admin">
         <PersonIcon style={{ marginRight: "5px" }} />
         Admin
       </LinkItem>

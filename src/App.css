@@ -183,3 +183,14 @@ body {
   height: 100%;
   position: fixed;
 }
+
+.linkitem::target {
+  color: purple;
+  background-color: #fff;
+
+}
+
+#home:target {
+  color: purple;
+  background-color: #fff;
+}

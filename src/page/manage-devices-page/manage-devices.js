@@ -1,5 +1,5 @@
 import React from "react";
-import ColumnGroupingTable from "../manage-patients-page/table_manage-patients";
+import ColumnGroupingTable from "./table_manage-devices";
 import '../../App.css'
 import { colors } from "@mui/material";
 const DevicePage = () => {

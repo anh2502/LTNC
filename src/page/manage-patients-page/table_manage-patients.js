@@ -79,7 +79,7 @@ export default function ColumnGroupingTable() {
         <div>
 
             <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px', overflowY: 'scroll' }}>
+                <TableContainer sx={{ maxHeight: 600, borderRadius: '20px', paddingLeft: '20px', overflowY: 'hidden' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
                             <TableRow hover role="checkbox" tabIndex={-1} >
@@ -129,7 +129,7 @@ export default function ColumnGroupingTable() {
 
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPageOptions={[]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
