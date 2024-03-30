@@ -14,6 +14,8 @@ import AdminPage from "./page/admin-page/dashboard";
 import LayoutAdmin from "./layouts/Admin/layout_admin";
 import LayoutPrevention from "./layouts/ManagePreventions/layout_manage-preventions";
 import PreventionPage from "./page/manage-preventions-page/manage-prevention";
+import LayoutAddMedicine from "./layouts/AddMedicines/layout_add-medicines";
+import App from "./page/manage-medicines-page/add-medicine";
 
 export default function Router() {
   const routes = useRoutes([
@@ -66,7 +68,15 @@ export default function Router() {
         { index: true, element: <AdminPage /> },
       ],
     },
+    {
+      path: "/add-medicine",
+      element: <LayoutAddMedicine />,
+      children: [
+        { index: true, element: <App /> },
+      ],
+    },
 
   ]);
   return routes;
 }
+///
