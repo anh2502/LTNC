@@ -2,6 +2,13 @@ import React from "react";
 import ColumnGroupingTable from "./table_manage-patients";
 import '../../App.css'
 import { colors } from "@mui/material";
+import { Link } from "react-router-dom";
+import { styled } from "@mui/material";
+
+const LinkAdd = styled(Link)({
+  textDecoration: 'none',
+});
+
 const PatientPage = () => {
   return (
     < section className="dashboard" >
@@ -22,15 +29,15 @@ const PatientPage = () => {
                 <option value="Bộ lọc 3">Bộ lọc 3</option>
               </select>
             </div>
-            <a href="./" className="link-button">
+            <LinkAdd to="/add-medicine">
               <div className="buttons">
-                <button className="new-patient" >
+                <button className="new-patient">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 17" fill="none">
                     <path d="M6.84703 10.6647H0.882324V6.42941H6.84703V0.5H11.0823V6.42941H17.1176V10.6647H11.0823V16.6647H6.84703V10.6647Z" fill="white" />
-                  </svg> Thêm
+                  </svg>Thêm
                 </button>
               </div>
-            </a>
+            </LinkAdd>
           </div>
         </div>
 

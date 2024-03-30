@@ -41,10 +41,10 @@
 * {
   box-sizing: border-box;
   /* Heading/Heading 4 */
-  font-family: Poppins;
+  font-family: "Georgia", serif;
   font-size: 18px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: normal;
 
 }
@@ -141,7 +141,6 @@ body {
 }
 
 .new-patient svg {
-  display: inline-block;
   margin-right: 10px;
 }
 
@@ -193,4 +192,108 @@ body {
 #home:target {
   color: purple;
   background-color: #fff;
+}
+
+/* Cài đặt chung cho form */
+.add-medicine {
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Cài đặt cho phần thông tin thuốc */
+.medicine-info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  color: #303972;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Cài đặt cho label */
+.medicine-info label {
+  margin-bottom: 5px;
+  display: block;
+  font-weight: normal;
+}
+
+/* Cài đặt cho input */
+.medicine-info input {
+  width: 40%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Cài đặt cho textarea */
+.medicine-info textarea {
+  width: 40%;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Cài đặt cho button */
+.medicine-info button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Cài đặt cho button "Lưu nháp" */
+.medicine-info button:first-of-type {
+  background-color: #ccc;
+}
+
+/* Cài đặt cho button "Gửi" */
+.medicine-info button:last-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Media query cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .medicine-info {
+    flex-direction: column;
+  }
+
+  .medicine-info label,
+  .medicine-info input,
+  .medicine-info textarea {
+    grid-column: span 2;
+  }
+
+  .medicine-info button {
+    grid-column: 1 / span 2;
+  }
+}
+
+.rightTeam div {
+  width: 40%;
+  display: block;
+  text-align: left;
+  align-items: right;
+}
+
+.rightTeam {
+  display: inline-;
+  width: 100%;
+  text-align: right;
 }

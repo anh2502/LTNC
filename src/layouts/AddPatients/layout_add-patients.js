@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar";
-import NavbarPrevention from "./navbar_manage-preventions";
+import NavbarAddPatient from "./navbar_add-patients";
 import { styled } from "@mui/material";
 
 const LayoutContainer = styled('div')({
@@ -10,21 +10,21 @@ const LayoutContainer = styled('div')({
 
 const SidebarContainer = styled('div')({
   width: '325px',
-  backgroundColor: "#4d44b5",
+  backgroundColor: "#4d44b5"
 });
 
 const ContentContainer = styled('div')({
   flex: '1', // Chiếm phần còn lại của không gian
 });
 
-const LayoutPrevention = () => {
+const LayoutAddPatient = () => {
   return (
     <LayoutContainer>
       <SidebarContainer>
         <Sidebar />
       </SidebarContainer>
       <ContentContainer>
-        <NavbarPrevention />
+        <NavbarAddPatient />
         <Outlet />
       </ContentContainer>
     </LayoutContainer>
@@ -32,4 +32,4 @@ const LayoutPrevention = () => {
   );
 };
 
-export default LayoutPrevention;
+export default LayoutAddPatient;

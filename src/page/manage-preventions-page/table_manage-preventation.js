@@ -21,8 +21,6 @@ var Patient = {
 }
 
 function createData(room, faculty, doctor, available, action, name) {
-
-
     return {
         room,
         faculty,

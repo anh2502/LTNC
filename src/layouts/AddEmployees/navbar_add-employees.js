@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-const NavbarPatient = () => {
+const NavbarAddEmployee = () => {
   return (
     <div className="header-title">
 
       <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 10px 10px", boxShadow: 'none' }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#303972", fontSize: "36px", lineHeight: '54px', fontWeight: '700' }}>
-            QUẢN LÝ BỆNH NHÂN
+            THÊM NHÂN VIÊN
           </Typography>
           <Button component={Link} to="/" style={{ color: "gray", padding: "0px 3px", minWidth: "unset" }}>
             <NotificationsIcon style={{ width: "28px", height: "28px" }} />
@@ -36,4 +36,4 @@ const NavbarPatient = () => {
   );
 };
 
-export default NavbarPatient;
+export default NavbarAddEmployee;

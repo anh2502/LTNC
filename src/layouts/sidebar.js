@@ -13,7 +13,7 @@ import '../App.css'
 const Side = styled(Box)({
   width: "325px",
   color: "#fff",
-  margin: "50px",
+  margin: "36px",
   height: "100vh",
   display: "flex",
   flexDirection: "column",
@@ -44,9 +44,9 @@ const LogoText = styled(Typography)({
 });
 const LinkItem = styled(Link)({
   textDecoration: "none",
-  color: "#fff",
+  color: "#C1BBEB",
   fontSize: "18px",
-  fontWeight: 500,
+  fontWeight: '500',
   margin: "5px 0",
   padding: "16px 24px",
   display: "flex",
@@ -60,7 +60,7 @@ const Sidebar = () => {
         <Logo>
           <LogoText>H</LogoText>
         </Logo>
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" style={{ lineHeight: '54px', fontWeight: '700', fontSize: '36px' }}>
           HOSPITAL
         </Typography>
       </LogoContainer>

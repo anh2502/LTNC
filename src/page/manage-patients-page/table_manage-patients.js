@@ -105,18 +105,16 @@ export default function ColumnGroupingTable() {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
-
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px', position: 'static' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <EditIcon />
                                                             </Fab> : value
                                                         }
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px', position: 'static' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <DeleteIcon />
                                                             </Fab> : <div></div>
                                                         }
-
                                                     </TableCell>
                                                 );
                                             })}

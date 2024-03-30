@@ -10,8 +10,8 @@ const NavbarAddMedicine = () => {
 
       <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 10px 10px", boxShadow: 'none' }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#303972", fontSize: "32px", fontWeight: 700 }}>
-            Thêm thuốc
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#303972", fontSize: "36px", lineHeight: '54px', fontWeight: '700' }}>
+            THÊM THUỐC
           </Typography>
           <Button component={Link} to="/" style={{ color: "gray", padding: "0px 3px", minWidth: "unset" }}>
             <NotificationsIcon style={{ width: "28px", height: "28px" }} />
