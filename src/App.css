@@ -51,7 +51,6 @@
 
 body {
   background-color: #f3f4ff;
-  box-sizing: border-box;
 }
 
 .search-bar-block {
@@ -163,4 +162,24 @@ body {
 .table {
   width: 95%;
   margin: 0 auto;
+}
+
+.admin-page {
+  background-image: url('./img/admin.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.prevention {
+  background-image: url('./img/preventionprevention.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }

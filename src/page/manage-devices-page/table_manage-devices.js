@@ -12,11 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Button, buttonBaseClasses } from '@mui/material';
 
 
 
 const columns = [
-    { id: 'name', label: 'Họ và tên', minWidth: 170 },
+    { id: 'name', label: 'Họ và tên', minWidth: 150 },
     { id: 'id', label: 'ID', minWidth: 100 },
     { id: 'bhyt', label: 'Bảo hiểm y tế', minWidth: 100 },
     { id: 'city', label: 'Tỉnh/Thành phố', minWidth: 100 },
@@ -77,11 +78,11 @@ export default function ColumnGroupingTable() {
     return (
         <div>
 
-            <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px' }}>
-                <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px' }}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
+            <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 700, borderRadius: '20px', paddingLeft: '20px', overflowY: 'scroll' }}>
+                    <Table stickyHeader aria-label="sticky table" >
+                        <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
+                            <TableRow hover role="checkbox" tabIndex={-1} >
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}
@@ -94,9 +95,7 @@ export default function ColumnGroupingTable() {
                                 ))}
                             </TableRow>
                         </TableHead>
-
-
-                        <TableBody>
+                        <TableBody >
                             {rows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row) => {
@@ -105,15 +104,15 @@ export default function ColumnGroupingTable() {
                                             {columns.map((column) => {
                                                 const value = row[column.id];
                                                 return (
-                                                    <TableCell key={column.id} align={column.align} style={{ textAlign: 'center' }}>
+                                                    <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
 
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px' }} >
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px', position: 'static' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <EditIcon />
                                                             </Fab> : value
                                                         }
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" aria-label="edit">
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '10px', position: 'static' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <DeleteIcon />
                                                             </Fab> : <div></div>
                                                         }
@@ -125,7 +124,9 @@ export default function ColumnGroupingTable() {
                                     );
                                 })}
                         </TableBody>
+
                     </Table>
+
                 </TableContainer>
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}

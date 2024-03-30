@@ -1,8 +1,8 @@
 import React from "react";
-import ColumnGroupingTable from "./table";
-import '../App.css'
+import ColumnGroupingTable from "./table_manage-medicines";
+import '../../App.css'
 import { colors } from "@mui/material";
-const HomePage = () => {
+const MedicinePage = () => {
   return (
     < section className="dashboard" >
       <header>
@@ -48,4 +48,4 @@ const HomePage = () => {
 
   );
 };
-export default HomePage;
+export default MedicinePage;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./sidebar";
-import Navbar from "./navbar";
+import Sidebar from "../sidebar";
+import NavbarDashBoard from "./navbar_dashboard";
 import { styled } from "@mui/material";
 
 const LayoutContainer = styled('div')({
@@ -17,14 +17,14 @@ const ContentContainer = styled('div')({
   flex: '1', // Chiếm phần còn lại của không gian
 });
 
-const Layout = () => {
+const LayoutDashBoard = () => {
   return (
     <LayoutContainer>
       <SidebarContainer>
         <Sidebar />
       </SidebarContainer>
       <ContentContainer>
-        <Navbar />
+        <NavbarDashBoard />
         <Outlet />
       </ContentContainer>
     </LayoutContainer>
@@ -32,4 +32,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default LayoutDashBoard;

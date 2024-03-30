@@ -7,6 +7,7 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import PersonIcon from "@mui/icons-material/Person";
 import BadgeIcon from "@mui/icons-material/Badge";
+import LocalHotelIcon from '@mui/icons-material/LocalHotel';
 
 const Side = styled(Box)({
   width: "325px",
@@ -81,6 +82,10 @@ const Sidebar = () => {
       <LinkItem to="/manage-devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
+      </LinkItem>
+      <LinkItem to="/manage-preventions">
+        <LocalHotelIcon style={{ marginRight: "5px" }} />
+        Quản lý phòng bệnh
       </LinkItem>
       <LinkItem to="/admin">
         <PersonIcon style={{ marginRight: "5px" }} />
