@@ -79,19 +79,19 @@ const Sidebar = () => {
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>
-      <LinkItem to="/manage-patients" active={pathname === "/manage-patients"} id="patients">
+      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/add-patient"} id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
-      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines"} id="medicines">
+      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines" | pathname === "/add-medicine" | pathname === "/info-medicine"} id="medicines">
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees" active={pathname === "/manage-employees"} id="employees">
+      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/add-employee"} id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices" active={pathname === "/manage-devices"} id="devices">
+      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/add-device"} id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>
