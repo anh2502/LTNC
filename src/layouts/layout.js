@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../sidebar";
-import NavbarAddMedicine from "./navbar_add-medicines";
+import Sidebar from "./sidebar";
+import Navbar from "./navbar";
 import { styled } from "@mui/material";
 
 const LayoutContainer = styled('div')({
@@ -17,14 +17,14 @@ const ContentContainer = styled('div')({
   flex: '1', // Chiếm phần còn lại của không gian
 });
 
-const LayoutAddMedicine = () => {
+const Layout = ({ name }) => {
   return (
     <LayoutContainer>
       <SidebarContainer>
         <Sidebar />
       </SidebarContainer>
       <ContentContainer>
-        <NavbarAddMedicine />
+        <Navbar namePage={name} />
         <Outlet />
       </ContentContainer>
     </LayoutContainer>
@@ -32,4 +32,4 @@ const LayoutAddMedicine = () => {
   );
 };
 
-export default LayoutAddMedicine;
+export default Layout;

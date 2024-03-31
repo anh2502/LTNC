@@ -11,7 +11,7 @@ import LocalHotelIcon from '@mui/icons-material/LocalHotel';
 import '../App.css'
 
 const Side = styled(Box)({
-  width: "325px",
+  width: "290px",
   color: "#fff",
   margin: "36px",
   height: "100vh",
@@ -51,6 +51,7 @@ const LinkItem = styled(Link)({
   padding: "16px 24px",
   display: "flex",
   alignItems: "center",
+  borderRadius: "30px 0px 0px 30px"
 });
 
 const Sidebar = () => {
@@ -64,10 +65,12 @@ const Sidebar = () => {
           HOSPITAL
         </Typography>
       </LogoContainer>
-      <LinkItem to="/">
-        <HomeIcon style={{ marginRight: "5px" }} />
-        Trang chủ
-      </LinkItem>
+      <a href="#home">
+        <LinkItem to="/" id="home">
+          <HomeIcon style={{ marginRight: "5px" }} />
+          Trang chủ
+        </LinkItem>
+      </a>
       <LinkItem to="/manage-patients" id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân

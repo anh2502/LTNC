@@ -1,43 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 * {
   box-sizing: border-box;
   /* Heading/Heading 4 */
@@ -53,6 +13,8 @@ body {
   background-color: #f3f4ff;
 }
 
+/* -----------------------------------------------------------------
+Thanh tìm kiếm */
 .search-bar-block {
   display: flex;
   height: 50px;
@@ -66,7 +28,7 @@ body {
 
 .search-bar {
   display: flex;
-  padding: 23px 32px;
+  padding: 23px 42px;
   align-items: center;
   margin: 20px 0;
 }
@@ -83,6 +45,53 @@ body {
 
 .search-bar-block svg {
   margin: 10px;
+}
+
+
+
+/* -----------------------------------------------------------------
+Nút thêm */
+.add {
+  border-radius: 40px;
+  background-color: #4d44b5;
+  color: white;
+  display: inline-block;
+  width: 207px;
+  height: 60px;
+  font-family: Poppins;
+  font-size: 27px;
+  padding: 16px 60px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-style: normal;
+  font-weight: 400;
+  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
+  line-height: normal;
+  column-count: 2;
+}
+
+.link-button {
+  text-decoration: none;
+}
+
+/* -----------------------------------------------------------------
+Nút bộ lọc của từng Page */
+.justify {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.table-container {
+  text-align: center;
+}
+
+.table {
+  width: 95%;
+  margin: 0 auto;
 }
 
 .drop-down {
@@ -112,56 +121,8 @@ body {
   line-height: normal;
 }
 
-.buttons {
-  border-radius: 40px;
-  background: var(--Color-Purple, #4D44B5);
-
-  display: flex;
-  width: 207px;
-  height: 60px;
-}
-
-.add {
-  border-radius: 40px;
-  background-color: #4d44b5;
-  color: white;
-  display: inline-block;
-  width: 207px;
-  height: 60px;
-  font-family: Poppins;
-  font-size: 27px;
-  padding: 16px 60px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  font-style: normal;
-  font-weight: 400;
-  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
-  line-height: normal;
-  column-count: 2;
-}
-
-.link-button {
-  text-decoration: none;
-}
-
-.justify {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.table-container {
-  text-align: center;
-}
-
-.table {
-  width: 95%;
-  margin: 0 auto;
-}
-
+/* --------------------------------------------------------------------
+Page admin  */
 .admin-page {
   background-image: url('./img/admin.jpg');
   background-repeat: no-repeat;
@@ -172,27 +133,8 @@ body {
   position: fixed;
 }
 
-.prevention {
-  background-image: url('./img/preventionprevention.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
-
-.linkitem::target {
-  color: purple;
-  background-color: #fff;
-
-}
-
-#home:target {
-  color: purple;
-  background-color: #fff;
-}
-
+/* --------------------------------------------------------------------
+Page thêm cho các trang quản lý */
 /* Cài đặt chung cho form */
 .add-medicine {
   background-color: white;
@@ -339,4 +281,196 @@ body {
 .rightTeam input[name="image"] {
   width: 205px;
   height: 222px;
+}
+
+/* --------------------------------------------------------------------
+ Page thông tin của thuốc */
+/* 
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+} */
+
+.paracetamol-info {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.paracetamol-info h1 {
+  font-size: 24px;
+  margin-top: 0;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  flex-basis: 20%;
+  margin-bottom: 5px;
+  color: #333;
+  font-family: Verdana, sans-serif;
+}
+
+.form-group input,
+.form-group textarea {
+  flex-basis: 80%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Verdana, sans-serif;
+}
+
+.form-group button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Media query cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-group label,
+  .form-group input,
+  .form-group textarea {
+    flex-basis: 100%;
+  }
+}
+
+/* -------------------------------------------------------------------------
+Animation sidebar */
+/* < !DOCTYPE html><html><head><style>div {
+  width: 100px;
+  height: 100px;
+  background-color: crimson;
+  position: relative;
+  -webkit-animation-name: example; */
+/* Safari 4.0 - 8.0 */
+/* -webkit-animation-duration: 4s; */
+/* Safari 4.0 - 8.0 */
+/* animation-name: example;
+  animation-duration: 4s; */
+/* } */
+
+/* Safari 4.0 - 8.0 */
+/* @-webkit-keyframes example {
+  0% {
+    background-color: crimson;
+    left: 0px;
+    top: 0px;
+  }
+
+  25% {
+    background-color: lightsalmon;
+    left: 200px;
+    top: 0px;
+  }
+
+  50% {
+    background-color: seagreen;
+    left: 200px;
+    top: 200px;
+  }
+
+  75% {
+    background-color: midnightblue;
+    left: 0px;
+    top: 200px;
+  }
+
+  100% {
+    background-color: indigo;
+    left: 0px;
+    top: 0px;
+  }
+} */
+
+/* Cú pháp tiêu chuẩn */
+/* @keyframes example {
+  0% {
+    background-color: crimson;
+    left: 0px;
+    top: 0px;
+  }
+
+  25% {
+    background-color: lightsalmon;
+    left: 200px;
+    top: 0px;
+  }
+
+  50% {
+    background-color: seagreen;
+    left: 200px;
+    top: 200px;
+  }
+
+  75% {
+    background-color: midnightblue;
+    left: 0px;
+    top: 200px;
+  }
+
+  100% {
+    background-color: indigo;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+</style></head><div></div></body></html> */
+#home:target {
+  background-color: white;
+  color: purple;
+}
+
+#patients:target {
+  background-color: white;
+  color: purple;
+}
+
+#employees:target {
+  background-color: white;
+  color: purple;
+}
+
+#medicines:target {
+  background-color: white;
+  color: purple;
+}
+
+#devices:target {
+  background-color: white;
+  color: purple;
+}
+
+#preventions:target {
+  background-color: white;
+  color: purple;
+}
+
+#admin:target {
+  background-color: white;
+  color: purple;
+}
+
+a {
+  text-decoration: none;
+  color: #C1BBEB;
 }

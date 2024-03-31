@@ -8,13 +8,14 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Fab from '@mui/material/Fab';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Button, buttonBaseClasses } from '@mui/material';
+import { Link } from "react-router-dom";
+import { styled } from "@mui/material";
 
-
+const LinkAdd = styled(Link)({
+    textDecoration: 'none',
+});
 
 const columns = [
     { id: 'name', label: 'Họ và tên', minWidth: 150 },
@@ -127,9 +128,9 @@ export default function ColumnGroupingTable() {
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <LinkAdd to='/info-medicine'><Fab color="default" style={{ marginRight: '5px' }}>
                                                                 <EditIcon />
-                                                            </Fab> : value
+                                                            </Fab></LinkAdd> : value
                                                         }
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>

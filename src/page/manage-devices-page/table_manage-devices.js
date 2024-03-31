@@ -10,8 +10,12 @@ import TableRow from '@mui/material/TableRow';
 import Fab from '@mui/material/Fab';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
+import { styled } from "@mui/material";
 
-
+const LinkAdd = styled(Link)({
+    textDecoration: 'none',
+});
 
 const columns = [
     { id: 'name', label: 'Tên thiết bị', minWidth: 150 },
