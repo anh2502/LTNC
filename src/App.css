@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   /* Heading/Heading 4 */
-  font-family: "Georgia", serif;
+  font-family: "Lato", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -34,7 +34,7 @@ Thanh tìm kiếm */
 }
 
 .search-bar input[type="text"] {
-  font-family: Poppins;
+  font-family: Lato;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -114,7 +114,7 @@ Nút bộ lọc của từng Page */
 .drop-down select {
   border: 1px none;
   background-color: #f3f4ff;
-  font-family: Poppins;
+  font-family: Lato;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -150,7 +150,7 @@ Page thêm cho các trang quản lý */
   display: flex;
   flex-direction: column;
   color: #303972;
-  font-family: Poppins;
+  font-family: Lato;
   font-size: 18px;
   font-weight: 600;
   word-wrap: break-word;
@@ -162,7 +162,7 @@ Page thêm cho các trang quản lý */
   display: inline-flex;
   color: var(--Color-Text, #303972);
   /* Text/Text Semi Bold 1 */
-  font-family: Poppins;
+  font-family: Lato;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -197,7 +197,7 @@ Page thêm cho các trang quản lý */
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-  font-family: Poppins;
+  font-family: Lato;
   font-weight: 600;
   font-size: 16px;
 }

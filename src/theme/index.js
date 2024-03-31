@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
    typography: {
-      fontFamily: ['Georgia', 'sans-serif'].join(','),
+      fontFamily: ['Lato', 'sans-serif'].join(','),
    }
 });
 
