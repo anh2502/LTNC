@@ -31,7 +31,7 @@ const AddPatient = () => {
     };
 
     return (
-        <div style={{ height: '100%', width: '95%', margin: '0 auto' }}>
+        <div style={{ width: '95%', margin: '0 auto' }}>
 
             <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >

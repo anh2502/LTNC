@@ -4,6 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
+import { Box, Grid } from '@mui/material';
 
 const AddDevice = () => {
     const [deviceInfo, setDeviceInfo] = useState({
@@ -31,7 +32,7 @@ const AddDevice = () => {
     };
 
     return (
-        <div style={{ height: '100%', width: '95%', margin: '0 auto' }}>
+        <div style={{ width: '95%', margin: '0 auto' }}>
 
             <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
@@ -43,7 +44,7 @@ const AddDevice = () => {
                             <form onSubmit={handleSubmit} className='formSumit'>
                                 <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Poppins', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
                                     <div className='leftTeam'>
-                                        <label htmlFor="name">Tên thiết bị:</label>
+                                        <label htmlFor="name">Tên thiết bị*</label>
                                         <input
                                             type="text"
                                             id="name"
@@ -52,74 +53,66 @@ const AddDevice = () => {
                                             onChange={handleChange}
                                             dir="abd"
                                         />
-
-                                        <label htmlFor="manufactureDate">Ngày sản xuất:</label>
-                                        <input
-                                            type="date"
-                                            id="manufactureDate"
-                                            name="manufactureDate"
-                                            value={deviceInfo.manufactureDate}
-                                            onChange={handleChange}
-                                        />
-
-
-
-                                        <label htmlFor="uses">Công dụng:</label>
+                                        <label htmlFor="uses" >Hướng dẫn sử dụng*</label>
                                         <textarea
                                             id="uses"
                                             name="uses"
                                             value={deviceInfo.uses}
                                             onChange={handleChange}
-                                        />
-
-
-                                        <label htmlFor="quantity">Số lượng:</label>
-                                        <input
-                                            type="number"
-                                            id="quantity"
-                                            name="quantity"
-                                            value={deviceInfo.quantity}
-                                            onChange={handleChange}
+                                            style={{ minHeight: '300px' }}
                                         />
                                     </div>
                                     <div className='rightTeam'>
 
-                                        <div><label htmlFor="code">Mã số:</label></div>
-                                        <input
-                                            type="text"
-                                            id="code"
-                                            name="code"
-                                            value={deviceInfo.code}
-                                            onChange={handleChange}
-                                        />
-
-                                        <div><label htmlFor="expiryDate">Hạn sử dụng:</label></div>
-                                        <input
-                                            type="date"
-                                            id="expiryDate"
-                                            name="expiryDate"
-                                            value={deviceInfo.expiryDate}
-                                            onChange={handleChange}
-                                        />
-
-                                        <div><label htmlFor="image">Hình ảnh:</label></div>
-                                        <input
-                                            type="file"
-                                            id="image"
-                                            name="image"
-                                            accept="image/*"
-                                            onChange={handleChange}
-                                        />
-
-
-                                        <div><label htmlFor="supplier">Nhà cung cấp:</label></div>
-                                        <input
-                                            type="text"
-                                            id="supplier"
-                                            name="supplier"
-                                            value={deviceInfo.supplier}
-                                            onChange={handleChange}
-                                        />
+                                        <div className='topTeam'>
+                                            <div><label htmlFor="code">Mã số*</label></div>
+                                            <input
+                                                type="text"
+                                                id="code"
+                                                name="code"
+                                                value={deviceInfo.code}
+                                                onChange={handleChange}
+                                                style={{ marginBottom: '9px' }}
+                                            />
+                                        </div>
+                                        <Grid container my={2}>
+                                            <Grid item className='leftRightTeam' xs={4}>
+                                                <Box>
+                                                    <div><label htmlFor="image">Hình ảnh*</label></div>
+                                                    <input
+                                                        type="file"
+                                                        id="image"
+                                                        name="image"
+                                                        accept="image/*"
+                                                        onChange={handleChange}
+                                                    />
+                                                </Box>
+                                            </Grid>
+                                            <Grid item className='rightRightTeam' xs={8}>
+                                                <Box>
+                                                    <div><label htmlFor="expiryDate">Thời hạn bảo trì (năm/lần)*</label></div>
+                                                    <input
+                                                        type="date"
+                                                        id="expiryDate"
+                                                        name="expiryDate"
+                                                        value={deviceInfo.expiryDate}
+                                                        onChange={handleChange}
+                                                        style={{ width: '100%' }}
+                                                    />
+                                                </Box>
+                                                <Box>
+                                                    <div><label htmlFor="expiryDate">Hạn sử dụng (năm,...)*</label></div>
+                                                    <input
+                                                        type="date"
+                                                        id="expiryDate"
+                                                        name="expiryDate"
+                                                        value={deviceInfo.expiryDate}
+                                                        onChange={handleChange}
+                                                        style={{ width: '100%' }}
+                                                    />
+                                                </Box>
+                                            </Grid>
+                                        </Grid>
                                     </div>
                                 </div>
                                 <div className='summitFooter'>

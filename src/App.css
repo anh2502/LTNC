@@ -435,42 +435,29 @@ Animation sidebar */
 }
 
 </style></head><div></div></body></html> */
-#home:target {
-  background-color: white;
-  color: purple;
-}
-
-#patients:target {
-  background-color: white;
-  color: purple;
-}
-
-#employees:target {
-  background-color: white;
-  color: purple;
-}
-
-#medicines:target {
-  background-color: white;
-  color: purple;
-}
-
-#devices:target {
-  background-color: white;
-  color: purple;
-}
-
-#preventions:target {
-  background-color: white;
-  color: purple;
-}
-
-#admin:target {
-  background-color: white;
-  color: purple;
+#home:hover,
+#patients:hover,
+#employees:hover,
+#medicines:hover,
+#devices:hover,
+#preventions:hover,
+#admin:hover {
+  background-color: indigo;
+  color: white;
 }
 
 a {
   text-decoration: none;
-  color: #C1BBEB;
+  color: inherit;
+}
+
+#home:target,
+#patients:target,
+#employees:target,
+#medicines:target,
+#devices:target,
+#preventions:target,
+#admin:target {
+  background-color: white;
+  color: purple;
 }

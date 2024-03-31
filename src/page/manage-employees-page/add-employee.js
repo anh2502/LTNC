@@ -4,17 +4,16 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
 const AddEmployee = () => {
     const [employeeInfo, setEmployeeInfo] = useState({
+        midLastName: '',
         name: '',
-        code: '',
-        manufactureDate: '',
-        expiryDate: '',
-        uses: '',
-        image: '',
-        quantity: '',
-        supplier: '',
+        email: '',
+        birthDay: '',
+        phoneNumber: '',
+        address: ''
     });
 
     const handleChange = (event) => {
@@ -31,7 +30,7 @@ const AddEmployee = () => {
     };
 
     return (
-        <div style={{ height: '100%', width: '95%', margin: '0 auto' }}>
+        <div style={{ width: '95%', margin: '0 auto' }}>
 
             <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
@@ -43,84 +42,71 @@ const AddEmployee = () => {
                             <form onSubmit={handleSubmit} className='formSumit'>
                                 <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Poppins', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
                                     <div className='leftTeam'>
-                                        <label htmlFor="name">Tên nhân viên:</label>
+                                        <label htmlFor="midLastName">Họ và tên đệm*</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            midLastName="midLastName"
+                                            value={employeeInfo.midLastName}
+                                            onChange={handleChange}
+                                        />
+                                        <label htmlFor="email">Email*</label>
+                                        <input
+                                            type="text"
+                                            id="email"
+                                            email="email"
+                                            value={employeeInfo.email}
+                                            onChange={handleChange}
+                                        />
+
+                                        <label htmlFor="birthDay">Ngày sinh*</label>
+                                        <input
+                                            type="date"
+                                            id="birthDay"
+                                            name="birthDay"
+                                            value={employeeInfo.birthDay}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className='rightTeam'>
+
+                                        <div><label htmlFor="name">Tên*</label></div>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
                                             value={employeeInfo.name}
                                             onChange={handleChange}
-                                            dir="abd"
                                         />
 
-                                        <label htmlFor="manufactureDate">Ngày sản xuất:</label>
-                                        <input
-                                            type="date"
-                                            id="manufactureDate"
-                                            name="manufactureDate"
-                                            value={employeeInfo.manufactureDate}
-                                            onChange={handleChange}
-                                        />
-
-
-
-                                        <label htmlFor="uses">Công dụng:</label>
-                                        <textarea
-                                            id="uses"
-                                            name="uses"
-                                            value={employeeInfo.uses}
-                                            onChange={handleChange}
-                                        />
-
-
-                                        <label htmlFor="quantity">Số lượng:</label>
+                                        <div><label htmlFor="phoneNumber">Số điện thoại*</label></div>
                                         <input
                                             type="number"
-                                            id="quantity"
-                                            name="quantity"
-                                            value={employeeInfo.quantity}
+                                            id="phoneNumber"
+                                            name="phoneNumber"
+                                            value={employeeInfo.phoneNumber}
+                                            onChange={handleChange}
+                                        />
+                                        <div><label htmlFor="address">Nhập địa chỉ*</label></div>
+                                        <input
+                                            type="text"
+                                            id="address"
+                                            name="address"
+                                            value={employeeInfo.address}
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <div className='rightTeam'>
-
-                                        <div><label htmlFor="code">Mã số:</label></div>
-                                        <input
-                                            type="text"
-                                            id="code"
-                                            name="code"
-                                            value={employeeInfo.code}
-                                            onChange={handleChange}
-                                        />
-
-                                        <div><label htmlFor="expiryDate">Hạn sử dụng:</label></div>
-                                        <input
-                                            type="date"
-                                            id="expiryDate"
-                                            name="expiryDate"
-                                            value={employeeInfo.expiryDate}
-                                            onChange={handleChange}
-                                        />
-
-                                        <div><label htmlFor="image">Hình ảnh:</label></div>
-                                        <input
-                                            type="file"
-                                            id="image"
-                                            name="image"
-                                            accept="image/*"
-                                            onChange={handleChange}
-                                        />
-
-
-                                        <div><label htmlFor="supplier">Nhà cung cấp:</label></div>
-                                        <input
-                                            type="text"
-                                            id="supplier"
-                                            name="supplier"
-                                            value={employeeInfo.supplier}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                </div>
+                                <div style={{ paddingLeft: '51%' }}>
+                                    <FormControl>
+                                        <FormLabel>Bạn có phải là người máy không?</FormLabel>
+                                        <RadioGroup>
+                                            <FormControlLabel
+                                                value='yes'
+                                                control={<Radio />}
+                                                label='Chuẩn cmnr=)))' />
+                                        </RadioGroup>
+                                    </FormControl>
                                 </div>
                                 <div className='summitFooter'>
 

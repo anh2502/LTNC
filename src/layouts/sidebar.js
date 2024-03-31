@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Box, styled, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Box, colors, styled, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
@@ -9,6 +9,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocalHotelIcon from '@mui/icons-material/LocalHotel';
 import '../App.css'
+import { click } from "@testing-library/user-event/dist/click";
+import Content from "./content";
 
 const Side = styled(Box)({
   width: "290px",
@@ -42,19 +44,27 @@ const LogoText = styled(Typography)({
   fontWeight: "bold",
   color: "#fff",
 });
-const LinkItem = styled(Link)({
-  textDecoration: "none",
-  color: "#C1BBEB",
-  fontSize: "18px",
-  fontWeight: '500',
-  margin: "5px 0",
-  padding: "16px 24px",
-  display: "flex",
-  alignItems: "center",
-  borderRadius: "30px 0px 0px 30px"
-});
+const LinkItem = styled(Link)(
+  ({ active }) => ({
+    textDecoration: "none",
+    color: active ? "purple" : "#C1BBEB",
+    backgroundColor: active ? "white" : "transparent",
+    width: active ? "300px" : "290px",
+    boxShadow: active ? "rgba(50, 50, 93, 0.25) 0px 50px 100px - 20px, rgba(0, 0, 0, 0.3) 0px 30px 60px - 30px" : "none",
+    border: active ? "2px outset #C1BBEB" : "0",
+    fontSize: "18px",
+    fontWeight: '500',
+    margin: "5px 0",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: "30px 5px 5px 30px",
+    padding: "16px 24px",
+  })
+);
 
 const Sidebar = () => {
+  const { pathname } = useLocation();
+
   return (
     <Side>
       <LogoContainer>
@@ -65,33 +75,31 @@ const Sidebar = () => {
           HOSPITAL
         </Typography>
       </LogoContainer>
-      <a href="#home">
-        <LinkItem to="/" id="home">
-          <HomeIcon style={{ marginRight: "5px" }} />
-          Trang chủ
-        </LinkItem>
-      </a>
-      <LinkItem to="/manage-patients" id="patients">
+      <LinkItem to="/" active={pathname === "/"} id="home">
+        <HomeIcon style={{ marginRight: "5px" }} />
+        Trang chủ
+      </LinkItem>
+      <LinkItem to="/manage-patients" active={pathname === "/manage-patients"} id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
-      <LinkItem to="/manage-medicines" id="medicines">
+      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines"} id="medicines">
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees" id="employees">
+      <LinkItem to="/manage-employees" active={pathname === "/manage-employees"} id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices" id="devices">
+      <LinkItem to="/manage-devices" active={pathname === "/manage-devices"} id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>
-      <LinkItem to="/manage-preventions" id="preventions">
+      <LinkItem to="/manage-preventions" active={pathname === "/manage-preventions"} id="preventions">
         <LocalHotelIcon style={{ marginRight: "5px" }} />
         Quản lý phòng bệnh
       </LinkItem>
-      <LinkItem to="/admin" id="admin">
+      <LinkItem to="/admin" active={pathname === "/admin"} id="admin">
         <PersonIcon style={{ marginRight: "5px" }} />
         Admin
       </LinkItem>
