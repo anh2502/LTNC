@@ -206,10 +206,9 @@ body {
 
 /* Cài đặt cho phần thông tin thuốc */
 .medicine-info {
-  display: flex;
+  display: inline;
   flex-direction: column;
-  align-items: left;
-  justify-content: flex-start;
+
   color: #303972;
   font-family: Poppins;
   font-size: 18px;
@@ -220,13 +219,13 @@ body {
 /* Cài đặt cho label */
 .medicine-info label {
   margin-bottom: 5px;
-  display: block;
+  display: inline-flex;
   font-weight: normal;
 }
 
 /* Cài đặt cho input */
 .medicine-info input {
-  width: 40%;
+  width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -236,7 +235,7 @@ body {
 
 /* Cài đặt cho textarea */
 .medicine-info textarea {
-  width: 40%;
+  width: 100%;
   height: 100px;
   padding: 5px;
   border: 1px solid #ccc;
@@ -285,15 +284,7 @@ body {
   }
 }
 
-.rightTeam div {
-  width: 40%;
-  display: block;
-  text-align: left;
-  align-items: right;
-}
-
-.rightTeam {
-  display: inline-;
-  width: 100%;
-  text-align: right;
+.medicine-info {
+  display: inline-flex;
+  column-count: 2;
 }
