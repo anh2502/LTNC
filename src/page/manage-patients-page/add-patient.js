@@ -5,8 +5,8 @@ import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 
-const AddMedicine = () => {
-    const [medicineInfo, setMedicineInfo] = useState({
+const AddPatient = () => {
+    const [patientInfo, setPatientInfo] = useState({
         name: '',
         code: '',
         manufactureDate: '',
@@ -19,7 +19,7 @@ const AddMedicine = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setMedicineInfo((prevState) => ({
+        setPatientInfo((prevState) => ({
             ...prevState,
             [name]: value,
         }));
@@ -27,7 +27,7 @@ const AddMedicine = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(medicineInfo);
+        console.log(patientInfo);
     };
 
     return (
@@ -36,19 +36,19 @@ const AddMedicine = () => {
             <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
                     <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
-                        <TableCell style={{ backgroundColor: '#4D44B5', borderRadius: '20px 0px 0px', color: 'white', fontSize: '24px', fontWeight: '700', fontFamily: 'Poppins', lineHeight: '36px', paddingLeft: '4%' }}>Thông tin thuốc</TableCell>
+                        <TableCell style={{ backgroundColor: '#4D44B5', borderRadius: '20px 0px 0px', color: 'white', fontSize: '24px', fontWeight: '700', fontFamily: 'Poppins', lineHeight: '36px', paddingLeft: '4%' }}>Thông tin bệnh nhân</TableCell>
                     </TableHead>
                     <TableBody >
                         <div style={{ width: '100%', height: '100%', backgroundColor: 'white', borderRadius: '0px 0px 20px 20px' }} className="add-medicine">
                             <form onSubmit={handleSubmit} className='formSumit'>
                                 <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Poppins', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
                                     <div className='leftTeam'>
-                                        <label htmlFor="name">Tên thuốc:</label>
+                                        <label htmlFor="name">Tên bệnh nhân:</label>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
-                                            value={medicineInfo.name}
+                                            value={patientInfo.name}
                                             onChange={handleChange}
                                             dir="abd"
                                         />
@@ -58,7 +58,7 @@ const AddMedicine = () => {
                                             type="date"
                                             id="manufactureDate"
                                             name="manufactureDate"
-                                            value={medicineInfo.manufactureDate}
+                                            value={patientInfo.manufactureDate}
                                             onChange={handleChange}
                                         />
 
@@ -68,7 +68,7 @@ const AddMedicine = () => {
                                         <textarea
                                             id="uses"
                                             name="uses"
-                                            value={medicineInfo.uses}
+                                            value={patientInfo.uses}
                                             onChange={handleChange}
                                         />
 
@@ -78,7 +78,7 @@ const AddMedicine = () => {
                                             type="number"
                                             id="quantity"
                                             name="quantity"
-                                            value={medicineInfo.quantity}
+                                            value={patientInfo.quantity}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -89,7 +89,7 @@ const AddMedicine = () => {
                                             type="text"
                                             id="code"
                                             name="code"
-                                            value={medicineInfo.code}
+                                            value={patientInfo.code}
                                             onChange={handleChange}
                                         />
 
@@ -98,7 +98,7 @@ const AddMedicine = () => {
                                             type="date"
                                             id="expiryDate"
                                             name="expiryDate"
-                                            value={medicineInfo.expiryDate}
+                                            value={patientInfo.expiryDate}
                                             onChange={handleChange}
                                         />
 
@@ -117,7 +117,7 @@ const AddMedicine = () => {
                                             type="text"
                                             id="supplier"
                                             name="supplier"
-                                            value={medicineInfo.supplier}
+                                            value={patientInfo.supplier}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -136,4 +136,4 @@ const AddMedicine = () => {
     );
 };
 
-export default AddMedicine;
+export default AddPatient;

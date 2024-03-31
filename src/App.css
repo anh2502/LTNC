@@ -113,35 +113,34 @@ body {
 }
 
 .buttons {
+  border-radius: 40px;
+  background: var(--Color-Purple, #4D44B5);
+
   display: flex;
   width: 207px;
   height: 60px;
-  padding: 16px 43px;
+}
+
+.add {
+  border-radius: 40px;
+  background-color: #4d44b5;
+  color: white;
+  display: inline-block;
+  width: 207px;
+  height: 60px;
+  font-family: Poppins;
+  font-size: 27px;
+  padding: 16px 60px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  border-radius: 40px;
-  background: var(--Color-Purple, #4D44B5);
-  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
-
-  font-family: Poppins;
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
+  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
   line-height: normal;
-}
-
-.new-patient {
-  background: var(--Color-Purple, #4D44B5);
-  border-style: none;
-  font-size: 19px;
-  color: white;
-}
-
-.new-patient svg {
-  margin-right: 10px;
+  column-count: 2;
 }
 
 .link-button {
@@ -206,9 +205,8 @@ body {
 
 /* Cài đặt cho phần thông tin thuốc */
 .medicine-info {
-  display: inline;
+  display: flex;
   flex-direction: column;
-
   color: #303972;
   font-family: Poppins;
   font-size: 18px;
@@ -218,25 +216,31 @@ body {
 
 /* Cài đặt cho label */
 .medicine-info label {
-  margin-bottom: 5px;
+  margin-bottom: 16px;
   display: inline-flex;
-  font-weight: normal;
+  color: var(--Color-Text, #303972);
+  /* Text/Text Semi Bold 1 */
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 /* Cài đặt cho input */
 .medicine-info input {
-  width: 100%;
-  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 27px;
   box-sizing: border-box;
+  width: 617px;
+  height: 48px;
 }
 
 /* Cài đặt cho textarea */
 .medicine-info textarea {
-  width: 100%;
-  height: 100px;
+  width: 617px;
+  height: 231px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -257,14 +261,40 @@ body {
 }
 
 /* Cài đặt cho button "Lưu nháp" */
-.medicine-info button:first-of-type {
+.formSumit button:first-of-type {
+  border: 2px solid #4d44b5;
+  border-radius: 40px;
+  width: 172px;
+  height: 64px;
+  background-color: #fff;
+  color: #4d44b5;
+  margin-right: 26px;
+}
+
+.formSumit button:first-of-type:hover {
   background-color: #ccc;
 }
 
-/* Cài đặt cho button "Gửi" */
-.medicine-info button:last-of-type {
-  background-color: #007bff;
+.formSumit button:first-of-type:active {
+  background-color: #747474;
   color: white;
+}
+
+/* Cài đặt cho button "Gửi" */
+.formSumit button:last-of-type {
+  border-radius: 40px;
+  background-color: #4d44b5;
+  color: white;
+  width: 112px;
+  height: 64px;
+}
+
+.formSumit button:last-of-type:hover {
+  background-color: #3c358f;
+}
+
+.formSumit button:last-of-type:active {
+  background-color: #151331;
 }
 
 /* Media query cho màn hình nhỏ */
@@ -285,6 +315,28 @@ body {
 }
 
 .medicine-info {
-  display: inline-flex;
   column-count: 2;
+}
+
+.leftTeam * {
+  width: 80%;
+}
+
+.leftTeam {
+  width: 100%;
+  margin: 0 5%;
+}
+
+.rightTeam * {
+  width: 80%;
+}
+
+.summitFooter {
+  text-align: right;
+  padding-right: 5%;
+}
+
+.rightTeam input[name="image"] {
+  width: 205px;
+  height: 222px;
 }

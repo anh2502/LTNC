@@ -1,9 +1,23 @@
-import React from "react";
 import '../../App.css'
-import { colors } from "@mui/material";
-const HomePage = () => {
+import React, { useState } from "react";
+import Calendar from "./calendar";
+
+function HomePage() {
+  const [date, setDate] = useState(new Date());
+
+  const handlePrevMonth = () => {
+    setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1));
+  };
+
+  const handleNextMonth = () => {
+    setDate((prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1));
+  };
+
   return (
-    <p>Happy niu year =&#41;&#41;&#41;&#41;&#41;&#41;&#41;&#41;&#41;&#41;</p>
+    <div className="App">
+      <Calendar date={date} onPrevMonth={handlePrevMonth} onNextMonth={handleNextMonth} />
+    </div>
   );
-};
+}
+
 export default HomePage;

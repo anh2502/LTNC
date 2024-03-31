@@ -18,6 +18,10 @@ import LayoutAddMedicine from "./layouts/AddMedicines/layout_add-medicines";
 import AddMedicine from "./page/manage-medicines-page/add-medicine";
 import LayoutAddDevice from "./layouts/AddDevices/layout_add-devices";
 import AddDevice from "./page/manage-devices-page/add-device";
+import AddEmployee from "./page/manage-employees-page/add-employee";
+import LayoutAddEmployee from "./layouts/AddEmployees/layout_add-employees";
+import AddPatient from "./page/manage-patients-page/add-patient";
+import LayoutAddPatient from "./layouts/AddPatients/layout_add-patients";
 export default function Router() {
   const routes = useRoutes([
     {
@@ -81,6 +85,20 @@ export default function Router() {
       element: <LayoutAddDevice />,
       children: [
         { index: true, element: <AddDevice /> },
+      ],
+    },
+    {
+      path: "/add-employee",
+      element: <LayoutAddEmployee />,
+      children: [
+        { index: true, element: <AddEmployee /> },
+      ],
+    },
+    {
+      path: "/add-patient",
+      element: <LayoutAddPatient />,
+      children: [
+        { index: true, element: <AddPatient /> },
       ],
     },
 

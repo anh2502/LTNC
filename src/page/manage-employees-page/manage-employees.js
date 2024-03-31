@@ -4,6 +4,8 @@ import '../../App.css'
 import { colors } from "@mui/material";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+
 
 const LinkAdd = styled(Link)({
   textDecoration: 'none',
@@ -29,14 +31,9 @@ const EmployeePage = () => {
                 <option value="Bộ lọc 3">Bộ lọc 3</option>
               </select>
             </div>
-            <LinkAdd to="/add-medicine">
-              <div className="buttons">
-                <button className="new-patient" >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 17" fill="none">
-                    <path d="M6.84703 10.6647H0.882324V6.42941H6.84703V0.5H11.0823V6.42941H17.1176V10.6647H11.0823V16.6647H6.84703V10.6647Z" fill="white" />
-                  </svg> Thêm
-                </button>
-              </div>
+            <LinkAdd to="/add-employee" className="add">
+              <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
+              <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
             </LinkAdd>
           </div>
         </div>

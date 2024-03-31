@@ -1,0 +1,42 @@
+.calendar {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.tb-calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.th-calendar {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.tr-calendar td {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.th-calendar {
+    text-align: center;
+}
+
+.today {
+    background-color: #f7f7f7;
+}
