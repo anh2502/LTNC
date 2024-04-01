@@ -36,12 +36,12 @@ const AddMedicine = () => {
             <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
                     <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
-                        <TableCell style={{ backgroundColor: '#4D44B5', borderRadius: '20px 0px 0px', color: 'white', fontSize: '24px', fontWeight: '700', fontFamily: 'Poppins', lineHeight: '36px', paddingLeft: '4%' }}>Thông tin thuốc</TableCell>
+                        <TableCell style={{ backgroundColor: '#4D44B5', borderRadius: '20px 0px 0px', color: 'white', fontSize: '24px', fontWeight: '700', fontFamily: 'Lato', lineHeight: '36px', paddingLeft: '4%' }}>Thông tin thuốc</TableCell>
                     </TableHead>
                     <TableBody >
                         <div style={{ width: '100%', height: '100%', backgroundColor: 'white', borderRadius: '0px 0px 20px 20px' }} className="add-medicine">
                             <form onSubmit={handleSubmit} className='formSumit'>
-                                <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Poppins', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
+                                <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Lato', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
                                     <div className='leftTeam'>
                                         <label htmlFor="name">Tên thuốc:</label>
                                         <input

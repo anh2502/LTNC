@@ -1,7 +1,7 @@
 import React from "react";
 import ColumnGroupingTable from "./table_manage-devices";
 import '../../App.css'
-import { colors } from "@mui/material";
+import { Typography, colors } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
@@ -24,10 +24,10 @@ const DevicePage = () => {
           <div className="justify">
             <div className="drop-down">
               <select >
-                <option value="Mới nhất">Mới nhất</option>
-                <option value="Bộ lọc 1">Bộ lọc 1</option>
-                <option value="Bộ lọc 2">Bộ lọc 2</option>
-                <option value="Bộ lọc 3">Bộ lọc 3</option>
+                <option value="Mới nhất"><Typography>Mới nhất</Typography></option>
+                <option value="Bộ lọc 1"><Typography>Bộ lọc 1</Typography></option>
+                <option value="Bộ lọc 2"><Typography>Bộ lọc 2</Typography></option>
+                <option value="Bộ lọc 3"><Typography></Typography></option>
               </select>
             </div>
             <LinkAdd to="/add-device" className="add">

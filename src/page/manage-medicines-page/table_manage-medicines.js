@@ -85,7 +85,7 @@ const rows = [
 
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(6);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -154,7 +154,6 @@ export default function ColumnGroupingTable() {
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
                     margin={20}
                     background={'#fff'}
                 />

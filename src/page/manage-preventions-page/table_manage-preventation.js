@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -14,19 +13,14 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import PatientTable from './table-sub';
 
-var Patient = {
-    a: "",
-    b: ""
-}
-
-function createData(room, faculty, doctor, available, action, name) {
+function createData(room, faculty, doctor, available) {
     return {
         room,
         faculty,
         doctor,
         available,
-        action,
     };
 }
 
@@ -46,23 +40,24 @@ function Row(props) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell align='center'>
                     {row.room}
                 </TableCell>
                 <TableCell align="center">{row.faculty}</TableCell>
                 <TableCell align="center">{row.doctor}</TableCell>
                 <TableCell align="center">{row.available}</TableCell>
-                <TableCell align="right">{row.action}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 0.5 }}>
-                            <Typography variant="h6" gutterBottom component="div">
-                                Tên bệnh nhân
+                        <Box>
+                            <Typography variant='h5' style={{ fontWeight: '900' }} sx={{ paddingTop: '20px', paddingLeft: '100px' }} gutterBottom component="div">
+                                Bệnh nhân
                             </Typography>
-                            <Table size="small" aria-label="purchases">
 
+                            <PatientTable ></PatientTable>
+
+                            <Table size="small" aria-label="purchases">
                                 <TableBody>
                                     {<TableCell TableCell align="left">{row.patient}</TableCell>}
                                 </TableBody>
@@ -75,28 +70,35 @@ function Row(props) {
     );
 }
 
-Row.propTypes = {
-    row: PropTypes.shape({
-        faculty: PropTypes.string.isRequired,
-        available: PropTypes.number.isRequired,
-        doctor: PropTypes.string.isRequired,
-        room: PropTypes.string.isRequired,
-        patient: PropTypes.string.isRequired,
-    }).isRequired,
-};
+// Row.propTypes = {
+//     row: PropTypes.shape({
+//         faculty: PropTypes.string.isRequired,
+//         available: PropTypes.number.isRequired,
+//         doctor: PropTypes.string.isRequired,
+//         room: PropTypes.string.isRequired,
+//         patient: PropTypes.string.isRequired,
+//     }).isRequired,
+// };
+
+const columns = [
+    { id: 'room', label: 'Phòng', minWidth: '20%' },
+    { id: 'department', label: 'Khoa', minWidth: '20%' },
+    { id: 'managementDoctor', label: 'Bác sĩ quản lý', minWidth: '20%' },
+    { id: 'roomNumber', label: 'Giường bệnh khả dụng', minWidth: '20%' },
+]
 
 const rows = [
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5, '...', 'Nguyễn Thị B'),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
 ];
 
 export default function CollapsibleTable() {
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(6);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -108,37 +110,44 @@ export default function CollapsibleTable() {
     };
     return (
         <div>
-            <TableContainer component={Paper}>
-                <Table aria-label="collapsible table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell />
-                            <TableCell>Phòng </TableCell>
-                            <TableCell align="center">Khoa</TableCell>
-                            <TableCell align="center">Bác sĩ quản lý</TableCell>
-                            <TableCell align="center">Giường bệnh khả dụng</TableCell>
-                            <TableCell align="right">Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <Row key={row.room} row={row} />
-                        ))}
-                    </TableBody>
-                </Table>
+            <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
+                <TableContainer >
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell />
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        style={{ top: 0, minWidth: column.minWidth, fontSize: '17px', fontWeight: '700', textAlign: 'center' }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => (
+                                <Row key={row.room} row={row} />
+                            ))}
+                        </TableBody>
+                    </Table>
 
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                margin={20}
-                background={'#fff'}
-            />
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    margin={20}
+                    background={'#fff'}
+                />
+            </Paper>
+
         </div>
     );
 }
