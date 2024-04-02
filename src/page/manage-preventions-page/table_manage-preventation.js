@@ -84,12 +84,12 @@ const columns = [
 ]
 
 const rows = [
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
-    createData('1', 'Khoa tim mạch', 'Nguyễn Văn A', 5),
+    createData('1', 'Khoa tim mạch', 'Gao đỏ', 5),
+    createData('2', 'Khoa sản', 'Gao xanh', 5),
+    createData('3', 'Khoa tai mũi họng', 'Gao trắng', 5),
+    createData('4', 'Khoa da liễu', 'Gao đen', 5),
+    createData('5', 'Khoa học và kĩ thuật máy tính', 'Đào Duy Quý', 5),
+    createData('6', 'Khoa mổ', 'Nguyễn Văn Heo', 5),
 ];
 
 export default function CollapsibleTable() {

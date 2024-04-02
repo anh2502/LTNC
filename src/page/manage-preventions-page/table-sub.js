@@ -18,13 +18,19 @@ const columns = [
 ]
 
 const rows = [
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
-    createData('Lý Thị Quý', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
+    createData('Ú òa =))', '123', 'Số 2'),
 ]
 
 const PatientTable = () => {

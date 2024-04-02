@@ -59,6 +59,7 @@ const LinkItem = styled(Link)(
     alignItems: "center",
     borderRadius: "30px 5px 5px 30px",
     padding: "16px 24px",
+    zIndex: '10',
   })
 );
 
