@@ -5,7 +5,6 @@ import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 import { Box, Grid } from '@mui/material';
-import { MarginOutlined } from '@mui/icons-material';
 
 const AddDevice = () => {
     const [deviceInfo, setDeviceInfo] = useState({

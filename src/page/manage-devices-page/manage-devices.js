@@ -24,10 +24,10 @@ const DevicePage = () => {
           <div className="justify">
             <div className="drop-down">
               <select >
-                <option value="Mới nhất"><Typography>Mới nhất</Typography></option>
-                <option value="Bộ lọc 1"><Typography>Bộ lọc 1</Typography></option>
-                <option value="Bộ lọc 2"><Typography>Bộ lọc 2</Typography></option>
-                <option value="Bộ lọc 3"><Typography></Typography></option>
+                <option value="Mới nhất"><Typography fontFamily={"Lato"}>Mới nhất</Typography></option>
+                <option value="Bộ lọc 1"><Typography fontFamily={"Lato"}>Bộ lọc 1</Typography></option>
+                <option value="Bộ lọc 2"><Typography fontFamily={"Lato"}>Bộ lọc 2</Typography></option>
+                <option value="Bộ lọc 3"><Typography fontFamily={"Lato"}></Typography></option>
               </select>
             </div>
             <LinkAdd to="/add-device" className="add">

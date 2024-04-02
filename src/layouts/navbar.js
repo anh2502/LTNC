@@ -10,7 +10,7 @@ const Navbar = ({ namePage }) => {
 
       <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 0 10px", boxShadow: 'none' }}>
         <Toolbar>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: "#303972", lineHeight: '54px', fontWeight: '700', paddingLeft: '2%' }}>
+          <Typography variant="h4" component="div" fontFamily={"Lato"} sx={{ flexGrow: 1, color: "#303972", lineHeight: '54px', fontWeight: '700', paddingLeft: '2%' }}>
             {namePage}
           </Typography>
           <Button component={Link} to="/" style={{ color: "gray", padding: "0px 3px", minWidth: "unset" }}>
