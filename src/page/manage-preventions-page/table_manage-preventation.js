@@ -9,11 +9,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PatientTable from './table-sub';
+import { Typography } from '@mui/material';
 
 function createData(room, faculty, doctor, available) {
     return {
@@ -50,13 +50,8 @@ function Row(props) {
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box>
-                            <Typography variant='h5' style={{ fontWeight: '900' }} sx={{ paddingTop: '20px', paddingLeft: '100px' }} gutterBottom component="div">
-                                Bệnh nhân
-                            </Typography>
-
-                            <PatientTable ></PatientTable>
-
+                        <Box sx={{ marginTop: 1 }}>
+                            <PatientTable></PatientTable>
                             <Table size="small" aria-label="purchases">
                                 <TableBody>
                                     {<TableCell TableCell align="left">{row.patient}</TableCell>}
@@ -81,6 +76,7 @@ function Row(props) {
 // };
 
 const columns = [
+    { id: 'empty', label: '', minWidth: '20%' },
     { id: 'room', label: 'Phòng', minWidth: '20%' },
     { id: 'department', label: 'Khoa', minWidth: '20%' },
     { id: 'managementDoctor', label: 'Bác sĩ quản lý', minWidth: '20%' },
@@ -115,7 +111,6 @@ export default function CollapsibleTable() {
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell />
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}

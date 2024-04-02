@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { Box, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from '@mui/material';
 
 const AddEmployee = () => {
     const [employeeInfo, setEmployeeInfo] = useState({
@@ -40,64 +40,82 @@ const AddEmployee = () => {
                     <TableBody >
                         <div style={{ width: '100%', height: '100%', backgroundColor: 'white', borderRadius: '0px 0px 20px 20px' }} className="add-medicine">
                             <form onSubmit={handleSubmit} className='formSumit'>
-                                <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Lato', fontWeight: '600', display: 'inline-block' }} className="medicine-info">
-                                    <div className='leftTeam'>
-                                        <label htmlFor="midLastName">Họ và tên đệm*</label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            midLastName="midLastName"
-                                            value={employeeInfo.midLastName}
-                                            onChange={handleChange}
-                                        />
-                                        <label htmlFor="email">Email*</label>
-                                        <input
-                                            type="text"
-                                            id="email"
-                                            email="email"
-                                            value={employeeInfo.email}
-                                            onChange={handleChange}
-                                        />
+                                <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Lato', fontWeight: '600', display: 'flex' }} className="medicine-info">
+                                    <Grid container my={2}>
+                                        <Grid item xs={5}>
+                                            <Box className='box'>
 
-                                        <label htmlFor="birthDay">Ngày sinh*</label>
-                                        <input
-                                            type="date"
-                                            id="birthDay"
-                                            name="birthDay"
-                                            value={employeeInfo.birthDay}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className='rightTeam'>
+                                                <label htmlFor="midLastName">Họ và tên đệm*</label>
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    midLastName="midLastName"
+                                                    value={employeeInfo.midLastName}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
 
-                                        <div><label htmlFor="name">Tên*</label></div>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            value={employeeInfo.name}
-                                            onChange={handleChange}
-                                        />
+                                                <label htmlFor="email">Email*</label>
+                                                <input
+                                                    type="text"
+                                                    id="email"
+                                                    email="email"
+                                                    value={employeeInfo.email}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
 
-                                        <div><label htmlFor="phoneNumber">Số điện thoại*</label></div>
-                                        <input
-                                            type="number"
-                                            id="phoneNumber"
-                                            name="phoneNumber"
-                                            value={employeeInfo.phoneNumber}
-                                            onChange={handleChange}
-                                        />
-                                        <div><label htmlFor="address">Nhập địa chỉ*</label></div>
-                                        <input
-                                            type="text"
-                                            id="address"
-                                            name="address"
-                                            value={employeeInfo.address}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                                <label htmlFor="birthDay">Ngày sinh*</label>
+                                                <input
+                                                    type="date"
+                                                    id="birthDay"
+                                                    name="birthDay"
+                                                    value={employeeInfo.birthDay}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+
+                                        </Grid>
+                                        <Grid item xs={5} sx={{ marginLeft: '10%' }}>
+                                            <Box className='box'>
+
+                                                <div><label htmlFor="name">Tên*</label></div>
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    value={employeeInfo.name}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
+
+                                                <div><label htmlFor="phoneNumber">Số điện thoại*</label></div>
+                                                <input
+                                                    type="number"
+                                                    id="phoneNumber"
+                                                    name="phoneNumber"
+                                                    value={employeeInfo.phoneNumber}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
+
+                                                <div><label htmlFor="address">Nhập địa chỉ*</label></div>
+                                                <input
+                                                    type="text"
+                                                    id="address"
+                                                    name="address"
+                                                    value={employeeInfo.address}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
                                 </div>
-                                <div style={{ paddingLeft: '51%' }}>
+                                <div style={{ paddingLeft: '54%' }}>
                                     <FormControl>
                                         <FormLabel>Bạn có phải là người máy không?</FormLabel>
                                         <RadioGroup>
@@ -118,7 +136,7 @@ const AddEmployee = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </div >
     );
 };
 

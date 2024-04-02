@@ -1,4 +1,4 @@
-import { Fab, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Fab, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete'
 import React from "react";
 
@@ -29,8 +29,15 @@ const rows = [
 
 const PatientTable = () => {
     return (
-        <Table  >
+        <Table >
             <TableHead>
+                <TableRow>
+                    <TableCell style={{ top: 0, minWidth: '20%', fontSize: '17px', fontWeight: '700', textAlign: 'center' }}>
+                        <Typography variant='h5' style={{ fontWeight: '900' }} gutterBottom component="div">
+                            Bệnh nhân
+                        </Typography>
+                    </TableCell>
+                </TableRow>
                 <TableRow>
                     {columns.map((column) => (
                         <TableCell

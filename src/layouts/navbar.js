@@ -8,7 +8,7 @@ const Navbar = ({ namePage }) => {
   return (
     <div className="header-title">
 
-      <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 10px 10px", boxShadow: 'none' }}>
+      <AppBar position="static" style={{ backgroundColor: "#f3f4ff", padding: "30px 0 10px", boxShadow: 'none' }}>
         <Toolbar>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: "#303972", lineHeight: '54px', fontWeight: '700', paddingLeft: '2%' }}>
             {namePage}

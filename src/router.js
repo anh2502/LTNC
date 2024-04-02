@@ -5,7 +5,7 @@ import PatientPage from "./page/manage-patients-page/manage-patients";
 import MedicinePage from "./page/manage-medicines-page/manage-medicines";
 import EmployeePage from "./page/manage-employees-page/manage-employees";
 import DevicePage from "./page/manage-devices-page/manage-devices";
-import AdminPage from "./page/admin-page/dashboard";
+import AdminPage from "./page/admin-page/admin";
 import PreventionPage from "./page/manage-preventions-page/manage-prevention";
 import AddMedicine from "./page/manage-medicines-page/add-medicine";
 import AddDevice from "./page/manage-devices-page/add-device";
