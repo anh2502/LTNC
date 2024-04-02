@@ -111,9 +111,9 @@ export default function ColumnGroupingTable() {
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
                                                         {
-                                                            column.id == 'action' ? <LinkAdd to='/info-medicine'><Fab color="default" style={{ marginRight: '5px' }}>
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <EditIcon />
-                                                            </Fab></LinkAdd> : value
+                                                            </Fab> : value
                                                         }
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
