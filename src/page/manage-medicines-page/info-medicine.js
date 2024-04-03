@@ -43,7 +43,9 @@ const MedicineInfo = () => {
                         <CalendarMonthIcon />
                     </Box>
                     <Box className="content-info-ele">
-                        2023-12-24
+                        <Typography color={'#303972'}>
+                            2023-12-24
+                        </Typography>
                     </Box>
                 </Box>
                 <Box className='stack-info-ele' gap={1}>
@@ -51,7 +53,9 @@ const MedicineInfo = () => {
                         <CalendarMonthIcon />
                     </Box>
                     <Box className="content-info-ele">
-                        2026-12-24
+                        <Typography color={'#303972'}>
+                            2026-12-24
+                        </Typography>
                     </Box>
                 </Box>
                 <Box className='stack-info-ele' gap={1} >
@@ -59,7 +63,9 @@ const MedicineInfo = () => {
                         <AllInboxIcon />
                     </Box>
                     <Box className="content-info-ele" marginTop={0.5}>
-                        100
+                        <Typography color={'#303972'}>
+                            100
+                        </Typography>
                     </Box>
                 </Box>
             </Stack>

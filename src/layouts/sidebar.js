@@ -88,7 +88,7 @@ const Sidebar = () => {
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/add-employee"} id="employees">
+      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/add-employee" | pathname === "/info-employee"} id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>

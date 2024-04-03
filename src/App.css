@@ -344,7 +344,7 @@ Page thêm cho các trang quản lý */
 }
 
 .content-info-ele {
-  padding-top: 8%;
+  padding-top: 5%;
 }
 
 .icon-info-ele {
@@ -409,4 +409,22 @@ hover cho Sidebar */
 #admin:target {
   background-color: white;
   color: purple;
+}
+
+/* -----------------------------------------------------------------
+Page thông tin nhân viên */
+.box-employee-info {
+  background-color: inherit;
+  width: 95%;
+  min-height: 500px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.box-profile {
+  background-color: #4d44b5;
+  height: 142px;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
 }

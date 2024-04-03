@@ -13,6 +13,7 @@ import AddEmployee from "./page/manage-employees-page/add-employee";
 import AddPatient from "./page/manage-patients-page/add-patient";
 import Layout from "./layouts/layout";
 import MedicineInfo from "./page/manage-medicines-page/info-medicine";
+import EmployeeInfo from "./page/manage-employees-page/info-employee";
 export default function Router() {
   const routes = useRoutes([
     {
@@ -97,6 +98,13 @@ export default function Router() {
       element: <Layout name="Thông tin thuốc" />,
       children: [
         { index: true, element: <MedicineInfo /> },
+      ],
+    },
+    {
+      path: "/info-employee",
+      element: <Layout name="Thông tin nhân viên" />,
+      children: [
+        { index: true, element: <EmployeeInfo /> },
       ],
     },
 
