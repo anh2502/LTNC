@@ -51,8 +51,8 @@ const AddPatient = () => {
                                                 <label htmlFor="name">Họ và tên đệm*</label>
                                                 <input
                                                     type="text"
-                                                    id="midLastName"
-                                                    name="midLastName"
+                                                    id="midLastname"
+                                                    name="midLastname"
                                                     value={patientInfo.midLastname}
                                                     onChange={handleChange}
                                                 />
