@@ -107,7 +107,7 @@ const PatientInfo = () => {
             <Typography className="title-info_typo" fontWeight={900} fontSize={24} fontFamily={"Lato"}>Hướng điều trị:</Typography>
             <Box className="paragraph-dieutri">
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'} marginBottom={3}>
-                    Iem hỏng có biết
+                    Iem hỏng có nhớ
                 </Typography>
             </Box>
         </Box>
