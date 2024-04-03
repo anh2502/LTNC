@@ -117,7 +117,7 @@ const AddEmployee = () => {
                                 </div>
                                 <div style={{ paddingLeft: '54%' }}>
                                     <FormControl>
-                                        <FormLabel>Bạn có phải là người máy không?</FormLabel>
+                                        <FormLabel>Bạn là người máy phải không?</FormLabel>
                                         <RadioGroup>
                                             <FormControlLabel
                                                 value='yes'
