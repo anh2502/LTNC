@@ -344,7 +344,9 @@ Page thêm cho các trang quản lý */
 }
 
 .content-info-ele {
-  padding-top: 5%;
+  padding-top: 1%;
+  width: auto;
+  height: 100%;
 }
 
 .icon-info-ele {
@@ -416,15 +418,62 @@ Page thông tin nhân viên */
 .box-employee-info {
   background-color: inherit;
   width: 95%;
-  min-height: 500px;
   margin: 0 auto;
   border-radius: 20px;
   overflow: auto;
 }
 
 .box-profile {
-  background-color: #4d44b5;
-  height: 142px;
+  background-color: #fff;
+  min-height: 500px;
   width: 100%;
+  border-radius: 20px;
+}
+
+.box-head-profile {
+  width: 100%;
+  height: 142px;
+  display: flex;
+  overflow: hidden;
+  background-color: #4D44B5;
   border-radius: 20px 20px 0 0;
+}
+
+.square {
+  width: 26%;
+  height: 283px;
+  border-radius: 20px;
+}
+
+.square-yl {
+  background-color: yellow;
+  margin-top: 32.61px;
+  margin-left: -11.5%;
+}
+
+.square-or {
+  background-color: orange;
+  margin-left: 54.46%;
+  margin-top: 82.01px;
+}
+
+.employee-info-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 8px solid white;
+  margin-top: -109.04px;
+  margin-left: 3.2%;
+}
+
+.box-phongban {
+  padding-left: 3.5%;
+}
+
+/* ------------------------------------------------------------------ 
+Màu của đường dẫn đến trang thông tin */
+
+.if-link:link {
+  color: #303972;
 }
