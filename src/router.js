@@ -15,6 +15,7 @@ import Layout from "./layouts/layout";
 import MedicineInfo from "./page/manage-medicines-page/info-medicine";
 import EmployeeInfo from "./page/manage-employees-page/info-employee";
 import PatientInfo from "./page/manage-patients-page/info-patient";
+import DeviceInfo from "./page/manage-devices-page/info-device";
 export default function Router() {
   const routes = useRoutes([
     {
@@ -115,7 +116,13 @@ export default function Router() {
         { index: true, element: <PatientInfo /> },
       ],
     },
-
+    {
+      path: "/info-device",
+      element: <Layout name="Thông tin thiết bị" />,
+      children: [
+        { index: true, element: <DeviceInfo /> },
+      ],
+    },
   ]);
   return routes;
 }
