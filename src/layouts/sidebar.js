@@ -92,7 +92,7 @@ const Sidebar = () => {
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/add-device"} id="devices">
+      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/add-device" | pathname === "/info-device"} id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>

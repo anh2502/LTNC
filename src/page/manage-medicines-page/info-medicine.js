@@ -37,7 +37,7 @@ const MedicineInfo = () => {
                 <img src={image} alt="con pepe" style={{ width: '100%', height: '100%' }} />
             </Box>
             <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"}>Paracetamol</Typography>
-            <Stack direction={'row'} spacing={25} marginLeft={'3.4%'}>
+            <Stack direction={'row'} spacing={'15%'} marginLeft={'3.4%'}>
                 <Box className='stack-info-ele' gap={1}>
                     <Box className="icon-info-ele">
                         <CalendarMonthIcon />
@@ -70,13 +70,13 @@ const MedicineInfo = () => {
                 </Box>
             </Stack>
             <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Giá:</Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
+            <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
                 Giá nhập:
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
+            </Typography>
+            <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
                 Giá bán:
-                </Typography>
-            
+            </Typography>
+
             <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Công dụng:</Typography>
             <Box className="paragraph-congdung">
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
