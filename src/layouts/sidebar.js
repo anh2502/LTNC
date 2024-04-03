@@ -80,7 +80,7 @@ const Sidebar = () => {
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>
-      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/add-patient"} id="patients">
+      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/add-patient" | pathname === "/info-patient"} id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
