@@ -38,38 +38,35 @@ const DeviceInfo = () => {
                 <img src={image} alt="con pepe" style={{ width: '100%', height: '100%' }} />
             </Box>
             <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"}>Máy điện tim </Typography>
-            <Stack direction={'row'} spacing={25} marginLeft={'3.4%'}>
+            <div className="stack">
                 <Box className='stack-info-ele' gap={1}>
                     <Box className="icon-info-ele">
+
                         <CalendarMonthIcon />
                     </Box>
-                    <Box className="content-info-ele">
-                        <Typography color={'#303972'}>
-                            Ngày sản xuất:
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        #Ngày sản xuất
+                    </Typography>
                 </Box>
                 <Box className='stack-info-ele' gap={1}>
                     <Box className="icon-info-ele">
+
                         <CalendarMonthIcon />
                     </Box>
-                    <Box className="content-info-ele">
-                        <Typography color={'#303972'}>
-                            Hạn sử dụng:
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        #Hạn sử dụng
+                    </Typography>
                 </Box>
                 <Box className='stack-info-ele' gap={1} >
                     <Box className="icon-info-ele">
+
                         <AllInboxIcon />
                     </Box>
-                    <Box className="content-info-ele" marginTop={0.5}>
-                        <Typography color={'#303972'}>
-                            Ngày bảo trì:
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        #Ngày bảo trì
+                    </Typography>
                 </Box>
-            </Stack>
+            </div>
             <Box className="paragraph-congdung">
                 <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Hướng dẫn sử dụng </Typography>
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>

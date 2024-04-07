@@ -302,7 +302,7 @@ Page thêm cho các trang quản lý */
 }
 
 .rectangle {
-  background-color: inherit;
+  background-color: transparent;
   width: 26%;
   height: 312px;
 }
@@ -338,24 +338,30 @@ Page thêm cho các trang quản lý */
   color: #303972;
 }
 
-.stack-info-ele {
-  display: inline-flex;
+.stack {
+  display: flex;
+  margin-left: 3.4%;
+  gap: 15%;
+  flex-wrap: wrap;
 }
 
-.content-info-ele {
-  padding-top: 1%;
+.stack-info-ele {
+  display: flex;
+  align-items: center;
+  height: 50px;
   width: auto;
-  height: 100%;
+  gap: 5px;
 }
 
 .icon-info-ele {
+  display: flex;
   background-color: #FB7D5B;
   color: #fff;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  padding-top: 5px;
-  padding-left: 4px;
+  min-height: 40px;
+  min-width: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
 .paragraph-congdung {
@@ -464,10 +470,6 @@ Page thông tin nhân viên */
   border: 8px solid white;
   margin-top: -109.04px;
   margin-left: 3.2%;
-}
-
-.box-phongban {
-  padding-left: 3.5%;
 }
 
 /* ------------------------------------------------------------------ 

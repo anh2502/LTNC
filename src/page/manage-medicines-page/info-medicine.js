@@ -37,38 +37,35 @@ const MedicineInfo = () => {
                 <img src={image} alt="con pepe" style={{ width: '100%', height: '100%' }} />
             </Box>
             <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"}>Paracetamol</Typography>
-            <Stack direction={'row'} spacing={'15%'} marginLeft={'3.4%'}>
+            <div className="stack">
                 <Box className='stack-info-ele' gap={1}>
                     <Box className="icon-info-ele">
+
                         <CalendarMonthIcon />
                     </Box>
-                    <Box className="content-info-ele">
-                        <Typography color={'#303972'}>
-                            2023-12-24
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        2023-12-24
+                    </Typography>
                 </Box>
                 <Box className='stack-info-ele' gap={1}>
                     <Box className="icon-info-ele">
+
                         <CalendarMonthIcon />
                     </Box>
-                    <Box className="content-info-ele">
-                        <Typography color={'#303972'}>
-                            2026-12-24
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        2026-12-24
+                    </Typography>
                 </Box>
                 <Box className='stack-info-ele' gap={1} >
                     <Box className="icon-info-ele">
+
                         <AllInboxIcon />
                     </Box>
-                    <Box className="content-info-ele" marginTop={0.5}>
-                        <Typography color={'#303972'}>
-                            100
-                        </Typography>
-                    </Box>
+                    <Typography color={'#303972'}>
+                        100
+                    </Typography>
                 </Box>
-            </Stack>
+            </div>
             <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Giá:</Typography>
             <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
                 Giá nhập:

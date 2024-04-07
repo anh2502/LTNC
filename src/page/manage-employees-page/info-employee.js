@@ -22,7 +22,7 @@ const EmployeeInfo = () => {
                         </Box>
                         <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} marginTop={3}>Đào Duy Quý</Typography>
                         <Typography className="title-info_typo" color={'#A098AE'} fontWeight={600} fontSize={'18px'} fontFamily={"Lato"} marginTop={1} marginBottom={3}>Trùm trường</Typography>
-                        <Stack direction={'row'} spacing={'auto'} marginTop={2} overflow={'auto'}>
+                        <div className="stack">
                             <Box className="box-phongban">
                                 <Typography color={'#A098AE'} fontWeight={400} fontSize={'18px'}>
                                     Phòng ban
@@ -31,11 +31,9 @@ const EmployeeInfo = () => {
                                     <Box className="icon-info-ele">
                                         <LocalHospitalIcon />
                                     </Box>
-                                    <Box className="content-info-ele">
-                                        <Typography color={'#303972'} >
-                                            Khoa học và kĩ thuật máy tính
-                                        </Typography>
-                                    </Box>
+                                    <Typography color={'#303972'} >
+                                        Khoa học và kĩ thuật máy tính
+                                    </Typography>
                                 </Box>
                             </Box>
                             <Box className="box-bangcap">
@@ -46,11 +44,9 @@ const EmployeeInfo = () => {
                                     <Box className="icon-info-ele">
                                         < BusinessCenterIcon />
                                     </Box>
-                                    <Box className="content-info-ele">
-                                        <Typography color={'#303972'}>
-                                            Loại giỏi
-                                        </Typography>
-                                    </Box>
+                                    <Typography color={'#303972'}>
+                                        Loại giỏi
+                                    </Typography>
                                 </Box>
                             </Box>
                             <Box className="box-sdt">
@@ -61,11 +57,9 @@ const EmployeeInfo = () => {
                                     <Box className="icon-info-ele">
                                         <LocalPhoneIcon />
                                     </Box>
-                                    <Box className="content-info-ele">
-                                        <Typography color={'#303972'}>
-                                            +84373071643
-                                        </Typography>
-                                    </Box>
+                                    <Typography color={'#303972'}>
+                                        +84373071643
+                                    </Typography>
                                 </Box>
                             </Box>
                             <Box className="box-email">
@@ -76,19 +70,17 @@ const EmployeeInfo = () => {
                                     <Box className="icon-info-ele">
                                         <MailOutlineIcon />
                                     </Box>
-                                    <Box className="content-info-ele">
-                                        <Typography color={'#303972'}>
-                                            daoduyquylop97@gmail.com
-                                        </Typography>
-                                    </Box>
+                                    <Typography color={'#303972'}>
+                                        daoduyquylop97@gmail.com
+                                    </Typography>
                                 </Box>
                             </Box>
-                        </Stack>
+                        </div>
                     </Box>
                 </Grid>
                 <Grid item xs={3.25}></Grid>
             </Grid>
-        </Box>
+        </Box >
     );
 }
 
