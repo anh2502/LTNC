@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/anh2502/LTNC.git/static/css/main.c5de5835.css",
+    "main.js": "/anh2502/LTNC.git/static/js/main.4d21e9e4.js",
+    "static/js/453.99dcf01f.chunk.js": "/anh2502/LTNC.git/static/js/453.99dcf01f.chunk.js",
+    "index.html": "/anh2502/LTNC.git/index.html",
+    "main.c5de5835.css.map": "/anh2502/LTNC.git/static/css/main.c5de5835.css.map",
+    "main.4d21e9e4.js.map": "/anh2502/LTNC.git/static/js/main.4d21e9e4.js.map",
+    "453.99dcf01f.chunk.js.map": "/anh2502/LTNC.git/static/js/453.99dcf01f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c5de5835.css",
+    "static/js/main.4d21e9e4.js"
+  ]
+}
