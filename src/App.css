@@ -3,15 +3,11 @@
   /* Heading/Heading 4 */
   font-family: "Lato", serif;
   font-size: 18px;
-  font-style: normal;
   font-weight: 900;
-  line-height: normal;
-
 }
 
 body {
   background-color: #f3f4ff;
-  box-sizing: border-box;
 }
 
 /* -----------------------------------------------------------------
@@ -31,6 +27,7 @@ Thanh tìm kiếm */
   display: flex;
   padding: 23px 2.5%;
   align-items: center;
+  justify-content: space-between;
   margin: 20px 0;
 }
 
@@ -93,8 +90,7 @@ Nút thêm */
 Nút bộ lọc của từng Page */
 .justify {
   display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  gap: 20px;
 }
 
 .table-container {
@@ -111,16 +107,12 @@ Nút bộ lọc của từng Page */
   width: 207px;
   height: 60px;
   padding: 16px 43px;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
   border-radius: 40px;
   border: 2px solid var(--Color-Purple, #4D44B5);
   /* Shadow */
   box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
-  margin-right: 20px;
 }
 
 .drop-down select {
@@ -136,12 +128,270 @@ Nút bộ lọc của từng Page */
 /* --------------------------------------------------------------------
 Page admin  */
 .admin-page {
-  background-image: url('./img/admin.jpg');
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 30px;
+  gap: 17.62px;
+}
+
+.info-admin {
+  background-color: #fff;
+  min-height: 370.44px;
+  border-radius: 20px;
+}
+
+.info-admin-head {
+  background-color: #4D44B5;
+  height: 141.31px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.bl {
+  height: 277.71px;
+  width: 25.92%;
+  border-radius: 1000px;
+}
+
+.orange-block {
+  background-color: #FB7D5B;
+  margin-left: 54.46%;
+  margin-top: 82.01px;
+}
+
+.yellow-block {
+  background-color: #FCC43E;
+  margin-top: 32.61px;
+  margin-left: -11.5%;
+}
+
+.info-admin-avatar {
+  width: 229.144px;
+  height: 165.54px;
+  border-radius: 100px;
+  border: 8px solid #fff;
+  margin-top: -110px;
+  margin-left: 3.1%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.info-admin-avatar img {
+  height: 100%;
+}
+
+.info-admin-name {
+  text-transform: capitalize;
+  color: #303972;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  margin-left: 3.5%;
+  margin-top: 0.5%;
+}
+
+.admin {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #303972;
+  margin-left: 3.5%;
+}
+
+.info-admin-position {
+  color: #A098AE;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.info-admin-container {
+  display: flex;
+  margin-left: 3.5%;
+  flex-wrap: wrap;
+  gap: 20%;
+}
+
+.info-admin-container .phone,
+.info-admin-container .email {
+  color: #A098AE;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+}
+
+.info-admin-container>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fa-phone,
+.fa-envelope {
+  background-color: #FB7D5B;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-phone-position,
+.info-gmail-position {
+  color: #303972;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.approve {
+  min-height: 530px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0 1.5%;
+}
+
+.approve-title {
+  color: #303972;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  margin-top: 39px;
+  margin-bottom: 25px;
+}
+
+.search {
+  width: 92.75%;
+  height: 60px;
+  border: 1px solid #A098AE;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 7px;
+}
+
+.search input {
+  height: 100%;
+  width: 92%;
+  border: none;
+}
+
+.search i {
+  color: #303972;
+  font-size: 28px;
+}
+
+.approve-list-items {
+  display: flex;
+  flex-direction: column;
+  min-height: 332px;
+  gap: 28.33px;
+  margin-top: 25px;
+  width: 92.75%;
+}
+
+.bg-approve {
+  display: flex;
   width: 100%;
-  height: 89%;
+}
+
+.avatar-approve {
+  width: 78.983px;
+  height: 61.675px;
+  background-color: #000;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.avt {
+  width: 100%;
+  height: 100%;
+}
+
+.content-approve {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 21.2px;
+  min-width: 10%;
+}
+
+.content-item-approve {
+  align-self: center;
+  margin-left: 50%;
+  color: #A098AE;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  min-width: 200px;
+}
+
+.content-approve .name {
+  color: #303972;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.content-approve .time {
+  color: #A098AE;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.agree,
+.notagree {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.button-approve {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.button-viewmore-approve {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  background-color: rgba(77, 68, 181, 0.102);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #4D44B5;
+  border-radius: 40px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.button-viewmore-approve:hover {
+  background-color: #4D44B5;
+  color: #fff;
 }
 
 /* --------------------------------------------------------------------
@@ -230,6 +480,7 @@ Page thêm cho các trang quản lý */
 
 .formSumit button:first-of-type:hover {
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .formSumit button:first-of-type:active {
@@ -248,6 +499,7 @@ Page thêm cho các trang quản lý */
 
 .formSumit button:last-of-type:hover {
   background-color: #3c358f;
+  cursor: pointer;
 }
 
 .formSumit button:last-of-type:active {
@@ -477,4 +729,146 @@ Màu của đường dẫn đến trang thông tin */
 
 .if-link:link {
   color: #303972;
+}
+
+/* ------------------------------------------------------------------
+Lịch trực của page thông tin nhân viên */
+
+.info-employees-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.noti {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 123.445px;
+  border-radius: 20px;
+  padding-left: 32px;
+  align-items: start;
+}
+
+.title-noti {
+  color: #303972;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 9px;
+}
+
+.content-noti {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  color: #A098AE;
+}
+
+.bg-schedule {
+  background-color: #fff;
+  width: 100%;
+  height: 175.12px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  position: relative;
+}
+
+.list-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.left-schedule {
+  width: 6%;
+  height: 100%;
+  background-color: #4D44B5;
+  position: absolute;
+  border-radius: 20px 0 0 20px;
+}
+
+.content-schedule {
+  display: flex;
+  flex-direction: column;
+  margin-left: 11.5%;
+  flex-shrink: 0;
+}
+
+.content-schedule .day {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 23px;
+  margin-bottom: 5px;
+  color: #303972;
+}
+
+.note,
+.date,
+.time {
+  color: #A098AE;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.note {
+  margin-bottom: 27.43px;
+}
+
+.date {
+  margin-bottom: 9.62px;
+}
+
+.fa-calendar {
+  color: #FB7D5B;
+}
+
+.fa-clock {
+  color: #FCC43E;
+}
+
+.button-viewmore {
+  display: flex;
+  background-color: rgba(77, 68, 181, 0.1);
+  width: 100%;
+  height: 57.42px;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  color: #4D44B5;
+}
+
+.close,
+.more {
+  pointer-events: none;
+}
+
+.button-viewmore:hover {
+  background-color: rgb(77, 68, 181);
+  color: #fff;
+  cursor: pointer;
+}
+
+.benhan {
+  background-color: #4D44B5;
+  width: 120%;
+  margin: 36px -20px;
+  height: 68.5px;
+  color: #fff;
+  padding-left: 4%;
+  display: flex;
+  align-items: center;
+}
+
+.benhan-title {
+  font-weight: 700;
+  font-size: 24px;
 }

@@ -62,7 +62,7 @@ export default function Router() {
     },
     {
       path: "/admin",
-      element: <Layout name="Admin" />,
+      element: <Layout name="Quản trị viên" />,
       children: [
         { index: true, element: <AdminPage /> },
       ],

@@ -13,7 +13,10 @@ const AddEmployee = () => {
         email: '',
         birthDay: '',
         phoneNumber: '',
-        address: ''
+        address: '',
+        position: '',
+        department: '',
+        degree: ''
     });
 
     const handleChange = (event) => {
@@ -76,6 +79,28 @@ const AddEmployee = () => {
                                                     onChange={handleChange}
                                                 />
                                             </Box>
+                                            <Box className='box'>
+
+                                                <label htmlFor="position">Chức vụ*</label>
+                                                <input
+                                                    type="text"
+                                                    id="position"
+                                                    name="position"
+                                                    value={employeeInfo.position}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
+
+                                                <label htmlFor="degree">Bằng cấp*</label>
+                                                <input
+                                                    type="text"
+                                                    id="degree"
+                                                    name="degree"
+                                                    value={employeeInfo.degree}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
 
                                         </Grid>
                                         <Grid item xs={5} sx={{ marginLeft: '10%' }}>
@@ -112,19 +137,19 @@ const AddEmployee = () => {
                                                     onChange={handleChange}
                                                 />
                                             </Box>
+                                            <Box className='box'>
+
+                                                <div><label htmlFor="department">Phòng ban*</label></div>
+                                                <input
+                                                    type="text"
+                                                    id="department"
+                                                    name="department"
+                                                    value={employeeInfo.department}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
                                         </Grid>
                                     </Grid>
-                                </div>
-                                <div style={{ paddingLeft: '54%' }}>
-                                    <FormControl>
-                                        <FormLabel>Bạn là người máy phải không?</FormLabel>
-                                        <RadioGroup>
-                                            <FormControlLabel
-                                                value='yes'
-                                                control={<Radio />}
-                                                label='Chuẩn cmnr=)))' />
-                                        </RadioGroup>
-                                    </FormControl>
                                 </div>
                                 <div className='summitFooter'>
 

@@ -43,7 +43,6 @@ const MedicinePage = () => {
           }}></ColumnGroupingTable>
       </div>
     </ section>
-
   );
 };
 export default MedicinePage;

@@ -16,6 +16,11 @@ const AddMedicine = () => {
         image: '',
         quantity: '',
         supplier: '',
+        importPrice: '',
+        price: '',
+        ingredient: '',
+        assign: '',
+        contraindicated: '',
     });
 
     const handleChange = (event) => {
@@ -34,7 +39,7 @@ const AddMedicine = () => {
     return (
         <div style={{ width: '95%', margin: '0 auto' }}>
 
-            <TableContainer sx={{ maxHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
+            <TableContainer sx={{ minHeight: 900, borderRadius: '20px', paddingLeft: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
                     <TableHead sx={{ borderRadius: '20px', paddingLeft: '20px' }}>
                         <TableCell style={{ backgroundColor: '#4D44B5', borderRadius: '20px 0px 0px', color: 'white', fontSize: '24px', fontWeight: '700', fontFamily: 'Lato', lineHeight: '36px', paddingLeft: '4%' }}>Thông tin thuốc</TableCell>
@@ -79,7 +84,6 @@ const AddMedicine = () => {
 
                                             </Box>
                                             <Box className='box'>
-
                                                 <label htmlFor="quantity">Số lượng*</label>
                                                 <input
                                                     type="number"
@@ -88,6 +92,44 @@ const AddMedicine = () => {
                                                     value={medicineInfo.quantity}
                                                     onChange={handleChange}
                                                 />
+                                            </Box>
+                                            <Box className='box'>
+                                                <Grid container my={2} justifyContent={'space-between'} margin={0}>
+                                                    <Grid item xs={5}>
+                                                        <Box >
+                                                            <label htmlFor="importPrice">Giá nhập*</label>
+                                                            <input
+                                                                type="number"
+                                                                id="importPrice"
+                                                                name="importPrice"
+                                                                value={medicineInfo.importPrice}
+                                                                onChange={handleChange}
+                                                            />
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid item xs={5}>
+                                                        <Box >
+                                                            <label htmlFor="price">Giá bán*</label>
+                                                            <input
+                                                                type="number"
+                                                                id="price"
+                                                                name="price"
+                                                                value={medicineInfo.price}
+                                                                onChange={handleChange}
+                                                            />
+                                                        </Box>
+                                                    </Grid>
+                                                </Grid>
+                                            </Box>
+                                            <Box className='box'>
+                                                <label htmlFor="assign">Chỉ định*</label>
+                                                <textarea
+                                                    id="assign"
+                                                    name="assign"
+                                                    value={medicineInfo.assign}
+                                                    onChange={handleChange}
+                                                />
+
                                             </Box>
                                         </Grid>
                                         <Grid item xs={5} sx={{ marginLeft: '10%' }}>
@@ -126,8 +168,6 @@ const AddMedicine = () => {
                                                 />
                                             </Box>
                                             <Box className='box'>
-
-
                                                 <div><label htmlFor="supplier">Nhà cung cấp*</label></div>
                                                 <input
                                                     type="text"
@@ -136,6 +176,26 @@ const AddMedicine = () => {
                                                     value={medicineInfo.supplier}
                                                     onChange={handleChange}
                                                 />
+                                            </Box>
+                                            <Box className='box'>
+                                                <div><label htmlFor="ingredient">Thành phần*</label></div>
+                                                <input
+                                                    type="text"
+                                                    id="ingredient"
+                                                    name="ingredient"
+                                                    value={medicineInfo.ingredient}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className='box'>
+                                                <label htmlFor="contraindicated">Chống chỉ định*</label>
+                                                <textarea
+                                                    id="contraindicated"
+                                                    name="contraindicated"
+                                                    value={medicineInfo.contraindicated}
+                                                    onChange={handleChange}
+                                                />
+
                                             </Box>
                                         </Grid>
                                     </Grid>

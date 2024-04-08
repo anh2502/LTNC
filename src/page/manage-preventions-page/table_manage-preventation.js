@@ -65,16 +65,6 @@ function Row(props) {
     );
 }
 
-// Row.propTypes = {
-//     row: PropTypes.shape({
-//         faculty: PropTypes.string.isRequired,
-//         available: PropTypes.number.isRequired,
-//         doctor: PropTypes.string.isRequired,
-//         room: PropTypes.string.isRequired,
-//         patient: PropTypes.string.isRequired,
-//     }).isRequired,
-// };
-
 const columns = [
     { id: 'empty', label: '', minWidth: '20%' },
     { id: 'room', label: 'Phòng', minWidth: '20%' },
