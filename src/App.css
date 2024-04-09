@@ -872,3 +872,17 @@ Lịch trực của page thông tin nhân viên */
   font-weight: 700;
   font-size: 24px;
 }
+
+
+/* -------------------------------------------------------------------
+page dasboard */
+
+.full-calendar {
+  width: 69.71%;
+  height: 820px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 3.17%;
+  overflow: auto;
+}

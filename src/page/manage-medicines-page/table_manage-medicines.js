@@ -129,7 +129,7 @@ export default function ColumnGroupingTable() {
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f515z6490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
                                                                 <EditIcon />
-                                                            </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/info-medicine">{value}</LinkAdd> : value)
+                                                            </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/manage-medicines/info-medicine">{value}</LinkAdd> : value)
 
                                                         }
                                                         {

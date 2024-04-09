@@ -68,56 +68,56 @@ export default function Router() {
       ],
     },
     {
-      path: "/add-medicine",
+      path: "/manage-medicines/add-medicine",
       element: <Layout name="Thêm thuốc" />,
       children: [
         { index: true, element: <AddMedicine /> },
       ],
     },
     {
-      path: "/add-device",
+      path: "/manage-devices/add-device",
       element: <Layout name="Thêm thiết bị" />,
       children: [
         { index: true, element: <AddDevice /> },
       ],
     },
     {
-      path: "/add-employee",
+      path: "/manage-employees/add-employee",
       element: <Layout name="Thêm nhân viên" />,
       children: [
         { index: true, element: <AddEmployee /> },
       ],
     },
     {
-      path: "/add-patient",
+      path: "/manage-patients/add-patient",
       element: <Layout name="Thêm bệnh nhân" />,
       children: [
         { index: true, element: <AddPatient /> },
       ],
     },
     {
-      path: "/info-medicine",
+      path: "/manage-medicines/info-medicine",
       element: <Layout name="Thông tin thuốc" />,
       children: [
         { index: true, element: <MedicineInfo /> },
       ],
     },
     {
-      path: "/info-employee",
+      path: "/manage-employees/info-employee",
       element: <Layout name="Thông tin nhân viên" />,
       children: [
         { index: true, element: <EmployeeInfo /> },
       ],
     },
     {
-      path: "/info-patient",
+      path: "/manage-patients/info-patient",
       element: <Layout name="Thông tin bệnh nhân " />,
       children: [
         { index: true, element: <PatientInfo /> },
       ],
     },
     {
-      path: "/info-device",
+      path: "/manage-devices/info-device",
       element: <Layout name="Thông tin thiết bị" />,
       children: [
         { index: true, element: <DeviceInfo /> },

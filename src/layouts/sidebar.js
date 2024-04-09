@@ -80,19 +80,19 @@ const Sidebar = () => {
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>
-      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/add-patient" | pathname === "/info-patient"} id="patients">
+      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/manage-patients/add-patient" | pathname === "/manage-patients/info-patient"} id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
-      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines" | pathname === "/add-medicine" | pathname === "/info-medicine"} id="medicines">
+      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines" | pathname === "/manage-medicines/add-medicine" | pathname === "/manage-medicines/info-medicine"} id="medicines">
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/add-employee" | pathname === "/info-employee"} id="employees">
+      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/manage-employees/add-employee" | pathname === "/manage-employees/info-employee"} id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/add-device" | pathname === "/info-device"} id="devices">
+      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/manage-devices/add-device" | pathname === "/manage-devices/info-device"} id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>

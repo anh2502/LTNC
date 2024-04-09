@@ -30,7 +30,7 @@ const DevicePage = () => {
                 <option value="Bộ lọc 3"><Typography>Bộ lọc 3</Typography></option>
               </select>
             </div>
-            <LinkAdd to="/add-device" className="add">
+            <LinkAdd to="/manage-devices/add-device" className="add">
               <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
               <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
             </LinkAdd>

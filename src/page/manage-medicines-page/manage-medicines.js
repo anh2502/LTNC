@@ -29,7 +29,7 @@ const MedicinePage = () => {
                 <option value="Bộ lọc 3">Bộ lọc 3</option>
               </select>
             </div>
-            <LinkAdd to="/add-medicine" className="add">
+            <LinkAdd to="/manage-medicines/add-medicine" className="add">
               <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
               <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
             </LinkAdd>
