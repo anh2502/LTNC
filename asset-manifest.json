@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anh2502/LTNC.git/static/css/main.c5de5835.css",
-    "main.js": "/anh2502/LTNC.git/static/js/main.4d21e9e4.js",
-    "static/js/453.99dcf01f.chunk.js": "/anh2502/LTNC.git/static/js/453.99dcf01f.chunk.js",
-    "index.html": "/anh2502/LTNC.git/index.html",
-    "main.c5de5835.css.map": "/anh2502/LTNC.git/static/css/main.c5de5835.css.map",
-    "main.4d21e9e4.js.map": "/anh2502/LTNC.git/static/js/main.4d21e9e4.js.map",
-    "453.99dcf01f.chunk.js.map": "/anh2502/LTNC.git/static/js/453.99dcf01f.chunk.js.map"
+    "main.css": "/LTNC-BTL/static/css/main.bdb7836c.css",
+    "main.js": "/LTNC-BTL/static/js/main.57ae12bf.js",
+    "static/js/453.6f31e997.chunk.js": "/LTNC-BTL/static/js/453.6f31e997.chunk.js",
+    "index.html": "/LTNC-BTL/index.html",
+    "main.bdb7836c.css.map": "/LTNC-BTL/static/css/main.bdb7836c.css.map",
+    "main.57ae12bf.js.map": "/LTNC-BTL/static/js/main.57ae12bf.js.map",
+    "453.6f31e997.chunk.js.map": "/LTNC-BTL/static/js/453.6f31e997.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5de5835.css",
-    "static/js/main.4d21e9e4.js"
+    "static/css/main.bdb7836c.css",
+    "static/js/main.57ae12bf.js"
   ]
 }
