@@ -22,7 +22,7 @@ const DeviceInfo = (image, name, dayOfManufacture, expiry, maintenanceDay, userM
     status = 'Bình thường';
     scheduleMain = '30/02/2024';
     return (
-        <Box className="box-info" >
+        <Box className="box-info" paddingBottom={3}>
             <Box className="box-info_head" >
                 <Box className="rectangle or"></Box>
                 <Box className="rectangle yl"></Box>

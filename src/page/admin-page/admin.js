@@ -52,7 +52,7 @@ const AdminPage = () => {
         </div>
       </div>
       <div className="approve">
-        <h1 className="approve-title">Phê duyệt xin nghỉ</h1>
+        <h1 className="approve-title" style={{ width: '92.75%' }}>Phê duyệt xin nghỉ</h1>
         <div className="search">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input />
@@ -72,11 +72,11 @@ const AdminPage = () => {
                     </div>
                     <div className="content-item-approve">{approve.content}</div>
                     <div className="button-approve">
-                      <button className="notagree">
-                        <i class="fa-solid fa-xmark"></i>
-                      </button>
                       <button className="agree">
                         <i class="fa-solid fa-check"></i>
+                      </button>
+                      <button className="notagree">
+                        <i class="fa-solid fa-xmark"></i>
                       </button>
                     </div>
                   </div>
@@ -92,11 +92,11 @@ const AdminPage = () => {
                     </div>
                     <div className="content-item-approve">{approve.content}</div>
                     <div className="button-approve">
-                      <button className="notagree">
-                        <i class="fa-solid fa-xmark"></i>
-                      </button>
                       <button className="agree">
                         <i class="fa-solid fa-check"></i>
+                      </button>
+                      <button className="notagree">
+                        <i class="fa-solid fa-xmark"></i>
                       </button>
                     </div>
                   </div>

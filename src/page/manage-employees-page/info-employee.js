@@ -55,7 +55,7 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
         <Box className="box-employee-info">
             <Grid container my={2} justifyContent={"space-between"}>
                 <Grid item xs={8.26} className="grid-profile-info">
-                    <Box className="box-profile">
+                    <Box className="box-profile" paddingBottom={3}>
                         <Box className="box-head-profile">
                             <Box className="square square-or"></Box>
                             <Box className="square square-yl"></Box>

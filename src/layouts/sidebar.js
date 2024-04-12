@@ -76,7 +76,7 @@ const Sidebar = () => {
           HOSPITAL
         </Typography>
       </LogoContainer>
-      <LinkItem to="/LTNC-BTL/" active={pathname === "/LTNC-BTL/"} id="home">
+      <LinkItem to="/LTNC-BTL" active={pathname === "/LTNC-BTL"} id="home">
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>

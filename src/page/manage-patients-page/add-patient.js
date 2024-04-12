@@ -340,7 +340,7 @@ const AddPatient = () => {
                                             </Box>
                                             <Box className="box" sx={{ marginTop: 3 }}>
 
-                                                <div><label htmlFor="treatmentDirection">Hướng điều trị*</label></div>
+                                                <div><label htmlFor="treatmentDirection">Hướng điều trị</label></div>
                                                 <input
                                                     type="text"
                                                     id="treatmentDirection"

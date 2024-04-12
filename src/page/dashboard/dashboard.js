@@ -59,34 +59,36 @@ const Calendar = () => {
   return (
     <div className="calendar">
       <div className="header">
-        <div style={{ width: '27.1%', height: '100%', marginLeft: 5, color: '#303972', fontSize: 36, fontFamily: 'Lato', fontWeight: '700', wordWrap: 'break-word' }}>Calendar</div>
+        <div style={{ width: 'auto', height: '100%', marginLeft: 5, color: '#303972', fontSize: 36, fontFamily: 'Lato', fontWeight: '700', wordWrap: 'break-word' }}>Calendar</div>
         {/* Month and Year Dropdowns */}
-        <div style={{ width: '207px', height: '50%', paddingLeft: 40, paddingRight: 40, paddingTop: 9, paddingBottom: 9, marginRight: '2.2%', borderRadius: 40, border: '2px #4D44B5 solid', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-          <div style={{ justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
-            <div style={{ color: '#4D44B5', fontSize: '18px', fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}>
-              <select value={months[currentMonth]} onChange={handleMonthChange}>
-                {months.map((month, index) => (
-                  <option key={index} value={month}>{month}</option>
-                ))}
-              </select>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '207px', height: '50%', paddingLeft: 40, paddingRight: 40, paddingTop: 9, paddingBottom: 9, marginRight: '2.2%', borderRadius: 40, border: '2px #4D44B5 solid', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
+            <div style={{ justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
+              <div style={{ color: '#4D44B5', fontSize: '18px', fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}>
+                <select value={months[currentMonth]} onChange={handleMonthChange}>
+                  {months.map((month, index) => (
+                    <option key={index} value={month}>{month}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div style={{ width: '207px', height: '50%', paddingLeft: 40, paddingRight: 40, paddingTop: 9, paddingBottom: 9, marginRight: '2.2%', borderRadius: 40, border: '2px #4D44B5 solid', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
-          <div style={{ justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
-            <div style={{ color: '#4D44B5', fontSize: 18, fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}><select value={currentYear} onChange={handleYearChange}>
-              {[...Array(5)].map((_, i) => {
-                const yearOption = currentYear - 2 + i; // 2 years back and forward
-                return <option key={yearOption} value={yearOption}>{yearOption}</option>;
-              })}
-            </select></div>
+          <div style={{ width: '207px', height: '50%', paddingLeft: 40, paddingRight: 40, paddingTop: 9, paddingBottom: 9, marginRight: '2.2%', borderRadius: 40, border: '2px #4D44B5 solid', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 10, display: 'inline-flex' }}>
+            <div style={{ justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
+              <div style={{ color: '#4D44B5', fontSize: 18, fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}><select value={currentYear} onChange={handleYearChange}>
+                {[...Array(5)].map((_, i) => {
+                  const yearOption = currentYear - 2 + i; // 2 years back and forward
+                  return <option key={yearOption} value={yearOption}>{yearOption}</option>;
+                })}
+              </select></div>
+            </div>
           </div>
-        </div>
 
-        <LinkAdd to="/manage-employees/add-employee" className="add" style={{ marginRight: '8.2%' }}>
-          <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
-          <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
-        </LinkAdd>
+          <LinkAdd to="/manage-employees/add-employee" className="add">
+            <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
+            <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
+          </LinkAdd>
+        </div>
       </div>
       <div className="weekdays">
         {/* Render Weekdays here, for example: 'Sun', 'Mon', 'Tue', etc. */}
@@ -97,7 +99,7 @@ const Calendar = () => {
       <div className="days-grid">
         {renderDays()}
       </div>
-    </div>
+    </div >
   );
 };
 

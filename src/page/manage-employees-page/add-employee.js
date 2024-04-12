@@ -16,7 +16,7 @@ const AddEmployee = () => {
         address: '',
         position: '',
         department: '',
-        degree: ''
+        degree: '',
     });
 
     const handleChange = (event) => {
@@ -47,23 +47,21 @@ const AddEmployee = () => {
                                     <Grid container my={2}>
                                         <Grid item xs={5}>
                                             <Box className='box'>
-
                                                 <label htmlFor="midLastName">Họ và tên đệm*</label>
                                                 <input
                                                     type="text"
-                                                    id="name"
-                                                    midLastName="midLastName"
+                                                    id="midLastName"
+                                                    name="midLastName"
                                                     value={employeeInfo.midLastName}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
                                             <Box className='box'>
-
                                                 <label htmlFor="email">Email*</label>
                                                 <input
                                                     type="text"
                                                     id="email"
-                                                    email="email"
+                                                    name="email"
                                                     value={employeeInfo.email}
                                                     onChange={handleChange}
                                                 />

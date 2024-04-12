@@ -19,7 +19,7 @@ import DeviceInfo from "./page/manage-devices-page/info-device";
 export default function Router() {
   const routes = useRoutes([
     {
-      path: "/LTNC-BTL/",
+      path: "/LTNC-BTL",
       element: <Layout name="Trang chủ" />,
       children: [
         { index: true, element: <HomePage /> },

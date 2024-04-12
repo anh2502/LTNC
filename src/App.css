@@ -260,6 +260,9 @@ Page admin  */
   background-color: #fff;
   border-radius: 20px;
   padding: 0 1.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .approve-title {
@@ -891,7 +894,7 @@ Lịch trực của page thông tin nhân viên */
 
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 2px solid #EEEEEE;
@@ -915,6 +918,7 @@ Lịch trực của page thông tin nhân viên */
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   padding: 10px 0;
+  gap: 15px;
   background-color: #fff;
   font-weight: 600;
   border-radius: 6px;
@@ -954,7 +958,7 @@ Lịch trực của page thông tin nhân viên */
   align-items: left;
   justify-content: left;
   text-align: left;
-  padding: 20px 10px;
+  padding: 10px 10px;
   /* Adjusted padding for more space */
   border-radius: 8px;
   /* Rounded corners for modern look */
