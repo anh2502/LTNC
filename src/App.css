@@ -878,11 +878,11 @@ Lịch trực của page thông tin nhân viên */
 /* Setting font for the whole calendar for consistency */
 .calendar {
   font-family: 'Arial', sans-serif;
-  max-width: 80%;
+  max-width: 70%;
   /* Adjust as needed for your layout */
-  min-height: 85%;
+  min-height: 820px;
   margin-left: 40px;
-  padding: 10px;
+  padding: 35px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /* subtle shadow for depth */
@@ -895,7 +895,8 @@ Lịch trực của page thông tin nhân viên */
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 2px solid #EEEEEE;
-  margin-bottom: 20px;
+  margin-bottom: 17px;
+  margin-top: -10px;
 }
 
 .header select {
@@ -915,13 +916,17 @@ Lịch trực của page thông tin nhân viên */
   text-align: center;
   padding: 10px 0;
   background-color: #fff;
-  color: '#A098AE';
   font-weight: 600;
   border-radius: 6px;
 }
 
 .weekday {
   padding: 10px 0;
+  color: #A098AE;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .days-grid {
@@ -929,12 +934,17 @@ Lịch trực của page thông tin nhân viên */
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 100px);
   grid-gap: 50px 50px;
-  gap: 30px 30px;
+  gap: 24px 30px;
   padding: 7px;
 }
 
 .day-db {
+  color: #303972;
   background-color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   /* Light background for the cells */
   border: 2px #A098AE solid;
   /* Subtle border */
