@@ -872,17 +872,20 @@ Lịch trực của page thông tin nhân viên */
   font-weight: 700;
   font-size: 24px;
 }
+
 /* Basic reset */
 
 /* Setting font for the whole calendar for consistency */
 .calendar {
   font-family: 'Arial', sans-serif;
-  max-width: 80%; /* Adjust as needed for your layout */
-  height: 70%;
+  max-width: 80%;
+  /* Adjust as needed for your layout */
+  min-height: 85%;
   margin-left: 40px;
   padding: 10px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* subtle shadow for depth */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* subtle shadow for depth */
   background-color: #FFFFFF;
 }
 
@@ -924,29 +927,38 @@ Lịch trực của page thông tin nhân viên */
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 100px);
   grid-gap: 50px 50px;
   gap: 30px 30px;
   padding: 7px;
 }
 
-.day {
-  background-color: #fff; /* Light background for the cells */
-  border: 2px #A098AE solid; /* Subtle border */
+.day-db {
+  background-color: #fff;
+  /* Light background for the cells */
+  border: 2px #A098AE solid;
+  /* Subtle border */
   position: relative;
   cursor: pointer;
   display: flex;
   align-items: left;
   justify-content: left;
   text-align: left;
-  padding: 20px 10px; /* Adjusted padding for more space */
-  border-radius: 8px; /* Rounded corners for modern look */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+  padding: 20px 10px;
+  /* Adjusted padding for more space */
+  border-radius: 8px;
+  /* Rounded corners for modern look */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  /* Smooth transitions for hover effects */
 }
 
-.day:hover {
-  background-color: #e0e0e0; /* Darker background on hover */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+.day-db:hover {
+  background-color: #e0e0e0;
+  /* Darker background on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Soft shadow for depth */
 }
+
 /* Specific event styles */
 .has-event:before {
   content: '';
@@ -957,7 +969,8 @@ Lịch trực của page thông tin nhân viên */
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: orange; /* Color for the dots */
+  background-color: orange;
+  /* Color for the dots */
 }
 
 .event-details {
@@ -965,7 +978,8 @@ Lịch trực của page thông tin nhân viên */
   left: 10px;
   bottom: 10px;
   color: white;
-  background-color: #3F51B5; /* Adjust the color to match the event detail color */
+  background-color: #3F51B5;
+  /* Adjust the color to match the event detail color */
   border-radius: 10px;
   padding: 0.25em 0.5em;
   font-size: 0.75rem;
@@ -976,7 +990,8 @@ Lịch trực của page thông tin nhân viên */
 }
 
 .event-count {
-  background-color: #FF4081; /* Color for event count indicator */
+  background-color: #FF4081;
+  /* Color for event count indicator */
   border-radius: 10px;
   padding: 0 5px;
 }
