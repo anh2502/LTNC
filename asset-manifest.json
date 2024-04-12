@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/LTNC-BTL/static/css/main.bdb7836c.css",
-    "main.js": "/LTNC-BTL/static/js/main.57ae12bf.js",
+    "main.css": "/LTNC-BTL/static/css/main.042bf85c.css",
+    "main.js": "/LTNC-BTL/static/js/main.ae4381cd.js",
     "static/js/453.6f31e997.chunk.js": "/LTNC-BTL/static/js/453.6f31e997.chunk.js",
     "index.html": "/LTNC-BTL/index.html",
-    "main.bdb7836c.css.map": "/LTNC-BTL/static/css/main.bdb7836c.css.map",
-    "main.57ae12bf.js.map": "/LTNC-BTL/static/js/main.57ae12bf.js.map",
+    "main.042bf85c.css.map": "/LTNC-BTL/static/css/main.042bf85c.css.map",
+    "main.ae4381cd.js.map": "/LTNC-BTL/static/js/main.ae4381cd.js.map",
     "453.6f31e997.chunk.js.map": "/LTNC-BTL/static/js/453.6f31e997.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bdb7836c.css",
-    "static/js/main.57ae12bf.js"
+    "static/css/main.042bf85c.css",
+    "static/js/main.ae4381cd.js"
   ]
 }
