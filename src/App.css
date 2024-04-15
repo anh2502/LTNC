@@ -607,6 +607,11 @@ Page thêm cho các trang quản lý */
   width: auto;
   gap: 5px;
 }
+.content-info-ele {
+  padding-top: 1%;
+  width: auto;
+  height: 100%;
+}
 
 .icon-info-ele {
   display: flex;
@@ -725,6 +730,10 @@ Page thông tin nhân viên */
   border: 8px solid white;
   margin-top: -109.04px;
   margin-left: 3.2%;
+}
+
+.box-phongban {
+  padding-left: 3.5%;
 }
 
 /* ------------------------------------------------------------------ 
