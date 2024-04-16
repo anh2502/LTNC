@@ -16,8 +16,13 @@ import MedicineInfo from "./page/manage-medicines-page/info-medicine";
 import EmployeeInfo from "./page/manage-employees-page/info-employee";
 import PatientInfo from "./page/manage-patients-page/info-patient";
 import DeviceInfo from "./page/manage-devices-page/info-device";
+import Login from "./page/UserAction/login";
 export default function Router() {
   const routes = useRoutes([
+    {
+      path: "/login",
+      element: <Login />,
+    },
     {
       path: "/LTNC-BTL",
       element: <Layout name="Trang chủ" />,
@@ -123,6 +128,7 @@ export default function Router() {
         { index: true, element: <DeviceInfo /> },
       ],
     },
+    
   ]);
   return routes;
 }

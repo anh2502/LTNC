@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +11,9 @@ import Fab from '@mui/material/Fab';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
-import { Pagination, Typography, styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
+import EditDeviceDialog from './edit-device';
+import DeleteConfirmationDialog from '../../component/DeleteDialog';
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -24,10 +26,8 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
-const action = 'action';
-
 function createData(name, id, status) {
-    return { name, id, status, action };
+    return { name, id, status };
 }
 
 const rows = [
@@ -35,36 +35,14 @@ const rows = [
     createData('Cái búa', '123', 'Đang bảo trì'),
     createData('Cái máy giật điện', '456', 'Đang hoạt động'),
     createData('Cái máy hút bụi', '909', 'Hỏng'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy hút bụi', '909', 'Hỏng'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
 ];
 
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [selectedRow, setSelectedRow] = useState(null);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -73,6 +51,23 @@ export default function ColumnGroupingTable() {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+
+    const handleEditClick = (row) => {
+        setSelectedRow(row);
+        setOpenEditDialog(true);
+    };
+
+    const handleEditDialogClose = () => {
+        setOpenEditDialog(false);
+    };
+    const handleDeleteClick = (row) => {
+        setSelectedRow(row);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleDeleteDialogClose = () => {
+        setOpenDeleteDialog(false);
     };
 
     return (
@@ -103,14 +98,18 @@ export default function ColumnGroupingTable() {
                                             return (
                                                 <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
                                                     {
-                                                        column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
-                                                            <EditIcon />
-                                                        </Fab> : (column.id == 'name' ? <LinkAdd to="/manage-devices/info-device" className='if-link'>{value}</LinkAdd> : value)
-                                                    }
-                                                    {
-                                                        column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
-                                                            <DeleteIcon />
-                                                        </Fab> : <div></div>
+                                                        column.id === 'action' ? (
+                                                            <>
+                                                                <Fab color="default" style={{ marginRight: '5px' }} onClick={() => handleEditClick(row)}>
+                                                                    <EditIcon />
+                                                                </Fab>
+                                                                <Fab color="default" style={{ marginLeft: '5px' }} onClick={() => handleDeleteClick(row)}>
+                                                                    <DeleteIcon />
+                                                                </Fab>
+                                                            </>
+                                                        ) : (column.id === 'name' ? (
+                                                            <LinkAdd to="/manage-devices/info-device" className='if-link'>{value}</LinkAdd>
+                                                        ) : value)
                                                     }
                                                 </TableCell>
                                             );
@@ -128,11 +127,9 @@ export default function ColumnGroupingTable() {
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
-                margin={20}
-                background={'#fff'}
             />
+            <EditDeviceDialog open={openEditDialog} onClose={handleEditDialogClose} deviceInfo={selectedRow} />
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} id={selectedRow} api={selectedRow}/>
         </Paper>
     );
 }
-
-

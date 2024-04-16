@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -12,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
+import EditEmployeeDialog from './edit-employee';
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -68,6 +70,7 @@ const rows = [
 ];
 
 export default function ColumnGroupingTable() {
+    const [openEditDialog, setOpenEditDialog] = useState(false);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
 
@@ -78,6 +81,13 @@ export default function ColumnGroupingTable() {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+    const handleEditClick = (row) => {
+        setOpenEditDialog(true);
+    };
+
+    const handleEditDialogClose = () => {
+        setOpenEditDialog(false);
     };
 
     return (
@@ -111,7 +121,7 @@ export default function ColumnGroupingTable() {
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} onClick={() => handleEditClick(row)}>
                                                                 <EditIcon />
                                                             </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/manage-employees/info-employee">{value}</LinkAdd> : value)
                                                         }
@@ -142,6 +152,7 @@ export default function ColumnGroupingTable() {
                     background={'#fff'}
                 />
             </Paper>
+            <EditEmployeeDialog open={openEditDialog} onClose={handleEditDialogClose} info={""} />
         </div >
     );
 }

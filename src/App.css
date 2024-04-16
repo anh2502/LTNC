@@ -890,7 +890,7 @@ Lịch trực của page thông tin nhân viên */
 /* Setting font for the whole calendar for consistency */
 .calendar {
   font-family: 'Arial', sans-serif;
-  max-width: 70%;
+  max-width: 80%;
   /* Adjust as needed for your layout */
   min-height: 820px;
   margin-left: 40px;
