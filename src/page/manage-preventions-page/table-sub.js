@@ -39,7 +39,7 @@ const PatientTable = () => {
             <TableHead>
                 <TableRow>
                     <TableCell style={{ top: 0, minWidth: '20%', fontSize: '17px', fontWeight: '700', textAlign: 'center' }}>
-                        <Typography variant='h5' style={{ fontWeight: '900' }} gutterBottom component="div">
+                        <Typography variant='h5' style={{ fontWeight: '700' }} gutterBottom component="div">
                             Bệnh nhân
                         </Typography>
                     </TableCell>
