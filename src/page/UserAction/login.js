@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography, Link, Grid } from '@mui/material';
+import { Navigate } from 'react-router-dom';
+import api from "../../api";
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../redux/actions';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
-  const handleLogin = () => {
+  const handleLogin = async() => {
     // Xử lý logic đăng nhập ở đây
-    console.log('Username:', username);
-    console.log('Password:', password);
+    try {
+      const response = await api.post('accounts/login', { username, password });
+      console.log(response)
+      const userData = response.data.data;
+      dispatch(loginSuccess(userData));
+      return <Navigate to="/LTNC-BTL" />;
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
   };
 
   return (
@@ -16,16 +28,16 @@ const Login = () => {
       <div style={{ marginTop: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant="h4">Hospital</Typography>
         <form style={{ marginTop: '20px', width: '100%' }}>
+        Tên đăng nhập
           <TextField
-            label="Tên đăng nhập"
             variant="outlined"
             fullWidth
             margin="normal"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          Mật khẩu
           <TextField
-            label="Mật khẩu"
             type="password"
             variant="outlined"
             fullWidth

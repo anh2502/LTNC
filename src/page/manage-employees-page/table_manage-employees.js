@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -14,65 +14,27 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import EditEmployeeDialog from './edit-employee';
+import api from "../../api";
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
 });
 
 const columns = [
-    { id: 'name', label: 'Họ và tên', minWidth: 150 },
-    { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'bhyt', label: 'Chức vụ', minWidth: 100 },
-    { id: 'city', label: 'Tỉnh/Thành phố', minWidth: 100 },
+    { id: 'employeeName', label: 'Họ và tên', minWidth: 150 },
+    { id: 'employeeId', label: 'ID', minWidth: 100 },
+    { id: 'dutyType', label: 'Chức vụ', minWidth: 100 },
+    { id: 'address', label: 'Tỉnh/Thành phố', minWidth: 100 },
     { id: 'phoneNumber', label: 'Số điện thoại', minWidth: 100 },
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
 const action = 'action';
-
-function createData(name, id, bhyt, city, phoneNumber) {
-    return { name, id, bhyt, city, phoneNumber, action };
-}
-
-const rows = [
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-    createData('Đào Duy Quý', '010', 'Trùm trường', 'Hồ Chí Minh', '1234567890'),
-];
-
 export default function ColumnGroupingTable() {
     const [openEditDialog, setOpenEditDialog] = useState(false);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
+    const [rows, setRows]=useState([]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -89,6 +51,29 @@ export default function ColumnGroupingTable() {
     const handleEditDialogClose = () => {
         setOpenEditDialog(false);
     };
+    const fetchData = async () => {
+        try {
+          const response = await api.get(`/employees/`, {
+            params: {
+                pageNo: 0,
+                pageSize: 10,
+                sortBy: 'id',
+                searchFlag: false
+              }
+          });
+          console.log(response.data); // Dữ liệu nhận được từ API
+          setRows(response.data.data)
+          return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          // Xử lý lỗi nếu cần
+        }
+      };
+      
+      // Gọi hàm fetchData để lấy dữ liệu từ API
+      useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <div>
