@@ -34,7 +34,7 @@ export default function ColumnGroupingTable() {
     const [openEditDialog, setOpenEditDialog] = useState(false);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
-    const [rows, setRows]=useState([]);
+    const [rows, setRows] = useState([]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -53,25 +53,25 @@ export default function ColumnGroupingTable() {
     };
     const fetchData = async () => {
         try {
-          const response = await api.get(`/employees/`, {
-            params: {
-                pageNo: 0,
-                pageSize: 10,
-                sortBy: 'id',
-                searchFlag: false
-              }
-          });
-          console.log(response.data); // Dữ liệu nhận được từ API
-          setRows(response.data.data)
-          return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+            const response = await api.get(`/employees/`, {
+                params: {
+                    pageNo: 0,
+                    pageSize: 10,
+                    sortBy: 'id',
+                    searchFlag: false
+                }
+            });
+            console.log(response.data); // Dữ liệu nhận được từ API
+            setRows(response.data.data)
+            return response.data; // Trả về dữ liệu nhận được từ API nếu cần
         } catch (error) {
-          console.error('Error fetching data:', error);
-          // Xử lý lỗi nếu cần
+            console.error('Error fetching data:', error);
+            // Xử lý lỗi nếu cần
         }
-      };
-      
-      // Gọi hàm fetchData để lấy dữ liệu từ API
-      useEffect(() => {
+    };
+
+    // Gọi hàm fetchData để lấy dữ liệu từ API
+    useEffect(() => {
         fetchData();
     }, []);
 
