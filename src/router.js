@@ -231,7 +231,7 @@ export default function Router() {
       ],
     },
     {
-      path: "/manage-employees/info-employee",
+      path: "/manage-employees/info-employee/:id",
       element: isLoggedIn ? <Layout name="Thông tin nhân viên" /> : <Navigate to="/login" />,
       children: [
         { index: true, element: <EmployeeInfo /> },

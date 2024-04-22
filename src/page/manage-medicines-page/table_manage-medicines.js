@@ -14,6 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import EditMedicineDialog from './edit-medicine';
+import DeleteConfirmationDialog from '../../component/DeleteDialog';
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -89,6 +90,8 @@ export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [selectedRow, setSelectedRow] = useState([]);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -99,11 +102,20 @@ export default function ColumnGroupingTable() {
         setPage(0);
     };
     const handleEditClick = (row) => {
+        setSelectedRow(row);
         setOpenEditDialog(true);
     };
 
     const handleEditDialogClose = () => {
         setOpenEditDialog(false);
+    };
+    const handleDeleteClick = (row) => {
+        setSelectedRow(row);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleDeleteDialogClose = () => {
+        setOpenDeleteDialog(false);
     };
 
     return (
@@ -143,7 +155,7 @@ export default function ColumnGroupingTable() {
 
                                                         }
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f515z6490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} onClick={()=>handleDeleteClick(row)}>
                                                                 <DeleteIcon />
                                                             </Fab> : <div></div>
                                                         }
@@ -170,7 +182,8 @@ export default function ColumnGroupingTable() {
                     background={'#fff'}
                 />
             </Paper>
-            <EditMedicineDialog open={openEditDialog} onClose={handleEditDialogClose} info={""} />
+            <EditMedicineDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  api={"api for delete"}/>
         </div >
     );
 }

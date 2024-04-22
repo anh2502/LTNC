@@ -6,11 +6,20 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
+import api from "../api"
 
-const DeleteConfirmationDialog = ({ open, onClose, id, api }) => {
-  const handleDelete = () => {
-    // onDelete(id); // Gọi hàm onDelete với id của mục cần xóa
-    onClose(); // Đóng dialog sau khi xác nhận xóa
+const DeleteConfirmationDialog = ({ open, onClose, apiURL }) => {
+  const handleDelete = async() => {
+    console.log(apiURL)
+    // onClose(); // Đóng dialog sau khi xác nhận xóa
+    try {
+      // Gọi API để xóa dữ liệu
+      const response = await api.delete(apiURL); // Thay đổi endpoint và id tương ứng với ứng dụng của bạn
+      onClose();
+  } catch (error) {
+      console.error('Error deleting data:', error);
+      onClose();
+  }
   };
 
   return (

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import EditEmployeeDialog from './edit-employee';
 import api from "../../api";
+import DeleteConfirmationDialog from '../../component/DeleteDialog';
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -35,6 +36,10 @@ export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const [rows, setRows] = useState([]);
+    const [selectedRow, setSelectedRow] = useState([]);
+    const [selectedId, setSelectedId] = useState([]);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -45,23 +50,32 @@ export default function ColumnGroupingTable() {
         setPage(0);
     };
     const handleEditClick = (row) => {
+        setSelectedRow(row);
         setOpenEditDialog(true);
+    };
+    const handleDeleteClick = (row) => {
+        setSelectedRow(row);
+        setOpenDeleteDialog(true);
     };
 
     const handleEditDialogClose = () => {
+        fetchData();
         setOpenEditDialog(false);
+    };
+    const handleDeleteDialogClose = () => {
+        fetchData();
+        setOpenDeleteDialog(false);
     };
     const fetchData = async () => {
         try {
             const response = await api.get(`/employees/`, {
                 params: {
                     pageNo: 0,
-                    pageSize: 10,
+                    pageSize: 30,
                     sortBy: 'id',
                     searchFlag: false
                 }
             });
-            console.log(response.data); // Dữ liệu nhận được từ API
             setRows(response.data.data)
             return response.data; // Trả về dữ liệu nhận được từ API nếu cần
         } catch (error) {
@@ -73,7 +87,7 @@ export default function ColumnGroupingTable() {
     // Gọi hàm fetchData để lấy dữ liệu từ API
     useEffect(() => {
         fetchData();
-    }, []);
+    },[]);
 
     return (
         <div>
@@ -108,16 +122,18 @@ export default function ColumnGroupingTable() {
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} onClick={() => handleEditClick(row)}>
                                                                 <EditIcon />
-                                                            </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/manage-employees/info-employee">{value}</LinkAdd> : value)
+                                                            </Fab> : (column.id == 'employeeName' ? <LinkAdd className='if-link' to={`/manage-employees/info-employee/${row.employeeId}`}>{value}</LinkAdd> : value)
                                                         }
                                                         {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
+                                                            column.id == 'action' ? <Fab color="default" onClick={() => handleDeleteClick(row)}>
                                                                 <DeleteIcon />
                                                             </Fab> : <div></div>
                                                         }
                                                     </TableCell>
                                                 );
                                             })}
+                                            <EditEmployeeDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
+                                            
                                         </TableRow>
                                     );
                                 })}
@@ -137,7 +153,7 @@ export default function ColumnGroupingTable() {
                     background={'#fff'}
                 />
             </Paper>
-            <EditEmployeeDialog open={openEditDialog} onClose={handleEditDialogClose} info={""} />
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  apiURL={`employees/${selectedRow.employeeId}`}/>
         </div >
     );
 }

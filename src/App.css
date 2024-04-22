@@ -336,7 +336,7 @@ Page admin  */
 
 .content-item-approve {
   align-self: center;
-  margin-left: 50%;
+  margin-left: 10%;
   color: #A098AE;
   font-size: 18px;
   font-style: normal;
@@ -527,7 +527,7 @@ Page thêm cho các trang quản lý */
 }
 
 .summitFooter {
-  text-align: right;
+  text-align: center;
   padding-right: 5%;
 }
 

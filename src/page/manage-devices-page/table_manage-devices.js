@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Typography, styled } from "@mui/material";
 import EditDeviceDialog from './edit-device';
 import DeleteConfirmationDialog from '../../component/DeleteDialog';
+import api from "../../api"
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -21,7 +22,8 @@ const LinkAdd = styled(Link)({
 
 const columns = [
     { id: 'name', label: 'Tên thiết bị', minWidth: 150 },
-    { id: 'id', label: 'ID', minWidth: 100 },
+    { id: 'equipmentId', label: 'ID', minWidth: 100 },
+    { id: 'inputDate', label: 'Ngày nhập', minWidth: 100 },
     { id: 'status', label: 'Trạng thái', minWidth: 100 },
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
@@ -30,18 +32,19 @@ function createData(name, id, status) {
     return { name, id, status };
 }
 
-const rows = [
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái búa', '123', 'Đang bảo trì'),
-    createData('Cái máy giật điện', '456', 'Đang hoạt động'),
-    createData('Cái máy hút bụi', '909', 'Hỏng'),
-];
+// const rows = [
+//     createData('Cái búa', '123', 'Đang bảo trì'),
+//     createData('Cái búa', '123', 'Đang bảo trì'),
+//     createData('Cái máy giật điện', '456', 'Đang hoạt động'),
+//     createData('Cái máy hút bụi', '909', 'Hỏng'),
+// ];
 
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
+    const [rows, setRows]= useState([]);
     const [openEditDialog, setOpenEditDialog] = useState(false);
-    const [selectedRow, setSelectedRow] = useState(null);
+    const [selectedRow, setSelectedRow] = useState([]);
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
     const handleChangePage = (event, newPage) => {
@@ -67,8 +70,31 @@ export default function ColumnGroupingTable() {
     };
 
     const handleDeleteDialogClose = () => {
+        fetchData()
         setOpenDeleteDialog(false);
     };
+    const fetchData = async () => {
+        try {
+            const response = await api.get(`/equipments/`, {
+                params: {
+                    pageNo: 0,
+                    pageSize: 30,
+                    sortBy: 'id',
+                    searchFlag: false
+                }
+            });
+            setRows(response.data.data)
+            return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // Xử lý lỗi nếu cần
+        }
+    };
+
+    // Gọi hàm fetchData để lấy dữ liệu từ API
+    useEffect(() => {
+        fetchData();
+    },[]);
 
     return (
         <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
@@ -129,7 +155,7 @@ export default function ColumnGroupingTable() {
                 onPageChange={handleChangePage}
             />
             <EditDeviceDialog open={openEditDialog} onClose={handleEditDialogClose} deviceInfo={selectedRow} />
-            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} id={selectedRow} api={selectedRow}/>
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} apiURL={`equipments/${selectedRow.equipmentId}`}/>
         </Paper>
     );
 }

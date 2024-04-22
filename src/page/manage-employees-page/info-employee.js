@@ -1,9 +1,11 @@
 import { Box, Grid, Stack, Typography, styled } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { useParams } from 'react-router-dom';
+import api from "../../api"
 
 const ViewMore = styled('div')(
     ({ active }) => ({
@@ -13,6 +15,15 @@ const ViewMore = styled('div')(
 
 const EmployeeInfo = (image, name, position, department, degree, phoneNumber, email, calendar) => {
     const [open, setOpen] = useState(false);
+    const { id } = useParams();
+    const [data,setData] = useState([])
+
+    // Bây giờ bạn có thể sử dụng `id` để thực hiện các thao tác khác, ví dụ như gọi API
+
+    // Ví dụ:
+   
+
+   
     image = 'https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-5.jpg?v=1692246402739';
     name = "Đào Duy Quý";
     position = "Trùm trường";
@@ -51,6 +62,21 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
             }
         ],
     }
+    const fetchData = async () => {
+        try {
+            const response = await api.get(`/employees/${id}`);
+            setData(response.data.data); 
+            console.log(data);
+            return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // Xử lý lỗi nếu cần
+        }
+    };
+    useEffect(() => {
+        // Gọi API với `id` được lấy từ URL
+        fetchData();
+    }, []);
     return (
         <Box className="box-employee-info">
             <Grid container my={2} justifyContent={"space-between"}>
@@ -63,8 +89,8 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
                         <Box className="employee-info-avatar">
                             <img src={image} alt="Con pepe" style={{ width: '100%', height: '100%' }}></img>
                         </Box>
-                        <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} marginTop={3} textTransform={"capitalize"}>{name}</Typography>
-                        <Typography className="title-info_typo" color={'#A098AE'} fontWeight={600} fontSize={'18px'} fontFamily={"Lato"} marginTop={1} marginBottom={3} textTransform={"capitalize"}>{position}</Typography>
+                        <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} marginTop={3} textTransform={"capitalize"}>{data.employeeName}</Typography>
+                        <Typography className="title-info_typo" color={'#A098AE'} fontWeight={600} fontSize={'18px'} fontFamily={"Lato"} marginTop={1} marginBottom={3} textTransform={"capitalize"}>{data.dutyType}</Typography>
                         <div className="stack">
                             <Box className="box-phongban">
                                 <Typography color={'#A098AE'} fontWeight={400} fontSize={'18px'}>
@@ -75,7 +101,7 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
                                         <LocalHospitalIcon />
                                     </Box>
                                     <Typography color={'#303972'} textTransform={"capitalize"}>
-                                        {department}
+                                        {data.department}
                                     </Typography>
                                 </Box>
                             </Box>
@@ -88,7 +114,7 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
                                         < BusinessCenterIcon />
                                     </Box>
                                     <Typography color={'#303972'} textTransform={"capitalize"}>
-                                        {degree}
+                                        {data.degreeType}
                                     </Typography>
                                 </Box>
                             </Box>
@@ -101,20 +127,20 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
                                         <LocalPhoneIcon />
                                     </Box>
                                     <Typography color={'#303972'}>
-                                        {phoneNumber}
+                                        {data.phoneNumber}
                                     </Typography>
                                 </Box>
                             </Box>
                             <Box className="box-email">
                                 <Typography color={'#A098AE'} fontWeight={400} fontSize={'18px'}>
-                                    Email
+                                    Địa chỉ
                                 </Typography>
                                 <Box className='stack-info-ele' gap={1}>
                                     <Box className="icon-info-ele">
                                         <MailOutlineIcon />
                                     </Box>
                                     <Typography color={'#303972'}>
-                                        {email}
+                                        {data.address}
                                     </Typography>
                                 </Box>
                             </Box>
