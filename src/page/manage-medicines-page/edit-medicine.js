@@ -3,7 +3,7 @@ import { Box, Grid, TextField, Button, Dialog, DialogTitle, DialogContent, Dialo
 
 const EditMedicineDialog = ({ open, onClose, info }) => {
   const [editedMedicineInfo, setEditedMedicineInfo] = useState(info);
-  
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,7 +47,7 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              Ngày sản xuất
+                Ngày sản xuất
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -58,7 +58,7 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              Hạn sử dụng
+                Hạn sử dụng
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -165,7 +165,7 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Hủy</Button>
-        <Button onClick={handleSubmit} variant="contained" color="primary">Lưu</Button>
+        <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#4d44b5' }}>Lưu</Button>
       </DialogActions>
     </Dialog>
   );
