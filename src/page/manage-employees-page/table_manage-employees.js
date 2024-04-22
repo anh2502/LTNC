@@ -108,7 +108,7 @@ export default function ColumnGroupingTable() {
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} onClick={() => handleEditClick(row)}>
                                                                 <EditIcon />
-                                                            </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/manage-employees/info-employee">{value}</LinkAdd> : value)
+                                                            </Fab> : (column.id == 'employeeName' ? <LinkAdd className='if-link' to="/manage-employees/info-employee">{value}</LinkAdd> : value)
                                                         }
                                                         {
                                                             column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>

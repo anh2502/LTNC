@@ -106,7 +106,7 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Hủy</Button>
-        <Button onClick={handleSubmit} variant="contained" color="primary">Lưu</Button>
+        <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#4d44b5' }}>Lưu</Button>
       </DialogActions>
     </Dialog>
   );

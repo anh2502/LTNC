@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import AddCalendar from './add-calendar';
+import Application from './application';
 const LinkAdd = styled(Link)({
   textDecoration: 'none',
 });
@@ -11,6 +13,9 @@ const LinkAdd = styled(Link)({
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [openAddCalendarDialog, setOpenAddCalendarDialog] = useState(false);
+  const [openApplicationDialog, setOpenApplicationDialog] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
   const [events, setEvents] = useState({
     // Assuming the format 'YYYY-MM-DD': { name: 'Event', count: number }
     '2021-01-10': { name: 'Karen', count: 2 },
@@ -18,6 +23,14 @@ const Calendar = () => {
     '2021-01-29': { name: 'Johnny' },
     // More events can be added here
   });
+
+  const calendarRow = {
+    name: '',
+    code: '',
+    booking: '',
+    date: '',
+    shift: '',
+  }
 
   const months = [
     'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
@@ -32,6 +45,24 @@ const Calendar = () => {
   // Function to handle year change
   const handleYearChange = (e) => {
     setCurrentYear(parseInt(e.target.value, 10));
+  };
+
+  const handleAddCalendarClick = (row) => {
+    setSelectedRow(row);
+    setOpenAddCalendarDialog(true);
+  };
+
+  const handleAddCalendarDialogClose = () => {
+    setOpenAddCalendarDialog(false);
+  };
+
+  const handleApplicationClick = (row) => {
+    setSelectedRow(row);
+    setOpenApplicationDialog(true);
+  };
+
+  const handleApplicationDialogClose = () => {
+    setOpenApplicationDialog(false);
   };
 
   // Function to render the days of the month
@@ -86,7 +117,7 @@ const Calendar = () => {
               </div>
             </div>
 
-            <LinkAdd to="/manage-employees/add-employee" className="add">
+            <LinkAdd onClick={() => handleAddCalendarClick(calendarRow)} className="add">
               <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
               <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
             </LinkAdd>
@@ -102,6 +133,13 @@ const Calendar = () => {
           {renderDays()}
         </div>
       </div >
+      <div style={{ paddingRight: '0px', display: 'flex', justifyContent: 'end', marginTop: '-60px' }}>
+        <LinkAdd onClick={() => handleApplicationClick(calendarRow)} className="add">
+          <div className="content-button" style={{ height: '100%', paddingTop: '5px', width: '6vw' }}>Đơn xin nghỉ</div>
+        </LinkAdd>
+      </div>
+      <Application open={openApplicationDialog} onClose={handleApplicationDialogClose} deviceInfo={selectedRow} />
+      <AddCalendar open={openAddCalendarDialog} onClose={handleAddCalendarDialogClose} deviceInfo={selectedRow} />
     </div>
   );
 };
