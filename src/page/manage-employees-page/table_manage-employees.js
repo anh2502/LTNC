@@ -132,7 +132,7 @@ export default function ColumnGroupingTable() {
                                                     </TableCell>
                                                 );
                                             })}
-                                            <EditEmployeeDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
+                                            
                                             
                                         </TableRow>
                                     );
@@ -153,6 +153,7 @@ export default function ColumnGroupingTable() {
                     background={'#fff'}
                 />
             </Paper>
+            <EditEmployeeDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
             <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  apiURL={`employees/${selectedRow.employeeId}`}/>
         </div >
     );

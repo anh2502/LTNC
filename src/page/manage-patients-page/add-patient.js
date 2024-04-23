@@ -4,35 +4,22 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Button, TextField, FormControl, InputLabel, Select, MenuItem,Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import api from "../../api";
+import axios from 'axios'; // Import axios for making HTTP requests
 
 const AddPatient = () => {
     const [patientInfo, setPatientInfo] = useState({
-        midLastname: '',
-        email: '',
-        city: '',
-        district: '',
-        wards: '',
-        birthDay: '',
         name: '',
-        phoneNumber: '',
+        phone: '',
+        gender: '',
         address: '',
-        insurance: '',
-        hospitalizedDay: '',
-        hospitalNumber: '',
-        doctor: '',
-        reason: '',
-        self: '',
-        family: '',
-        body: '',
-        agencies: '',
-        diseaseSummary: '',
-        mainDisease: '',
-        includingDiseases: '',
-        prognosis: '',
-        pathologicalProcess: '',
-        treatmentDirection: '',
+        dob: '',
+        type: '',
+        bhyt: ''
     });
+    const [submitMessage, setSubmitMessage] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -42,14 +29,35 @@ const AddPatient = () => {
         }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(patientInfo);
+        try {
+            const response = await api.post('/patients/create-patient', patientInfo);
+            console.log(response.data); // Log response data
+            setSubmitMessage('Dữ liệu đã được lưu thành công!');
+            setOpenDialog(true);
+            // Clear form after successful submission
+            setPatientInfo({
+                name: '',
+                phone: '',
+                gender: '',
+                address: '',
+                dob: '',
+                type: '',
+                bhyt: ''
+            });
+        } catch (error) {
+            console.error('Error creating patient:', error);
+            setSubmitMessage('Lỗi khi lưu dữ liệu. Vui lòng thử lại sau.');
+            setOpenDialog(true);
+        }
+    };
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
     };
 
     return (
         <div style={{ width: '95%', margin: '0 auto' }}>
-
             <TableContainer sx={{ minHeight: 900, borderRadius: '20px', overflow: 'hidden', marginTop: '30px' }}>
                 <Table >
                     <TableHead sx={{ borderRadius: '20px' }}>
@@ -62,78 +70,7 @@ const AddPatient = () => {
                                     <Grid container my={2}>
                                         <Grid item xs={5}>
                                             <Box className="box">
-                                                <label htmlFor="name">Họ và tên đệm*</label>
-                                                <input
-                                                    type="text"
-                                                    id="midLastname"
-                                                    name="midLastname"
-                                                    value={patientInfo.midLastname}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                            <Box className="box">
-
-                                                <label htmlFor="email">Email*</label>
-                                                <input
-                                                    type="text"
-                                                    id="email"
-                                                    name="email"
-                                                    value={patientInfo.email}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                            <Box className="box">
-
-                                                <Grid container my={3} sx={{ marginTop: '0' }}>
-                                                    <Grid item xs={3.6}>
-                                                        <label htmlFor="city">Tỉnh/Thành phố*</label>
-                                                        <input
-                                                            type="text"
-                                                            id="city"
-                                                            name="city"
-                                                            value={patientInfo.city}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.6} sx={{ margin: '0 auto' }}>
-
-                                                        <label htmlFor="district">Quận/Huyện*</label>
-                                                        <input
-                                                            type="text"
-                                                            id="district"
-                                                            name="district"
-                                                            value={patientInfo.district}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.6}>
-
-                                                        <label htmlFor="wards">Phường/Xã*</label>
-                                                        <input
-                                                            type="text"
-                                                            id="wards"
-                                                            name="wards"
-                                                            value={patientInfo.wards}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-                                            <Box className="box">
-                                                <label htmlFor="birthDay">Ngày sinh*</label>
-                                                <input
-                                                    type="date"
-                                                    id="birthDay"
-                                                    name="birthDay"
-                                                    value={patientInfo.birthDay}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                        </Grid>
-                                        <Grid item xs={5} sx={{ marginLeft: '10%' }}>
-                                            <Box className="box">
-
-                                                <label htmlFor="name">Tên*</label>
+                                                <label htmlFor="name">Họ và tên*</label>
                                                 <input
                                                     type="text"
                                                     id="name"
@@ -142,15 +79,66 @@ const AddPatient = () => {
                                                     onChange={handleChange}
                                                 />
                                             </Box>
+                                            <Box className="box">
+                                                <label htmlFor="birthDay">Ngày sinh*</label>
+                                                <input
+                                                    type="date"
+                                                    id="dob"
+                                                    name="dob"
+                                                    value={patientInfo.dob}
+                                                    onChange={handleChange}
+                                                />
+                                            </Box>
+                                            <Box className="box">
+                                                <Grid container my={3} sx={{ marginTop: '0' }}>
+                                                    
+                                                    <FormControl fullWidth variant="outlined">
+                                                    <InputLabel>Chọn Giới tính</InputLabel>
+                                                    <Select
+                                                        label="Giới tính"
+                                                        name="gender"
+                                                        value={patientInfo.gender}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <MenuItem value="">Chọn giới tính</MenuItem>
+                                                        <MenuItem value="male">Nam</MenuItem>
+                                                        <MenuItem value="female">Nữ</MenuItem>
+                                                        <MenuItem value="other">Khác</MenuItem>
+                                                    </Select>
+                                                    </FormControl>
+                                                </Grid>
+                                            </Box>
+                                            <Box className="box">
+                                                <Grid container my={3} sx={{ marginTop: '0' }}>
+                                                
+                                                    <FormControl fullWidth variant="outlined">
+                                                    <InputLabel>Kiểu bệnh nhân</InputLabel>
+                                                    <Select
+                                                        label="Kiểu bệnh nhân"
+                                                        name="type"
+                                                        value={patientInfo.type}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <MenuItem value="INPATIENT">Nhập viện</MenuItem>
+                                                        <MenuItem value="OUTPATIENT">Khám bệnh</MenuItem>
+                                                        <MenuItem value="other">Khác</MenuItem>
+                                                    </Select>
+                                                    </FormControl>
+                                                </Grid>
+                                            </Box>
+                                            
+                                        </Grid>
+                                        <Grid item xs={5} sx={{ marginLeft: '10%' }}>
+                                            
 
                                             <Box className="box">
 
                                                 <label htmlFor="phoneNumber">Số điện thoại*</label>
                                                 <input
-                                                    type="number"
-                                                    id="phoneNumber"
-                                                    name="phoneNumber"
-                                                    value={patientInfo.phoneNumber}
+                                                    type="text"
+                                                    id="phone"
+                                                    name="phone"
+                                                    value={patientInfo.phone}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
@@ -171,181 +159,9 @@ const AddPatient = () => {
                                                 <div><label htmlFor="insurance">Mã số BHYT*</label></div>
                                                 <input
                                                     type="text"
-                                                    id="insurance"
-                                                    name="insurance"
-                                                    value={patientInfo.insurance}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                                <div className='benhan'>
-                                    <h1 className='benhan-title'>Bệnh án</h1>
-                                </div>
-                                <div style={{ width: '100%', color: '#303972', fontSize: 18, fontFamily: 'Lato', fontWeight: '600', display: 'flex' }} className="medicine-info">
-                                    <Grid container my={2}>
-                                        <Grid item xs={5}>
-                                            <Box className="box">
-                                                <label htmlFor="hospitalizedDay">Ngày nhập viện*</label>
-                                                <input
-                                                    type="date"
-                                                    id="hospitalizedDay"
-                                                    name="hospitalizedDay"
-                                                    value={patientInfo.hospitalizedDay}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                            <Box className="box">
-                                                <label htmlFor="hospitalNumber">Phòng bệnh số*</label>
-                                                <input
-                                                    type="number"
-                                                    id="hospitalNumber"
-                                                    name="hospitalNumber"
-                                                    value={patientInfo.hospitalNumber}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                            <Box className="box">
-                                                <label htmlFor="doctor">Bác sĩ điều trị*</label>
-                                                <input
-                                                    type="text"
-                                                    id="doctor"
-                                                    name="doctor"
-                                                    value={patientInfo.doctor}
-                                                    onChange={handleChange}
-                                                />
-                                            </Box>
-                                            <Box className='box'>
-                                                <label htmlFor="reason">Lý do nằm viện*</label>
-                                                <textarea
-                                                    id="reason"
-                                                    name="reason"
-                                                    value={patientInfo.reason}
-                                                    onChange={handleChange}
-                                                />
-
-                                            </Box>
-                                            <Box className="box">
-                                                <label htmlFor="self">Tiền sử bệnh*</label>
-                                                <Grid container my={2} sx={{ marginTop: '0', justifyContent: 'space-between' }}>
-                                                    <Grid item xs={5}>
-                                                        <label htmlFor="self">Bản thân</label>
-                                                        <input
-                                                            type="text"
-                                                            id="self"
-                                                            name="self"
-                                                            value={patientInfo.self}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={5}>
-
-                                                        <label htmlFor="family">Gia đình</label>
-                                                        <input
-                                                            type="text"
-                                                            id="family"
-                                                            name="family"
-                                                            value={patientInfo.family}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-
-                                        </Grid>
-                                        <Grid item xs={5} sx={{ marginLeft: '10%' }}>
-                                            <Box className="box">
-                                                <label htmlFor="body">Khám bệnh*</label>
-                                                <Grid container my={3} sx={{ marginTop: '0', justifyContent: 'space-between' }}>
-                                                    <Grid item xs={3.75}>
-                                                        <label htmlFor="body">Toàn thân</label>
-                                                        <input
-                                                            type="text"
-                                                            id="body"
-                                                            name="body"
-                                                            value={patientInfo.body}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.75}>
-                                                        <label htmlFor="agencies">Các cơ quan</label>
-                                                        <input
-                                                            type="text"
-                                                            id="agencies"
-                                                            name="agencies"
-                                                            value={patientInfo.agencies}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.75}>
-
-                                                        <label htmlFor="diseaseSummary">Tóm tắt bệnh</label>
-                                                        <input
-                                                            type="text"
-                                                            id="diseaseSummary"
-                                                            name="diseaseSummary"
-                                                            value={patientInfo.diseaseSummary}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-                                            <Box className="box">
-                                                <label htmlFor="mainDisease">Chẩn đoán*</label>
-                                                <Grid container my={3} sx={{ marginTop: '0', justifyContent: 'space-between' }}>
-                                                    <Grid item xs={3.75}>
-                                                        <label htmlFor="mainDisease">Bệnh chính</label>
-                                                        <input
-                                                            type="text"
-                                                            id="mainDisease"
-                                                            name="mainDisease"
-                                                            value={patientInfo.mainDisease}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.75}>
-                                                        <label htmlFor="includingDiseases">Bệnh kèm theo</label>
-                                                        <input
-                                                            type="text"
-                                                            id="includingDiseases"
-                                                            name="includingDiseases"
-                                                            value={patientInfo.includingDiseases}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={3.75}>
-
-                                                        <label htmlFor="prognosis">Tiên lượng</label>
-                                                        <input
-                                                            type="text"
-                                                            id="prognosis"
-                                                            name="prognosis"
-                                                            value={patientInfo.prognosis}
-                                                            onChange={handleChange}
-                                                        />
-                                                    </Grid>
-                                                </Grid>
-                                            </Box>
-
-                                            <Box className='box'>
-                                                <label htmlFor="pathologicalProcess">Quá trình bệnh lý</label>
-                                                <textarea
-                                                    id="pathologicalProcess"
-                                                    name="pathologicalProcess"
-                                                    value={patientInfo.pathologicalProcess}
-                                                    onChange={handleChange}
-                                                />
-
-                                            </Box>
-                                            <Box className="box" sx={{ marginTop: 3 }}>
-
-                                                <div><label htmlFor="treatmentDirection">Hướng điều trị</label></div>
-                                                <input
-                                                    type="text"
-                                                    id="treatmentDirection"
-                                                    name="treatmentDirection"
-                                                    value={patientInfo.treatmentDirection}
+                                                    id="bhyt"
+                                                    name="bhyt"
+                                                    value={patientInfo.bhyt}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
@@ -362,6 +178,19 @@ const AddPatient = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Dialog open={openDialog} onClose={handleCloseDialog}>
+                <DialogTitle>Thông báo</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {submitMessage}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="primary">
+                        Đóng
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div >
     );
 };

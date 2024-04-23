@@ -14,12 +14,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import DeleteConfirmationDialog from '../../component/DeleteDialog';
-import api from "../../api"
+import api from "../../api";
+import EditPatientDialog from './edit-patient';
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
 });
-
 
 const columns = [
     { id: 'name', label: 'Họ và tên', minWidth: 150 },
@@ -36,9 +36,10 @@ const action = 'action';
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
-    const [rows,setRows] = useState([])
+    const [rows, setRows] = useState([])
     const [selectedRow, setSelectedRow] = useState([]);
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [openEditDialog, setOpenEditDialog] = useState(false);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -48,15 +49,27 @@ export default function ColumnGroupingTable() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const handleEditClick = (row) => {
+        setSelectedRow(row);
+        setOpenEditDialog(true);
+    }
+
     const handleDeleteClick = (row) => {
         setSelectedRow(row);
         setOpenDeleteDialog(true);
     };
 
+    const handleEditDialogClose = () => {
+        fetchData();
+        setOpenEditDialog(false);
+    }
+
     const handleDeleteDialogClose = () => {
         fetchData()
         setOpenDeleteDialog(false);
     };
+
     const fetchData = async () => {
         try {
             const response = await api.get(`/patients/`, {
@@ -67,22 +80,27 @@ export default function ColumnGroupingTable() {
                     searchFlag: false
                 }
             });
-            setRows(response.data.data)
-            return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+
+            const formattedRows = response.data.data.map(row => {
+                return {
+                    ...row,
+                    type: row.type === 'INPATIENT' ? 'Nội trú' : row.type === 'OUTPATIENT' ? 'Ngoại trú' : 'Khác'
+                };
+            });
+
+            setRows(formattedRows);
+            return response.data;
         } catch (error) {
             console.error('Error fetching data:', error);
-            // Xử lý lỗi nếu cần
         }
     };
 
-    // Gọi hàm fetchData để lấy dữ liệu từ API
     useEffect(() => {
         fetchData();
-    },[]);
+    }, []);
 
     return (
         <div>
-
             <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 600, borderRadius: '20px', paddingLeft: '20px', overflowY: 'hidden' }}>
                     <Table stickyHeader aria-label="sticky table" >
@@ -110,19 +128,24 @@ export default function ColumnGroupingTable() {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align} style={{ textAlign: 'center', minWidth: column.minWidth }}>
-                                                        {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginRight: '5px' }} href='https://media.vanityfair.com/photos/5f5156490ca7fe28f9ec3f55/master/pass/feels-good-man-film.jpg' target='_blank'>
-                                                                <EditIcon />
-                                                            </Fab> : (column.id == 'name' ? <LinkAdd className='if-link' to="/manage-patients/info-patient">{value}</LinkAdd> : value)
-                                                        }
-                                                        {
-                                                            column.id == 'action' ? <Fab color="default" style={{ marginLeft: '5px' }} onClick={()=>handleDeleteClick(row)}>
-                                                                <DeleteIcon />
-                                                            </Fab> : <div></div>
-                                                        }
+                                                        {column.id === 'type' ? value : (
+                                                            column.id === 'action' ? (
+                                                                <>
+                                                                    <Fab color="default" style={{ marginRight: '5px' }} onClick={() => handleEditClick(row)}>
+                                                                        <EditIcon />
+                                                                    </Fab>
+                                                                    <Fab color="default" style={{ marginLeft: '5px' }} onClick={() => handleDeleteClick(row)}>
+                                                                        <DeleteIcon />
+                                                                    </Fab>
+                                                                </>
+                                                            ) : (
+                                                                column.id === 'name' ? <LinkAdd className='if-link' to="/manage-patients/info-patient">{value}</LinkAdd> : value
+                                                            )
+                                                        )}
                                                     </TableCell>
                                                 );
                                             })}
+                                           
                                         </TableRow>
                                     );
                                 })}
@@ -142,9 +165,8 @@ export default function ColumnGroupingTable() {
                     background={'#fff'}
                 />
             </Paper>
-            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} apiURL={`patients/${selectedRow.patientId}`}/>
+            <EditPatientDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} apiURL={`patients/${selectedRow.patientId}`} />
         </div >
     );
 }
-
-
