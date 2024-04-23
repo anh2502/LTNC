@@ -10,14 +10,23 @@ import {
     DialogContent,
     DialogActions,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
+import api from "../../api";
 
 const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
+    const acc = useSelector(state => {
+        if (state.auth.userData) {
+          return state.auth.userData;
+        }
+        return null; // hoặc giá trị mặc định phù hợp với ứng dụng của bạn
+      });
+      console.log(acc)
     const [calendar, setCalendar] = useState({
-        name: '',
-        code: '',
-        booking: '',
-        date: '',
-        shift: '',
+        employeeId: acc.userId,
+        description: '',
+        startTime: '',
+        endTime: '',
+        status: "TO_DO"
     });
 
     const handleChange = (event) => {
@@ -28,7 +37,15 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
         }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
+        try {
+            await api.post('tasks/create-task', calendar);
+            // Sau khi gọi API thành công, bạn có thể thực hiện các xử lý khác ở đây
+            console.log("Task added successfully!");
+          } catch (error) {
+            console.error("Error adding task:", error);
+          }
+
         onClose(); // Đóng dialog sau khi đã xử lý
     };
 
@@ -36,7 +53,7 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Thêm lịch trực</DialogTitle>
             <DialogContent>
-                <Box sx={{ width: '70%' }}>
+                <Box sx={{ width: '70%', marginTop: "20px" }}>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
@@ -45,27 +62,18 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
                                     label="Tên nhân viên"
                                     variant="outlined"
                                     name="name"
-                                    value={calendar.name}
+                                    value={acc.name}
                                     onChange={handleChange}
+                                    disabled={true}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
-                                    label="Mã số nhân viên"
+                                    label="Mô tả công việc"
                                     variant="outlined"
-                                    name="code"
-                                    value={calendar.code}
-                                    onChange={handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Phòng trực"
-                                    variant="outlined"
-                                    name="booking"
-                                    value={calendar.booking}
+                                    name="description"
+                                    value={calendar.description}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -75,19 +83,8 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
                                     fullWidth
                                     variant="outlined"
                                     type="date"
-                                    name="date"
-                                    value={calendar.date}
-                                    onChange={handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                Ca trực
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    type="time"
-                                    name="shift"
-                                    value={calendar.shift}
+                                    name="startTime"
+                                    value={calendar.startTime}
                                     onChange={handleChange}
                                 />
                             </Grid>

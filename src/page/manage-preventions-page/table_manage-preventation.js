@@ -1,138 +1,153 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import PatientTable from './table-sub';
-import { Typography } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import { Button } from '@mui/material';
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TablePagination from "@mui/material/TablePagination";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import api from "../../api";
 
-function createData(room, faculty, doctor, available) {
-    return {
-        room,
-        faculty,
-        doctor,
-        available,
-    };
-}
+import AddPatientDialog from '../manage-preventions-page/addPatientDialog';
+import DeleteConfirmationDialog from "../../component/DeleteDialog";
 
-function Row(props) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
+const CollapsibleTable = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(6);
+  const [rows, setRows] = useState([]);
+  const [open,setOpen]=useState(false);
+  const [selectedRow, setSelectedRow] = useState()
+  const [selectedPatitent, setSelectedPatient] = useState()
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openDelRoomDialog, setOpenDelRoomDialog] = useState(false);
 
-    return (
-        <React.Fragment>
-            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                <TableCell>
-                    <IconButton
-                        aria-label="expand row"
-                        size="small"
-                        onClick={() => setOpen(!open)}
-                    >
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
-                </TableCell>
-                <TableCell align='center'>
-                    {row.room}
-                </TableCell>
-                <TableCell align="center">{row.faculty}</TableCell>
-                <TableCell align="center">{row.doctor}</TableCell>
-                <TableCell align="center">{row.available}</TableCell>
-            </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ marginTop: 1 }}>
-                            <PatientTable></PatientTable>
-                            <Table size="small" aria-label="purchases">
-                                <TableBody>
-                                    {<TableCell TableCell align="left">{row.patient}</TableCell>}
-                                </TableBody>
-                            </Table>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
-        </React.Fragment>
-    );
-}
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-const columns = [
-    { id: 'empty', label: '', minWidth: '20%' },
-    { id: 'room', label: 'Phòng', minWidth: '20%' },
-    { id: 'department', label: 'Khoa', minWidth: '20%' },
-    { id: 'managementDoctor', label: 'Bác sĩ quản lý', minWidth: '20%' },
-    { id: 'roomNumber', label: 'Giường bệnh khả dụng', minWidth: '20%' },
-]
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  const handleClose = () => {
+    fetchData();
+    setOpen(false);
+  };
+  const handleDeleteDialogClose = () => {
+    fetchData()
+    setOpenDeleteDialog(false);
+};
 
-const rows = [
-    createData('1', 'Khoa tim mạch', 'Gao đỏ', 5),
-    createData('2', 'Khoa sản', 'Gao xanh', 5),
-    createData('3', 'Khoa tai mũi họng', 'Gao trắng', 5),
-    createData('4', 'Khoa da liễu', 'Gao đen', 5),
-    createData('5', 'Khoa học và kĩ thuật máy tính', 'Đào Duy Quý', 5),
-    createData('6', 'Khoa mổ', 'Nguyễn Văn Heo', 5),
-];
+  const handleAdd = (row) => {
+    setSelectedRow(row)
+    setOpen(true);
+  };
+  const handleDel = (row, pati) => {
+    setSelectedPatient(pati)
+    setSelectedRow(row)
+    setOpenDeleteDialog(true);
+  };
+  const handleDelRoom = (row)=>{
+    setSelectedRow(row)
+    setOpenDelRoomDialog(true)
+  }
+  const handleCloseRoom=()=>{
+    fetchData();
+    setOpenDelRoomDialog(false)
+  }
 
-export default function CollapsibleTable() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(6);
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/rooms/`, {
+        params: {
+          pageNo: 0,
+          pageSize: 30,
+          sortBy: "name",
+          searchFlag: false,
+        },
+      });
+      setRows(response.data.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-    return (
-        <div>
-            <Paper sx={{ width: '100%', height: '50%', borderRadius: '20px', overflowY: 'hidden' }}>
-                <TableContainer >
-                    <Table aria-label="collapsible table">
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
-                                        align={column.align}
-                                        style={{ top: 0, minWidth: column.minWidth, fontSize: '17px', fontWeight: '700', textAlign: 'center' }}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <Row key={row.room} row={row} />
-                            ))}
-                        </TableBody>
-                    </Table>
 
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    margin={20}
-                    background={'#fff'}
-                />
-            </Paper>
 
-        </div>
-    );
-}
+  return (
+    <div>
+      <Paper
+        sx={{
+          width: "100%",
+          height: "50%",
+          borderRadius: "20px",
+          overflowY: "hidden",
+        }}
+      >
+        <TableContainer>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Phòng</TableCell>
+                <TableCell align="center">Giường bệnh khả dụng</TableCell>
+                <TableCell>Bệnh nhân</TableCell>
+                <TableCell align="center"></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <React.Fragment key={row.room}>
+                  <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                    <TableCell align="center">{row.roomId}</TableCell>
+                    <TableCell align="center">{row.capacity}</TableCell>
+                    <TableCell>
+                      {row.patients.map((patient, index) => (
+                        <div key={index} style={{ display: "flex", alignItems: "center", gap: "16px", padding: "8px", backgroundColor: "#f0f0f0", borderRadius: "4px" }}>
+                          <div style={{ width: "30px", textAlign: "center", fontWeight: "bold" }}>{index + 1}</div>
+                          <div style={{ flex: 1 }}>Tên: {patient.patientName}</div>
+                          <div style={{ marginLeft: "20px" }}>Số giường: {patient.bedNumber}</div>
+                          <Button onClick={()=>handleDel(row.roomId,patient.patientId)}>Xóa bệnh nhân</Button>
+                        </div>
+                      ))}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button onClick={()=>handleAdd(row.roomId)}>Thêm bệnh nhân</Button>
+                      <Button onClick={()=>handleDelRoom(row.roomId)}>Xóa phòng</Button>
+                      
+                    </TableCell>
+                  </TableRow>
+                  <AddPatientDialog open={open} onClose={handleClose} roomId={selectedRow} />
+                  <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  apiURL ={`rooms/${selectedRow}/patients/${selectedPatitent}`}/>
+                  <DeleteConfirmationDialog open={openDelRoomDialog} onClose={handleCloseRoom}  apiURL ={`rooms/${selectedRow}`}/>
+                </React.Fragment>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          margin={20}
+          background={"#fff"}
+        />
+      </Paper>
+    </div>
+  );
+};
+
+export default CollapsibleTable;

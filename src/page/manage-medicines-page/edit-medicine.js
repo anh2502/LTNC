@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
-import { Box, Grid, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Grid, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions, Select, MenuItem, Snackbar, Alert } from '@mui/material';
+import api from "../../api"
 
 const EditMedicineDialog = ({ open, onClose, info }) => {
   const [editedMedicineInfo, setEditedMedicineInfo] = useState(info);
+  const [openSnackbar2, setOpenSnackbar2] = useState(false);
+  useEffect(() => {
+    setEditedMedicineInfo(info);
+  }, [info]);
 
 
   const handleChange = (event) => {
@@ -13,10 +18,23 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async() => {
     console.log(editedMedicineInfo);
-    onClose(); // Đóng dialog sau khi đã xử lý
+    try {
+      const res = await api.put(`medicines/update/${info.id}`, editedMedicineInfo);
+      console.log(res);
+      // Kiểm tra nếu request thành công
+      if (res.status === 200) {
+          onClose();
+      } else {
+          openSnackbar2(true)
+      }
+  } catch (error) {
+      // Xử lý lỗi nếu có
+      // setOpenSnackbar2(true)
+      console.error("Error:", error);
+  } 
+    // onClose(); // Đóng dialog sau khi đã xử lý
   };
 
   return (
@@ -25,141 +43,80 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
       <DialogContent>
         <Box sx={{ width: '400px' }}>
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Tên thuốc"
-                  variant="outlined"
-                  name="name"
-                  value={editedMedicineInfo.name}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Mã số"
-                  variant="outlined"
-                  name="code"
-                  value={editedMedicineInfo.code}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                Ngày sản xuất
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  type="date"
-                  name="manufactureDate"
-                  value={editedMedicineInfo.manufactureDate}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                Hạn sử dụng
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  type="date"
-                  name="expiryDate"
-                  value={editedMedicineInfo.expiryDate}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Công dụng"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  name="uses"
-                  value={editedMedicineInfo.uses}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Số lượng"
-                  variant="outlined"
-                  type="number"
-                  name="quantity"
-                  value={editedMedicineInfo.quantity}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Giá nhập"
-                  variant="outlined"
-                  type="number"
-                  name="importPrice"
-                  value={editedMedicineInfo.importPrice}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Giá bán"
-                  variant="outlined"
-                  type="number"
-                  name="price"
-                  value={editedMedicineInfo.price}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Nhà cung cấp"
-                  variant="outlined"
-                  name="supplier"
-                  value={editedMedicineInfo.supplier}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Thành phần"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  name="ingredient"
-                  value={editedMedicineInfo.ingredient}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Chỉ định"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  name="assign"
-                  value={editedMedicineInfo.assign}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Chống chỉ định"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  name="contraindicated"
-                  value={editedMedicineInfo.contraindicated}
-                  onChange={handleChange}
-                />
-              </Grid>
-            </Grid>
+          <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Box className="box">
+              <label htmlFor="name">Tên thuốc*</label>
+              <TextField
+                fullWidth
+                id="name"
+                name="name"
+                value={editedMedicineInfo.name}
+                onChange={handleChange}
+              />
+            </Box>
+            <Box className="box">
+              <div>
+                <label htmlFor="medicineType">Loại*</label>
+              </div>
+              <Select
+                fullWidth
+                id="medicineType"
+                name="medicineType"
+                value={editedMedicineInfo.medicineType}
+                onChange={handleChange}
+              >
+                <MenuItem value="CAPSULE">Viên nang</MenuItem>
+                <MenuItem value="SPRAY">Xịt</MenuItem>
+                <MenuItem value="GRANULE">Hạt</MenuItem>
+                <MenuItem value="LIQUID">Dạng lỏng</MenuItem>
+                <MenuItem value="CREAM">Kem</MenuItem>
+              </Select>
+            </Box>
+            <Box className="box">
+              <div>
+                <label htmlFor="medicalUseType">Dược tính*</label>
+              </div>
+              <Select
+                fullWidth
+                id="medicalUseType"
+                name="medicalUseType"
+                value={editedMedicineInfo.medicalUseType}
+                onChange={handleChange}
+              >
+                <MenuItem value="ANALGESICS">Thuốc giảm đau</MenuItem>
+                <MenuItem value="ANTIBIOTICS">Kháng sinh</MenuItem>
+                <MenuItem value="ANTIPYRETICS">Thuốc hạ sốt</MenuItem>
+                <MenuItem value="HORMONES">Hormones</MenuItem>
+                <MenuItem value="SEDATIVES">Thuốc an thần</MenuItem>
+              </Select>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Box>
+              <label htmlFor="price">Giá*</label>
+              <TextField
+                fullWidth
+                id="price"
+                name="price"
+                value={editedMedicineInfo.price}
+                onChange={handleChange}
+              />
+            </Box>
+            <Box className="box">
+              <div>
+                <label htmlFor="ingredient">Thành phần*</label>
+              </div>
+              <TextField
+                fullWidth
+                id="ingredient"
+                name="ingredient"
+                value={editedMedicineInfo.ingredient}
+                onChange={handleChange}
+              />
+            </Box>
+          </Grid>
+        </Grid>
           </form>
         </Box>
       </DialogContent>
@@ -167,6 +124,19 @@ const EditMedicineDialog = ({ open, onClose, info }) => {
         <Button onClick={onClose}>Hủy</Button>
         <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#4d44b5' }}>Lưu</Button>
       </DialogActions>
+      <Snackbar
+        open={openSnackbar2}
+        autoHideDuration={6000}
+        onClose={() => setOpenSnackbar2(false)}
+      >
+        <Alert
+          onClose={() => setOpenSnackbar2(false)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Có lỗi xảy ra, vui lòng thử lại!
+        </Alert>
+      </Snackbar>
     </Dialog>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
 import EditMedicineDialog from './edit-medicine';
 import DeleteConfirmationDialog from '../../component/DeleteDialog';
+import api from "../../api";
 
 const LinkAdd = styled(Link)({
     textDecoration: 'none',
@@ -23,75 +24,21 @@ const LinkAdd = styled(Link)({
 const columns = [
     { id: 'name', label: 'Tên thuốc', minWidth: 150 },
     { id: 'id', label: 'Mã lô hàng', minWidth: 100 },
-    { id: 'bhyt', label: 'Ngày nhập kho', minWidth: 100 },
-    { id: 'city', label: 'Hạn sử dụng', minWidth: 100 },
-    { id: 'room', label: 'Số lượng', minWidth: 100 },
-    { id: 'phoneNumber', label: 'Đơn vị nhập', minWidth: 100 },
+    { id: 'medicineType', label: 'Loại thuốc', minWidth: 100 },
+    { id: 'medicalUseType', label: 'Tác dụng', minWidth: 100 },
+    { id: 'price', label: 'Giá', minWidth: 100 },
+    { id: 'ingredient', label: 'Thành phần', minWidth: 100 },
     { id: 'action', label: 'Action', minWidth: 100 },
 ];
 
 const action = 'action';
-
-function createData(name, id, bhyt, city, room, phoneNumber) {
-    return { name, id, bhyt, city, room, phoneNumber, action };
-}
-
-const rows = [
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-    createData('Paracetamol', '321323', '24-12-2023', '24-12-2026', '3000', '0123456789'),
-];
-
 export default function ColumnGroupingTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const [openEditDialog, setOpenEditDialog] = useState(false);
     const [selectedRow, setSelectedRow] = useState([]);
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [rows, setRows]=useState([])
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -107,6 +54,7 @@ export default function ColumnGroupingTable() {
     };
 
     const handleEditDialogClose = () => {
+        fetchData()
         setOpenEditDialog(false);
     };
     const handleDeleteClick = (row) => {
@@ -115,8 +63,31 @@ export default function ColumnGroupingTable() {
     };
 
     const handleDeleteDialogClose = () => {
+        fetchData()
         setOpenDeleteDialog(false);
     };
+    const fetchData = async () => {
+        try {
+            const response = await api.get(`/medicines/`, {
+                params: {
+                    pageNo: 0,
+                    pageSize: 30,
+                    sortBy: 'name',
+                    searchFlag: false,
+                }
+            });
+            setRows(response.data.data)
+            return response.data; // Trả về dữ liệu nhận được từ API nếu cần
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // Xử lý lỗi nếu cần
+        }
+    };
+
+    // Gọi hàm fetchData để lấy dữ liệu từ API
+    useEffect(() => {
+        fetchData();
+    },[]);
 
     return (
         <div>
@@ -183,7 +154,7 @@ export default function ColumnGroupingTable() {
                 />
             </Paper>
             <EditMedicineDialog open={openEditDialog} onClose={handleEditDialogClose} info={selectedRow} />
-            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  api={"api for delete"}/>
+            <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  apiURL ={`medicines/delete/${selectedRow.id}`}/>
         </div >
     );
 }
