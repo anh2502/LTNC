@@ -407,6 +407,7 @@ Page thêm cho các trang quản lý */
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
+  padding-bottom: 80px;
 }
 
 /* Cài đặt cho thêm  */
@@ -529,6 +530,7 @@ Page thêm cho các trang quản lý */
 .summitFooter {
   text-align: center;
   padding-right: 5%;
+  float: right;
 }
 
 .medicine {
