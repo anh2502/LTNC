@@ -49,6 +49,7 @@ const AddPatient = () => {
         } catch (error) {
             console.error('Error creating patient:', error);
             setSubmitMessage('Lỗi khi lưu dữ liệu. Vui lòng thử lại sau.');
+            setOpenDialog(true);
         }
     };
     const handleCloseDialog = () => {
