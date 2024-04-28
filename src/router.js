@@ -238,7 +238,7 @@ export default function Router() {
       ],
     },
     {
-      path: "/manage-patients/info-patient",
+      path: "/manage-patients/info-patient/:id",
       element: isLoggedIn ? <Layout name="Thông tin bệnh nhân " /> : <Navigate to="/login" />,
       children: [
         { index: true, element: <PatientInfo /> },

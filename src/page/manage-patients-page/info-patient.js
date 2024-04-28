@@ -1,122 +1,131 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import '../../App.css'
-import { Box, Paper, Stack, Table, TableBody, TableHead, Typography } from "@mui/material";
+import { Box, Paper, Stack, Table, TableBody, TableHead, Typography, TableCell, TableRow, Button } from "@mui/material";
+import api from "../../api"
+import { useParams } from 'react-router-dom';
+import DeleteConfirmationDialog from "../../component/DeleteDialog";
+import AddRecordDialog from "./addRecord";
+import EditRecordDialog from "./editRecord";
 
 
-const PatientInfo = (image, name, curriculumVitae, hospitalizedDay, hospitalNumber, doctor, patient, examination, diagnose, treatmentDirection) => {
-    image = 'https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-5.jpg?v=1692246402739';
-    name = 'Đào Duy Quý';
-    curriculumVitae = {
-        birthDay: '09/11/2004',
-        gender: 'Nam',
-        healthInsuranceCode: '03333333333',
-        address: 'Tổ 1, Ấp 1, Đường 1, Xã 1, Huyện 1, Thành phố 1',
-    }
-    hospitalizedDay = '30/02/2024';
-    hospitalNumber = '4953';
-    doctor = 'Nguyễn Thị Mai Anh';
-    patient = {
-        reason: 'ATSM',
-        pathologicalProcess: 'ảo game quá nên không kiềm chế được',
-        anamnesis: {
-            self: 'ATSM từ năm 10 tuổi',
-            family: 'Không có',
-        },
+const PatientInfo = () => {
+    const formatDateTime = (dateTimeString) => {
+        const dateTime = new Date(dateTimeString);
+        return dateTime.toLocaleString(); // Sử dụng phương thức toLocaleString() để chuyển đổi thành định dạng ngày tháng phù hợp
+      };
+    const [data, setData]= useState([])
+    const { id } = useParams();
+    const [selectedRow, setSelectedRow] = useState([]);
+    const [selectedId, setSelectedId] = useState([]);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [openAddDialog, setOpenAddDialog] = useState(false);
+    const handleAddClick = (row) => {
+        setSelectedRow(row);
+        setOpenAddDialog(true);
     };
-    examination = {
-        body: 'Bình thường',
-        agencies: 'Não không bình thường',
-        diseaseSummary: 'Hay khùng vào đêm',
+    const handleEditClick = (row) => {
+        setSelectedRow(row);
+        setOpenEditDialog(true);
     };
-    diagnose = {
-        mainDiagnosis: 'ATSM',
-        accompanyingDiagnosis: 'Ảo game',
-        prognosis: 'Nặng',
+    const handleDeleteClick = (row) => {
+        setSelectedRow(row);
+        setOpenDeleteDialog(true);
     };
-    treatmentDirection = 'Không có';
+
+    const handleEditDialogClose = () => {
+        fetchData2();
+        setOpenEditDialog(false);
+    };
+    const handleAddDialogClose = () => {
+        fetchData2();
+        setOpenAddDialog(false);
+    };
+    const handleDeleteDialogClose = () => {
+        fetchData2();
+        setOpenDeleteDialog(false);
+    };
+    const fetchData2 = async () => {
+        try {
+            const response = await api.get(`/patients/${id}`);
+            setData(response.data.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api.get(`/patients/${id}`);
+                setData(response.data.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [id]); 
     return (
         <Box className="box-info" >
-            <Box className="box-info_head" >
-                <Box className="rectangle or"></Box>
-                <Box className="rectangle yl"></Box>
-            </Box>
-            <Box className="avatar-info">
-                <img src={image} alt="con pepe" style={{ width: '100%', height: '100%' }} />
-            </Box>
-            <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} textTransform={'capitalize'}>{name}</Typography>
+           
+            {/* <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} textTransform={'capitalize'}>{name}</Typography> */}
             <Box className="paragraph-soyeulylich">
                 <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Sơ yếu lý lịch:</Typography>
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Ngày/tháng/năm sinh: {curriculumVitae.birthDay}
+                    Tên: {data.name}
                 </Typography>
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Giới tính: {curriculumVitae.gender}
+                    Ngày/tháng/năm sinh: {data.dob}
                 </Typography>
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Mã số BHYT: {curriculumVitae.healthInsuranceCode}
+                    Giới tính: {data.gender=="male"?"Nam": "Nữ"}
                 </Typography>
                 <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Địa chỉ: {curriculumVitae.address}
+                    Mã số BHYT: {data.bhyt}
+                </Typography>
+                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
+                    Địa chỉ: {data.address}
+                </Typography>
+                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
+                    Số điện thoại: {data.phone}
                 </Typography>
             </Box>
-            <Box className="paragraph-ngaynhapvien">
-                <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Vào viện ngày:</Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>{hospitalizedDay}</Typography>
-            </Box>
-            <Box className="paragraph-phongbenh">
-                <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Phòng bệnh số:</Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>{hospitalNumber}</Typography>
-            </Box>
-            <Box className="paragraph-bsdt">
-                <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Bác sĩ điều trị:</Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>{doctor}</Typography>
-            </Box>
-            <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>Tóm tắt bệnh án:</Typography>
-            <Box className="paragraph-benhan">
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Lý do nằm viện: {patient.reason}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Quá trình bệnh lý: {patient.pathologicalProcess}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Tiền sử bệnh:
-                    <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                        Bản thân: {patient.anamnesis.self}
-                    </Typography>
-                    <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                        Gia đình: {patient.anamnesis.family}
-                    </Typography>
-                </Typography>
-            </Box>
-            <Typography className="title-info_typo" fontWeight={900} fontSize={24} fontFamily={"Lato"}>Khám bệnh:</Typography>
-            <Box className="paragraph-khambenh">
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Toàn thân: {examination.body}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Các cơ quan: {examination.agencies}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Tóm tắt bệnh: {examination.diseaseSummary}
-                </Typography>
-            </Box>
-            <Typography className="title-info_typo" fontWeight={900} fontSize={24} fontFamily={"Lato"}>Chẩn đoán</Typography>
-            <Box className="paragraph-chandoan">
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Bệnh chính: {diagnose.mainDiagnosis}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Bệnh kèm theo: {diagnose.accompanyingDiagnosis}
-                </Typography>
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'}>
-                    Tiên lượng: {diagnose.prognosis}
-                </Typography>
-            </Box>
-            <Typography className="title-info_typo" fontWeight={900} fontSize={24} fontFamily={"Lato"}>Hướng điều trị:</Typography>
-            <Box className="paragraph-dieutri">
-                <Typography align="justify" sx={{ paddingLeft: '3.5%', paddingRight: '3.5%' }} fontSize={23} fontWeight={400} fontFamily={"Lato"} color={'#303972'} marginBottom={3}>{treatmentDirection}</Typography>
-            </Box>
+            <Box>
+      <Typography variant="h6" gutterBottom>
+        Hồ sơ bệnh án
+        <Button onClick={handleAddClick}>Thêm</Button>
+      </Typography>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell>Chẩn đoán</TableCell>
+            <TableCell>Thời gian vào viên</TableCell>
+            <TableCell>Thời gian ra viện</TableCell>
+            <TableCell></TableCell>
+            {/* Add more table headers here if needed */}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.medicalRecords && data.medicalRecords.map((record) => (
+            <TableRow key={record.id}>
+              <TableCell>{record.id}</TableCell>
+              <TableCell>{record.diagnostic}</TableCell>
+              <TableCell>{formatDateTime(record.hospitalizedTime)}</TableCell>
+              <TableCell>{formatDateTime(record.leaveTime)}</TableCell>
+              <TableCell align="center">
+                      <Button onClick={() => handleEditClick(record)}>Sửa</Button>
+                      <Button onClick={() => handleDeleteClick(record)}>Xóa</Button>
+                      
+                    </TableCell>
+              {/* Add more table cells here if needed */}
+            </TableRow>
+          ))}
+        </TableBody>
+        <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} apiURL={`medicalRecords/${selectedRow.id}`} />
+          <EditRecordDialog open={openEditDialog} onClose={handleEditDialogClose} id={id} info={selectedRow} />
+      </Table>
+      <AddRecordDialog open={openAddDialog} onClose={handleAddDialogClose} info={id} />
+    </Box>
         </Box>
 
     );

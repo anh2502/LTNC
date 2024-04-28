@@ -139,7 +139,7 @@ export default function ColumnGroupingTable() {
                                                                     </Fab>
                                                                 </>
                                                             ) : (
-                                                                column.id === 'name' ? <LinkAdd className='if-link' to="/manage-patients/info-patient">{value}</LinkAdd> : value
+                                                                column.id === 'name' ? <LinkAdd className='if-link' to={`/manage-patients/info-patient/${row.patientId}`}>{value}</LinkAdd> : value
                                                             )
                                                         )}
                                                     </TableCell>

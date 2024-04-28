@@ -20,7 +20,6 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
         }
         return null; // hoặc giá trị mặc định phù hợp với ứng dụng của bạn
       });
-      console.log(acc)
     const [calendar, setCalendar] = useState({
         employeeId: acc.userId,
         description: '',
