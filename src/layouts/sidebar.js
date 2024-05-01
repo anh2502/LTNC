@@ -47,11 +47,10 @@ const LogoText = styled(Typography)({
 const LinkItem = styled(Link)(
   ({ active }) => ({
     textDecoration: "none",
-    color: active ? "purple" : "#C1BBEB",
-    backgroundColor: active ? "white" : "transparent",
+    color: active ? "white" : "#C1BBEB",
+    backgroundColor: active ? "rgba(255, 255, 255, 0.276)" : "transparent",
     width: active ? "300px" : "290px",
-    boxShadow: active ? "rgba(50, 50, 93, 0.25) 0px 50px 100px - 20px, rgba(0, 0, 0, 0.3) 0px 30px 60px - 30px" : "none",
-    border: active ? "2px outset #C1BBEB" : "0",
+    boxShadow: active ? "rgba(0, 0, 0, 0.35) 0px 5px 15px;" : "none",
     fontSize: "18px",
     fontWeight: '500',
     margin: "5px 0",

@@ -623,16 +623,16 @@ Page thêm cho các trang quản lý */
 /* ------------------------------------------------------------------
 hover cho Sidebar */
 
-#home:hover,
+/* #home:hover,
 #patients:hover,
 #employees:hover,
 #medicines:hover,
 #devices:hover,
 #preventions:hover,
 #admin:hover {
-  background-color: indigo;
+  background-color: rgba(255, 255, 255, 0.276);
   color: white;
-}
+} */
 
 #home:target,
 #patients:target,
