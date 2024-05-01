@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
-import { Box, Grid, Button, TextField, FormControl, InputLabel, Select, MenuItem,Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Box, Grid, Button, TextField, FormControl, InputLabel, Select, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, Alert } from '@mui/material';
 import api from "../../api";
 import axios from 'axios'; // Import axios for making HTTP requests
 
@@ -18,8 +18,8 @@ const AddPatient = () => {
         type: '',
         bhyt: ''
     });
-    const [submitMessage, setSubmitMessage] = useState('');
-    const [openDialog, setOpenDialog] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [openSnackbar2, setOpenSnackbar2] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -33,27 +33,18 @@ const AddPatient = () => {
         event.preventDefault();
         try {
             const response = await api.post('/patients/create-patient', patientInfo);
-            console.log(response.data); // Log response data
-            setSubmitMessage('Dữ liệu đã được lưu thành công!');
-            setOpenDialog(true);
-            // Clear form after successful submission
-            setPatientInfo({
-                name: '',
-                phone: '',
-                gender: '',
-                address: '',
-                dob: '',
-                type: '',
-                bhyt: ''
-            });
+            console.log(response); // Log response data
+            if (response.status === 201) {
+                setOpenSnackbar(true)
+            } else {
+                // Xử lý trường hợp request không thành công
+                setOpenSnackbar2(true)
+            }
         } catch (error) {
-            console.error('Error creating patient:', error);
-            setSubmitMessage('Lỗi khi lưu dữ liệu. Vui lòng thử lại sau.');
-            setOpenDialog(true);
+            // Xử lý lỗi nếu có
+            setOpenSnackbar2(true)
+            console.error("Error:", error);
         }
-    };
-    const handleCloseDialog = () => {
-        setOpenDialog(false);
     };
 
     return (
@@ -91,45 +82,45 @@ const AddPatient = () => {
                                             </Box>
                                             <Box className="box">
                                                 <Grid container my={3} sx={{ marginTop: '0' }}>
-                                                    
+
                                                     <FormControl fullWidth variant="outlined">
-                                                    <InputLabel>Chọn Giới tính</InputLabel>
-                                                    <Select
-                                                        label="Giới tính"
-                                                        name="gender"
-                                                        value={patientInfo.gender}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <MenuItem value="">Chọn giới tính</MenuItem>
-                                                        <MenuItem value="male">Nam</MenuItem>
-                                                        <MenuItem value="female">Nữ</MenuItem>
-                                                        <MenuItem value="other">Khác</MenuItem>
-                                                    </Select>
+                                                        <InputLabel>Chọn Giới tính</InputLabel>
+                                                        <Select
+                                                            label="Giới tính"
+                                                            name="gender"
+                                                            value={patientInfo.gender}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="">Chọn giới tính</MenuItem>
+                                                            <MenuItem value="male">Nam</MenuItem>
+                                                            <MenuItem value="female">Nữ</MenuItem>
+                                                            <MenuItem value="other">Khác</MenuItem>
+                                                        </Select>
                                                     </FormControl>
                                                 </Grid>
                                             </Box>
                                             <Box className="box">
                                                 <Grid container my={3} sx={{ marginTop: '0' }}>
-                                                
+
                                                     <FormControl fullWidth variant="outlined">
-                                                    <InputLabel>Kiểu bệnh nhân</InputLabel>
-                                                    <Select
-                                                        label="Kiểu bệnh nhân"
-                                                        name="type"
-                                                        value={patientInfo.type}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <MenuItem value="INPATIENT">Nhập viện</MenuItem>
-                                                        <MenuItem value="OUTPATIENT">Khám bệnh</MenuItem>
-                                                        <MenuItem value="other">Khác</MenuItem>
-                                                    </Select>
+                                                        <InputLabel>Kiểu bệnh nhân</InputLabel>
+                                                        <Select
+                                                            label="Kiểu bệnh nhân"
+                                                            name="type"
+                                                            value={patientInfo.type}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="INPATIENT">Nhập viện</MenuItem>
+                                                            <MenuItem value="OUTPATIENT">Khám bệnh</MenuItem>
+                                                            <MenuItem value="other">Khác</MenuItem>
+                                                        </Select>
                                                     </FormControl>
                                                 </Grid>
                                             </Box>
-                                            
+
                                         </Grid>
                                         <Grid item xs={5} sx={{ marginLeft: '10%' }}>
-                                            
+
 
                                             <Box className="box">
 
@@ -169,28 +160,44 @@ const AddPatient = () => {
                                     </Grid>
                                 </div>
                                 <div className='summitFooter'>
-
-                                    <button type="submit">Lưu nháp</button>
-                                    <button type="submit">Gửi</button>
+                                    <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                                        <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                                    </div>
+                                    <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                                        <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Dialog open={openDialog} onClose={handleCloseDialog}>
-                <DialogTitle>Thông báo</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {submitMessage}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
-                        Đóng
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={() => setOpenSnackbar(false)}
+            >
+                <Alert
+                    onClose={() => setOpenSnackbar(false)}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                    Thêm thành công!
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                open={openSnackbar2}
+                autoHideDuration={6000}
+                onClose={() => setOpenSnackbar2(false)}
+            >
+                <Alert
+                    onClose={() => setOpenSnackbar2(false)}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                >
+                    Có lỗi xảy ra, vui lòng thử lại!
+                </Alert>
+            </Snackbar>
         </div >
     );
 };

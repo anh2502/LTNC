@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import AddCalendar from './add-calendar';
@@ -76,14 +76,22 @@ const Calendar = () => {
   };
 
   const renderDays = () => {
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+    const daysInLastMonth = new Date(currentYear, currentMonth - 1, 0).getDate();
+    let dayreal = 1;
     let days = [];
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dateKey = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    for (let day = 1; (day <= 35); day++) {
+      const dateKey = `${currentYear}-${(currentMonth).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      const day_of_week = new Date(currentYear, currentMonth - 1, 1).getDay();
       const event = events[dateKey];
+      if (dayreal > daysInMonth) {
+        dayreal = 1;
+      }
       days.push(
         <div key={dateKey} className={`day-db ${event ? 'has-event' : ''}`}>
-          {day}
+          {
+            (day_of_week - day >= 0) ? (daysInLastMonth - (day_of_week - day)) : (dayreal++)
+          }
           {event && (
             <div className="event-details">
               {/* <span className="event-name">{event.name}</span> */}
@@ -97,7 +105,7 @@ const Calendar = () => {
   };
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ display: 'flex', direction: 'column', justifyContent: 'center' }}>
       <div className="calendar">
         <div className="header">
           <div style={{ width: 'auto', height: '100%', marginLeft: 5, color: '#303972', fontSize: 36, fontFamily: 'Lato', fontWeight: '700', wordWrap: 'break-word' }}>Calendar</div>
@@ -107,7 +115,7 @@ const Calendar = () => {
                 <div style={{ color: '#4D44B5', fontSize: '18px', fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}>
                   <select value={currentMonth} onChange={handleMonthChange}>
                     {[...Array(12)].map((_, index) => (
-                      <option key={index} value={index}>{index + 1}</option>
+                      <option key={index} value={index + 1}>{index + 1}</option>
                     ))}
                   </select>
                 </div>
@@ -117,7 +125,7 @@ const Calendar = () => {
               <div style={{ justifyContent: 'center', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
                 <div style={{ color: '#4D44B5', fontSize: 18, fontFamily: 'Lato', fontWeight: '400', wordWrap: 'break-word' }}>
                   <select value={currentYear} onChange={handleYearChange}>
-                    {[...Array(5)].map((_, i) => {
+                    {[...Array(10)].map((_, i) => {
                       const yearOption = currentYear - 2 + i; // 2 years back and forward
                       return <option key={yearOption} value={yearOption}>{yearOption}</option>;
                     })}
@@ -125,24 +133,24 @@ const Calendar = () => {
                 </div>
               </div>
             </div>
-
-            <LinkAdd onClick={() => handleAddCalendarClick()} className="add">
-              <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
-              <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
-            </LinkAdd>
+            <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+              <Button onClick={() => handleAddCalendarClick()} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} startIcon={<AddIcon></AddIcon>}>Thêm</Button>
+            </div>
           </div>
         </div>
         <div className="weekdays">
-          {/* {['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'].map((dayName, index) => (
-            <div key={index} className="weekday">{dayName}</div>
-          ))} */}
+          {
+            ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'].map((dayName, index) => (
+              <div key={index} className="weekday">{dayName}</div>
+            ))
+          }
         </div>
         <div className="days-grid">
           {renderDays()}
         </div>
-      </div >
-      <div style={{ paddingRight: '50px', display: 'flex', justifyContent: 'end', marginTop: '-60px' }}>
-        <button onClick={() => handleApplicationClick()} className="">Xin nghỉ</button>
+      </div>
+      <div style={{ borderRadius: '40px', alignSelf: 'end', overflow: 'hidden', marginRight: 'auto' }}>
+        <Button className="xinnghi" onClick={() => handleApplicationClick()} style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700' }}>Xin nghỉ</Button>
       </div>
       <Application open={openApplicationDialog} onClose={handleApplicationDialogClose} deviceInfo={selectedRow} />
       <AddCalendar open={openAddCalendarDialog} onClose={handleAddCalendarDialogClose} deviceInfo={selectedRow} />

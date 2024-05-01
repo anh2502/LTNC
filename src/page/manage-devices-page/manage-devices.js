@@ -1,7 +1,7 @@
 import React from "react";
 import ColumnGroupingTable from "./table_manage-devices";
 import '../../App.css'
-import { Typography, colors } from "@mui/material";
+import { Button, Typography, colors } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material";
@@ -30,9 +30,10 @@ const DevicePage = () => {
                 <option value="Bộ lọc 3"><Typography>Bộ lọc 3</Typography></option>
               </select>
             </div>
-            <LinkAdd to="/manage-devices/add-device" className="add">
-              <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
-              <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
+            <LinkAdd to="/manage-devices/add-device">
+              <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                <Button className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} startIcon={<AddIcon></AddIcon>}>Thêm</Button>
+              </div>
             </LinkAdd>
           </div>
         </div>

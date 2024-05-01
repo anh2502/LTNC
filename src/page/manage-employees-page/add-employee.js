@@ -18,6 +18,7 @@ import {
   Select,
   Snackbar,
   Alert,
+  Button,
 } from "@mui/material";
 import { Password } from "@mui/icons-material";
 
@@ -49,21 +50,21 @@ const AddEmployee = () => {
   const handleSubmit = async () => {
     console.log(employeeInfo);
     try {
-        const res = await api.post("accounts/create-employee", employeeInfo);
-        console.log(res);
-        // Kiểm tra nếu request thành công
-        if (res.status === 201) {
-            setOpenSnackbar(true)
-        } else {
-            // Xử lý trường hợp request không thành công
-            setOpenSnackbar2(true)
-        }
-    } catch (error) {
-        // Xử lý lỗi nếu có
+      const res = await api.post("accounts/create-employee", employeeInfo);
+      console.log(res);
+      // Kiểm tra nếu request thành công
+      if (res.status === 201) {
+        setOpenSnackbar(true)
+      } else {
+        // Xử lý trường hợp request không thành công
         setOpenSnackbar2(true)
-        console.error("Error:", error);
+      }
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      setOpenSnackbar2(true)
+      console.error("Error:", error);
     }
-};
+  };
 
 
   return (
@@ -298,10 +299,12 @@ const AddEmployee = () => {
                   </Grid>
                 </div>
                 <div className="summitFooter" style={{ textAlign: "center" }}>
-                  <button type="button">Hủy</button>
-                  <button type="button" onClick={handleSubmit}>
-                    Gửi
-                  </button>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                  </div>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>
+                  </div>
                 </div>
               </form>
             </div>

@@ -16,10 +16,10 @@ import api from "../../api";
 const Application = ({ open, onClose, deviceInfo1 }) => {
     const acc = useSelector(state => {
         if (state.auth.userData) {
-          return state.auth.userData;
+            return state.auth.userData;
         }
         return null; // hoặc giá trị mặc định phù hợp với ứng dụng của bạn
-      });
+    });
     const [application, setApplication] = useState({
         employeeId: acc.userId,
         reason: '',
@@ -34,14 +34,14 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
         }));
     };
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         try {
             await api.post('leave-apps/create-leaveApp', application);
             // Sau khi gọi API thành công, bạn có thể thực hiện các xử lý khác ở đây
             console.log("Task added successfully!");
-          } catch (error) {
+        } catch (error) {
             console.error("Error adding task:", error);
-          }
+        }
 
         onClose(); // Đóng dialog sau khi đã xử lý
     };
@@ -61,18 +61,16 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
                                     variant="outlined"
                                     name="name"
                                     value={acc.name}
-                                    disabled={true}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            Mã số nhân viên
+                                Mã số nhân viên
                                 <TextField
                                     fullWidth
                                     // label="Mã số nhân viên"
                                     variant="outlined"
                                     name="employeeId"
                                     value={acc.userId}
-                                    disabled={true}
                                 />
                             </Grid>
                             <Grid item xs={12}>

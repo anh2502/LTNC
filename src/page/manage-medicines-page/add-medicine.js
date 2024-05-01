@@ -4,7 +4,7 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableCell from "@mui/material/TableCell";
-import { Box, Grid, Select, MenuItem, Snackbar, Alert } from "@mui/material";
+import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button } from "@mui/material";
 import api from "../../api"
 
 const AddMedicine = () => {
@@ -26,22 +26,22 @@ const AddMedicine = () => {
     }));
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     console.log(medicineInfo);
     try {
-        const res = await api.post("medicines/create", medicineInfo);
-        console.log(res);
-        // Kiểm tra nếu request thành công
-        if (res.status === 201) {
-            setOpenSnackbar(true)
-        } else {
-            // Xử lý trường hợp request không thành công
-            setOpenSnackbar2(true)
-        }
-    } catch (error) {
-        // Xử lý lỗi nếu có
+      const res = await api.post("medicines/create", medicineInfo);
+      console.log(res);
+      // Kiểm tra nếu request thành công
+      if (res.status === 201) {
+        setOpenSnackbar(true)
+      } else {
+        // Xử lý trường hợp request không thành công
         setOpenSnackbar2(true)
-        console.error("Error:", error);
+      }
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      setOpenSnackbar2(true)
+      console.error("Error:", error);
     }
   };
 
@@ -109,49 +109,45 @@ const AddMedicine = () => {
                         />
                       </Box>
                       <Box className="box">
-                          <Box className="box">
-                            <div>
-                              <label htmlFor="medicineType">Loại*</label>
-                            </div>
-                            <Select
-                                fullWidth
-                              type="text"
-                              id="medicineType"
-                              name="medicineType"
-                              value={medicineInfo.medicineType}
-                              onChange={handleChange}
-                            >
-                              <MenuItem value="CAPSULE">Viên nang</MenuItem>
-                              <MenuItem value="SPRAY">Xịt</MenuItem>
-                              <MenuItem value="GRANULE">Hạt</MenuItem>
-                              <MenuItem value="LIQUID">Dạng lỏng</MenuItem>
-                              <MenuItem value="CREAM">Kem</MenuItem>
-                            </Select>
-                          </Box>
-                          <Box className="box">
-                            <div>
-                              <label htmlFor="medicalUseType">Dược tính*</label>
-                            </div>
-                            <Select
-                                fullWidth
-                              type="text"
-                              id="medicalUseType"
-                              name="medicalUseType"
-                              value={medicineInfo.medicalUseType}
-                              onChange={handleChange}
-                            >
-                                <MenuItem value="ANALGESICS">Thuốc giảm đau</MenuItem>
-                                <MenuItem value="ANTIBIOTICS">Kháng sinh</MenuItem>
-                                <MenuItem value="ANTIPYRETICS">Thuốc hạ sốt</MenuItem>
-                                <MenuItem value="HORMONES">Hormones</MenuItem>
-                                <MenuItem value="SEDATIVES">Thuốc an thần</MenuItem>
+                        <label htmlFor="medicineType">Loại*</label>
+                        <Select
+                          className="input-select"
+                          fullWidth
+                          type="text"
+                          id="medicineType"
+                          name="medicineType"
+                          value={medicineInfo.medicineType}
+                          onChange={handleChange}
+                        >
+                          <MenuItem value="CAPSULE">Viên nang</MenuItem>
+                          <MenuItem value="SPRAY">Xịt</MenuItem>
+                          <MenuItem value="GRANULE">Hạt</MenuItem>
+                          <MenuItem value="LIQUID">Dạng lỏng</MenuItem>
+                          <MenuItem value="CREAM">Kem</MenuItem>
+                        </Select>
+                      </Box>
+                      <Box className="box">
+                        <label htmlFor="medicalUseType">Dược tính*</label>
+                        <Select
+                          className="input-select"
+                          fullWidth
+                          type="text"
+                          id="medicalUseType"
+                          name="medicalUseType"
+                          value={medicineInfo.medicalUseType}
+                          onChange={handleChange}
+                        >
+                          <MenuItem value="ANALGESICS">Thuốc giảm đau</MenuItem>
+                          <MenuItem value="ANTIBIOTICS">Kháng sinh</MenuItem>
+                          <MenuItem value="ANTIPYRETICS">Thuốc hạ sốt</MenuItem>
+                          <MenuItem value="HORMONES">Hormones</MenuItem>
+                          <MenuItem value="SEDATIVES">Thuốc an thần</MenuItem>
 
-                            </Select>
-                          </Box>
+                        </Select>
                       </Box>
                     </Grid>
                     <Grid item xs={5} sx={{ marginLeft: "10%" }}>
-                      <Box>
+                      <Box className="box">
                         <label htmlFor="price">Giá*</label>
                         <input
                           type="text"
@@ -161,11 +157,8 @@ const AddMedicine = () => {
                           onChange={handleChange}
                         />
                       </Box>
-
                       <Box className="box">
-                        <div>
-                          <label htmlFor="ingredient">Thành phần*</label>
-                        </div>
+                        <label htmlFor="ingredient">Thành phần*</label>
                         <input
                           type="text"
                           id="ingredient"
@@ -178,8 +171,12 @@ const AddMedicine = () => {
                   </Grid>
                 </div>
                 <div className="summitFooter">
-                  <button type="button">Hủy</button>
-                  <button type="button" onClick={handleSubmit}>Gửi</button>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                  </div>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>
+                  </div>
                 </div>
               </form>
             </div>

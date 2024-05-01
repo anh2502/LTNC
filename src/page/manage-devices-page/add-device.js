@@ -4,11 +4,11 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableCell from "@mui/material/TableCell";
-import { Box, Grid, Select, MenuItem, Snackbar, Alert } from "@mui/material";
+import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button } from "@mui/material";
 import api from "../../api"
 
 const AddDevice = () => {
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const [openSnackbar2, setOpenSnackbar2] = useState(false);
   const [deviceInfo, setDeviceInfo] = useState({
     name: "",
@@ -26,22 +26,22 @@ const AddDevice = () => {
     }));
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     console.log(deviceInfo);
     try {
-        const res = await api.post("equipments/save-equipment", deviceInfo);
-        console.log(res);
-        // Kiểm tra nếu request thành công
-        if (res.status === 201) {
-            setOpenSnackbar(true)
-        } else {
-            // Xử lý trường hợp request không thành công
-            setOpenSnackbar2(true)
-        }
-    } catch (error) {
-        // Xử lý lỗi nếu có
+      const res = await api.post("equipments/save-equipment", deviceInfo);
+      console.log(res);
+      // Kiểm tra nếu request thành công
+      if (res.status === 201) {
+        setOpenSnackbar(true)
+      } else {
+        // Xử lý trường hợp request không thành công
         setOpenSnackbar2(true)
-        console.error("Error:", error);
+      }
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      setOpenSnackbar2(true)
+      console.error("Error:", error);
     }
   };
 
@@ -164,39 +164,43 @@ const AddDevice = () => {
                   </Grid>
                 </div>
                 <div className="summitFooter" >
-                  <button type="button">Hủy</button>
-                  <button type="button" onClick={handleSubmit}>Gửi</button>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                  </div>
+                  <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                    <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>
+                  </div>
                 </div>
               </form>
             </div>
           </TableBody>
         </Table>
         <Snackbar
-        open={openSnackbar}
-        autoHideDuration={6000}
-        onClose={() => setOpenSnackbar(false)}
-      >
-        <Alert
+          open={openSnackbar}
+          autoHideDuration={6000}
           onClose={() => setOpenSnackbar(false)}
-          severity="success"
-          sx={{ width: "100%" }}
         >
-          Nhập thành công!
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={openSnackbar2}
-        autoHideDuration={6000}
-        onClose={() => setOpenSnackbar2(false)}
-      >
-        <Alert
+          <Alert
+            onClose={() => setOpenSnackbar(false)}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Nhập thành công!
+          </Alert>
+        </Snackbar>
+        <Snackbar
+          open={openSnackbar2}
+          autoHideDuration={6000}
           onClose={() => setOpenSnackbar2(false)}
-          severity="error"
-          sx={{ width: "100%" }}
         >
-          Có lỗi xảy ra, vui lòng thử lại!
-        </Alert>
-      </Snackbar>
+          <Alert
+            onClose={() => setOpenSnackbar2(false)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Có lỗi xảy ra, vui lòng thử lại!
+          </Alert>
+        </Snackbar>
       </TableContainer>
     </div>
   );

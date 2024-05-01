@@ -2,7 +2,7 @@ import React from "react";
 import ColumnGroupingTable from "./table_manage-medicines";
 import '../../App.css'
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
 const LinkAdd = styled(Link)({
@@ -29,9 +29,10 @@ const MedicinePage = () => {
                 <option value="Bộ lọc 3">Bộ lọc 3</option>
               </select>
             </div>
-            <LinkAdd to="/manage-medicines/add-medicine" className="add">
-              <div style={{ height: '100%', width: '10px' }}><AddIcon /></div>
-              <div className="content-button" style={{ height: '100%', marginLeft: '-20px', paddingTop: '5px' }}>Thêm</div>
+            <LinkAdd to="/manage-medicines/add-medicine">
+              <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
+                <Button className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} startIcon={<AddIcon></AddIcon>}>Thêm</Button>
+              </div>
             </LinkAdd>
           </div>
         </div>

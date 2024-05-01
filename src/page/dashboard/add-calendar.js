@@ -16,10 +16,10 @@ import api from "../../api";
 const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
     const acc = useSelector(state => {
         if (state.auth.userData) {
-          return state.auth.userData;
+            return state.auth.userData;
         }
         return null; // hoặc giá trị mặc định phù hợp với ứng dụng của bạn
-      });
+    });
     const [calendar, setCalendar] = useState({
         employeeId: acc.userId,
         description: '',
@@ -36,14 +36,14 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
         }));
     };
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         try {
             await api.post('tasks/create-task', calendar);
             // Sau khi gọi API thành công, bạn có thể thực hiện các xử lý khác ở đây
             console.log("Task added successfully!");
-          } catch (error) {
+        } catch (error) {
             console.error("Error adding task:", error);
-          }
+        }
 
         onClose(); // Đóng dialog sau khi đã xử lý
     };
@@ -63,7 +63,6 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
                                     name="name"
                                     value={acc.name}
                                     onChange={handleChange}
-                                    disabled={true}
                                 />
                             </Grid>
                             <Grid item xs={12}>
