@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography, styled } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography, styled } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
@@ -16,14 +16,8 @@ const ViewMore = styled('div')(
 const EmployeeInfo = (image, name, position, department, degree, phoneNumber, email, calendar) => {
     const [open, setOpen] = useState(false);
     const { id } = useParams();
-    const [data,setData] = useState([])
+    const [data, setData] = useState([])
 
-    // Bây giờ bạn có thể sử dụng `id` để thực hiện các thao tác khác, ví dụ như gọi API
-
-    // Ví dụ:
-   
-
-   
     image = 'https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-5.jpg?v=1692246402739';
     name = "Đào Duy Quý";
     position = "Trùm trường";
@@ -65,7 +59,7 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
     const fetchData = async () => {
         try {
             const response = await api.get(`/employees/${id}`);
-            setData(response.data.data); 
+            setData(response.data.data);
             console.log(data);
             return response.data; // Trả về dữ liệu nhận được từ API nếu cần
         } catch (error) {
@@ -181,11 +175,22 @@ const EmployeeInfo = (image, name, position, department, degree, phoneNumber, em
                                         </ViewMore>
                                 ))
                             }
-                            <div className="button-viewmore" onClick={() => setOpen(!open)}>
+                            <Button className="button-viewmore" onClick={() => setOpen(!open)}
+                                style={{
+                                    display: 'flex',
+                                    backgroundColor: 'rgba(77, 68, 181, 0.1)',
+                                    width: '100%',
+                                    height: '57.42px',
+                                    borderRadius: '40px',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    color: '#4D44B5',
+                                }}
+                            >
                                 {
                                     open === true ? <p className="close">Đóng</p> : <p className="more">Xem thêm</p>
                                 }
-                            </div>
+                            </Button>
                         </div>
                     </div>
                 </Grid>

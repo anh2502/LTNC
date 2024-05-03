@@ -12,6 +12,21 @@ import {
   styled,
   InputLabel,
 } from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+
+});
+
 const CustomInputLabel = styled(InputLabel)(({ theme, isFocused }) => ({
   position: 'absolute',
   backgroundColor: 'white',
@@ -97,12 +112,19 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
               </Grid>
               <Grid item xs={12}>
                 {/* Input cho hình ảnh */}
-                <input
-                  type="file"
-                  accept="image/*" // Chỉ chấp nhận các loại file hình ảnh
-                  name="image"
-                  onChange={handleChange}
-                />
+                <Button
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  startIcon={<CloudUploadIcon />}
+                  style={{
+                    backgroundColor: "#4d44b5"
+                  }}
+                >
+                  Chọn hình ảnh
+                  <VisuallyHiddenInput type="file" accept='image/*' />
+                </Button>
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextField

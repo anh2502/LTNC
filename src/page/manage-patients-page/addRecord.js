@@ -30,7 +30,6 @@ const AddRecordDialog = ({ open, onClose, info }) => {
     useEffect(() => {
         setNewPatientInfo((prevState) => ({
             ...prevState,
-            doctorId: acc.userId,
             patientId: info,
         }));
     }, [info]);
@@ -91,7 +90,7 @@ const AddRecordDialog = ({ open, onClose, info }) => {
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    type="date"
+                                    type="datetime-local"
                                     label="Ngày nhập viện"
                                     InputLabelProps={{
                                         shrink: true,
@@ -106,7 +105,7 @@ const AddRecordDialog = ({ open, onClose, info }) => {
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    type="date"
+                                    type="datetime-local"
                                     label="Ngày xuất viện"
                                     name="leaveTime"
                                     InputLabelProps={{
@@ -126,7 +125,6 @@ const AddRecordDialog = ({ open, onClose, info }) => {
                 <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#4d44b5' }}>Lưu</Button>
             </DialogActions>
         </Dialog>
-
     );
 };
 

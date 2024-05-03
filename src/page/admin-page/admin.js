@@ -5,6 +5,8 @@ import api from "../../api";
 import image from "../../img/doctor-icon.webp"; // Import the avatar image
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ViewMore = styled('div')(
   ({ active }) => ({
@@ -94,15 +96,9 @@ const AdminPage = () => {
                   {approve.status === "PENDING" ? "Đang chờ" : approve.status === "ACCEPT" ? "Đã duyệt" : "Từ chối"}
                 </div>
 
-
-
                 <div className="button-approve">
-                  <button className="agree" onClick={() => handleApprove(approve.id, 'ACCEPT')}>
-                    <i className="fa-solid fa-check"></i>
-                  </button>
-                  <button className="notagree" onClick={() => handleApprove(approve.id, 'REFUSE')}>
-                    <i className="fa-solid fa-xmark"></i>
-                  </button>
+                  <IconButton onClick={() => handleApprove(approve.id, 'ACCEPT')} color="success"><DoneIcon /></IconButton>
+                  <IconButton onClick={() => handleApprove(approve.id, 'REFUSE')} color="error"><CloseIcon /></IconButton>
                 </div>
               </div>
             ))
