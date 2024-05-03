@@ -4,9 +4,12 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableCell from "@mui/material/TableCell";
-import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button } from "@mui/material";
+import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button, TextField, styled } from "@mui/material";
 import api from "../../api"
-
+import { Link } from "react-router-dom";
+const LinkAdd = styled(Link)({
+  textDecoration: 'none',
+});
 const AddDevice = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [openSnackbar2, setOpenSnackbar2] = useState(false);
@@ -98,74 +101,78 @@ const AddDevice = () => {
                   <Grid container my={2}>
                     <Grid item xs={5}>
                       <Box className="box">
-                        <label htmlFor="name">Tên thiết bị*</label>
-                        <input
-                          type="text"
-                          id="name"
+                        <label className="label">
+                          Tên thiết bị*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="name"
                           value={deviceInfo.name}
                           onChange={handleChange}
-                          dir="abd"
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="supplier">Người nhập hàng*</label>
-                        <input
-                          type="text"
-                          id="supplier"
+                        <label className="label">
+
+                          Người nhập hàng*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="supplier"
                           value={deviceInfo.supplier}
                           onChange={handleChange}
-                          dir="abd"
                         />
                       </Box>
                     </Grid>
 
                     <Grid item xs={6} sx={{ paddingLeft: "10%" }}>
                       <Box className="box">
-                        <Grid container my={2}>
-                          <Grid item xs={7} sx={{ paddingLeft: "10%" }}>
-                            <Box className="box">
-                              <div>
-                                <label htmlFor="inputDate">Ngày nhập*</label>
-                              </div>
-                              <input
-                                type="date"
-                                id="inputDate"
-                                name="inputDate"
-                                value={deviceInfo.inputDate}
-                                onChange={handleChange}
-                                style={{ width: "100%" }}
-                              />
-                            </Box>
-                            <Box className="box">
-                              <div>
-                                <label htmlFor="status">Trạng thái*</label>
-                              </div>
-                              <Select
-                                value={deviceInfo.status}
-                                onChange={handleChange}
-                                id="status"
-                                name="status"
-                              >
-                                <MenuItem value="MAINTENANCE">
-                                  Đang bảo trì
-                                </MenuItem>
-                                <MenuItem value="READY">
-                                  Đang hoạt động
-                                </MenuItem>
-                                <MenuItem value="BROKEN">Bị hỏng</MenuItem>
-                              </Select>
-                            </Box>
-                          </Grid>
-                        </Grid>
+                        <label className="label">
+
+                          Ngày nhập*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
+                          type="date"
+                          name="inputDate"
+                          value={deviceInfo.inputDate}
+                          onChange={handleChange}
+                        />
+                      </Box>
+                      <Box className="box">
+                        <label className="label">
+                          Trạng thái*
+                        </label>
+                        <Select
+                          fullWidth
+                          value={deviceInfo.status}
+                          onChange={handleChange}
+                          id="status"
+                          name="status"
+                        >
+                          <MenuItem value="MAINTENANCE">
+                            Đang bảo trì
+                          </MenuItem>
+                          <MenuItem value="READY">
+                            Đang hoạt động
+                          </MenuItem>
+                          <MenuItem value="BROKEN">Bị hỏng</MenuItem>
+                        </Select>
                       </Box>
                     </Grid>
                   </Grid>
                 </div>
                 <div className="summitFooter" >
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
-                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    <LinkAdd to="/manage-devices">
+                      <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    </LinkAdd>
                   </div>
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
                     <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>

@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, TextField, MenuItem, Select, FormControl, InputLabel, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Box, Grid, TextField, MenuItem, Select, FormControl, InputLabel, Button, Dialog, DialogTitle, DialogContent, DialogActions, styled } from '@mui/material';
 import api from "../../api"
 import { Email } from '@mui/icons-material';
 
+const CustomInputLabel = styled(InputLabel)(({ theme, isFocused }) => ({
+    position: 'absolute',
+    backgroundColor: 'white',
+    padding: '0 10px',
+    color: isFocused ? theme.palette.primary.main : ' rgba(0, 0, 0, 0.6);',
+    fontSize: '1rem',
+    fontWeight: '400',
+}));
 const EditPatientDialog = ({ open, onClose, info }) => {
     const [editedPatientInfo, setEditedPatientInfo] = useState(info);
     const [openSnackbar2, setOpenSnackbar2] = useState(false);
@@ -21,7 +29,7 @@ const EditPatientDialog = ({ open, onClose, info }) => {
 
     const handleSubmit = async (event) => {
         console.log(editedPatientInfo);
-        const { name, phone, gender, address, type, dob, bhyt } = editedPatientInfo;
+        const { name, phone, gender, address, dob, type, bhyt } = editedPatientInfo;
 
         const newPatientInfo = {
             name: name,
@@ -43,9 +51,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
             }
         } catch (error) {
             console.error("Error:", error);
-           
+
         }
     }
+
 
     return (
         <Dialog open={open} onClose={onClose}>
@@ -59,6 +68,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                     fullWidth
                                     label="Họ và tên"
                                     variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
                                     name="name"
                                     value={editedPatientInfo.name}
                                     onChange={handleChange}
@@ -68,6 +81,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                 <TextField
                                     fullWidth
                                     label="Số điện thoại"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
                                     variant="outlined"
                                     name="phone"
                                     value={editedPatientInfo.phone}
@@ -75,10 +92,9 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <FormControl fullWidth variant="outlined">
-                                    <InputLabel>Chọn Giới tính</InputLabel>
+                                <FormControl fullWidth margin="normal">
+                                    <CustomInputLabel shrink>Giới tính</CustomInputLabel>
                                     <Select
-                                        label="Giới tính"
                                         name="gender"
                                         value={editedPatientInfo.gender}
                                         onChange={handleChange}
@@ -96,6 +112,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                     variant="outlined"
                                     type="date"
                                     label="Ngày sinh"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
                                     name="dob"
                                     value={editedPatientInfo.dob}
                                     onChange={handleChange}
@@ -108,16 +128,19 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                     variant="outlined"
                                     multiline
                                     rows={2}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
                                     name="address"
                                     value={editedPatientInfo.address}
                                     onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl fullWidth variant="outlined">
-                                    <InputLabel>Kiểu bệnh nhân</InputLabel>
+                                <FormControl fullWidth margin="normal">
+                                    <CustomInputLabel shrink>Kiểu bệnh nhân</CustomInputLabel>
                                     <Select
-                                        label="Kiểu bệnh nhân"
                                         name="type"
                                         value={editedPatientInfo.type}
                                         onChange={handleChange}
@@ -133,6 +156,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
                                     fullWidth
                                     label="Mã số BHYT"
                                     variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    margin="normal"
                                     name="bhyt"
                                     value={editedPatientInfo.bhyt}
                                     onChange={handleChange}
@@ -144,10 +171,10 @@ const EditPatientDialog = ({ open, onClose, info }) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Hủy</Button>
-                <Button onClick={handleSubmit} variant="contained" color="primary">Lưu</Button>
+                <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#4d44b5' }}>Lưu</Button>
             </DialogActions>
         </Dialog>
-        
+
     );
 };
 

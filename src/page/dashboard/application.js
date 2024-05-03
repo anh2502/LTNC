@@ -9,16 +9,29 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
+    InputLabel,
 } from '@mui/material';
+import { styled } from '@mui/system';
 import { useSelector } from 'react-redux';
 import api from "../../api";
+
+const CustomInputLabel = styled(InputLabel)(({ theme, isFocused }) => ({
+    position: 'absolute',
+    top: '-9px',
+    left: '8px',
+    backgroundColor: 'white',
+    padding: '0 10px',
+    color: isFocused ? theme.palette.primary.main : ' rgba(0, 0, 0, 0.6);',
+    fontSize: '1rem',
+    fontWeight: '400',
+}));
 
 const Application = ({ open, onClose, deviceInfo1 }) => {
     const acc = useSelector(state => {
         if (state.auth.userData) {
             return state.auth.userData;
         }
-        return null; // hoặc giá trị mặc định phù hợp với ứng dụng của bạn
+        return null;
     });
     const [application, setApplication] = useState({
         employeeId: acc.userId,
@@ -45,6 +58,7 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
 
         onClose(); // Đóng dialog sau khi đã xử lý
     };
+    const [isFocused, setIsFocused] = React.useState(true);
 
     return (
         <Dialog open={open} onClose={onClose}>
@@ -54,51 +68,54 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
-                                Tên nhân viên
                                 <TextField
                                     fullWidth
-                                    // label="Tên nhân viên"
+                                    label="Tên nhân viên"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     variant="outlined"
                                     name="name"
                                     value={acc.name}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                Mã số nhân viên
                                 <TextField
                                     fullWidth
-                                    // label="Mã số nhân viên"
+                                    label="Mã số nhân viên"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     variant="outlined"
                                     name="employeeId"
-                                    value={acc.userId}
+                                    value={acc.employeeId}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextareaAutosize
-                                    fullWidth
-                                    minRows={5}
-                                    placeholder="Lí do xin nghỉ"
-                                    name="reason"
-                                    value={application.reason}
-                                    onChange={handleChange}
-                                />
+                                <div style={{ position: 'relative' }}>
+                                    <CustomInputLabel shrink={isFocused} htmlFor="dateInput">Lí do</CustomInputLabel>
+                                    <TextareaAutosize
+                                        fullWidth
+                                        style={{
+                                            width: '100%'
+                                        }}
+                                        minRows={5}
+                                        id="dateInput"
+                                        name="reason"
+                                        value={application.reason}
+                                        onFocus={() => setIsFocused(true)}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </Grid>
-                            {/* <Grid item xs={12} md={6}>
-                                Nghỉ từ ngày
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    type="date"
-                                    name="dateStart"
-                                    value={application.dateStart}
-                                    onChange={handleChange}
-                                />
-                            </Grid> */}
-                            <Grid item xs={12} md={6}>
-                                Ngày nghỉ
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    label="Ngày nghỉ"
                                     type="date"
                                     name="timeOff"
                                     value={application.timeOff}

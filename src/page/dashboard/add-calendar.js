@@ -9,6 +9,7 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
+    InputLabel,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import api from "../../api";
@@ -59,6 +60,9 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
                                 <TextField
                                     fullWidth
                                     label="Tên nhân viên"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     variant="outlined"
                                     name="name"
                                     value={acc.name}
@@ -69,17 +73,24 @@ const AddCalendar = ({ open, onClose, deviceInfo1 }) => {
                                 <TextField
                                     fullWidth
                                     label="Mô tả công việc"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     variant="outlined"
                                     name="description"
                                     value={calendar.description}
                                     onChange={handleChange}
                                 />
                             </Grid>
-                            <Grid item xs={12} md={6}>
-                                Ngày trực
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    className="datetruc"
+                                    label="Ngày trực"
                                     type="date"
                                     name="startTime"
                                     value={calendar.startTime}

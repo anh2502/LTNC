@@ -19,8 +19,15 @@ import {
   Snackbar,
   Alert,
   Button,
+  TextField,
+  styled,
 } from "@mui/material";
 import { Password } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+
+const LinkAdd = styled(Link)({
+  textDecoration: 'none',
+});
 
 const AddEmployee = () => {
   const [employeeInfo, setEmployeeInfo] = useState({
@@ -65,7 +72,6 @@ const AddEmployee = () => {
       console.error("Error:", error);
     }
   };
-
 
   return (
     <div style={{ width: "95%", margin: "0 auto" }}>
@@ -120,116 +126,144 @@ const AddEmployee = () => {
                   <Grid container my={2}>
                     <Grid item xs={5}>
                       <Box className="box">
-                        <label htmlFor="fullName">Họ và tên *</label>
-                        <input
-                          type="text"
-                          id="fullName"
+                        <label className="label">
+                          Họ và tên *
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="fullName"
-                          value={employeeInfo.fullname}
+                          value={employeeInfo.fullName}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="password">Mật khẩu *</label>
-                        <input
-                          type="text"
-                          id="password"
+                        <label className="label">
+                          Mật khẩu *
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
+                          type="password"
                           name="password"
                           value={employeeInfo.password}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="email">Email*</label>
-                        <input
-                          type="text"
-                          id="email"
+                        <label className="label">
+                          Email*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="email"
                           value={employeeInfo.email}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="dob">Ngày sinh*</label>
-                        <input
-                          type="date"
-                          id="dob"
+                        <label className="label">
+                          Ngày sinh*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="dob"
+                          type="date"
                           value={employeeInfo.dob}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="dutyType">Chức vụ*</label>
-                        <Select
-                          value={employeeInfo.dutyType}
-                          onChange={handleChange}
-                          id="dutyType"
-                          name="dutyType"
-                        >
-                          <MenuItem value="DOCTOR_LEVER_1">
-                            Bác sĩ cấp 1
-                          </MenuItem>
-                          <MenuItem value="DOCTOR_LEVER_2">
-                            Bác sĩ cấp 2
-                          </MenuItem>
-                          <MenuItem value="NURSER">Y tá</MenuItem>
-                          <MenuItem value="MEDICINE_MANAGER">
-                            Quản lý y tế
-                          </MenuItem>
-                          <MenuItem value="EQUIPMENT_MANAGER">
-                            Quản lý thiết bị
-                          </MenuItem>
-                          <MenuItem value="DEAN">Admin</MenuItem>
-                        </Select>
-                      </Box>
-                      <Box className="box">
-                        <label htmlFor="degreeType">Bằng cấp*</label>
-                        <Select
-                          type="text"
-                          id="degreeType"
-                          name="degreeType"
-                          value={employeeInfo.degreeType}
-                          onChange={handleChange}
-                        >
-                          <MenuItem value="BACHELOR_OF_MEDICINE">
-                            Bác sĩ cơ sở
-                          </MenuItem>
-                          <MenuItem value="BACHELOR_OF_MEDICAL_SCIENCES">
-                            Bác sĩ y dược cơ bản
-                          </MenuItem>
-                          <MenuItem value="BACHELOR_OF_PUBLIC_HEALTH">
-                            Y sĩ công cộng
-                          </MenuItem>
-                          <MenuItem value="BACHELOR_OF_SURGERY">
-                            Bác sĩ phẫu thuật
-                          </MenuItem>
-                          <MenuItem value="BACHELOR">Bằng cử nhân</MenuItem>
-                          <MenuItem value="DOCTOR_OF_MEDICINE">
-                            Tiến sĩ y học
-                          </MenuItem>
-                        </Select>
+                        <Grid container my={2}>
+                          <Grid item xs={5.5} >
+                            <Box>
+                              <label className="label">
+                                Chức vụ*
+                              </label>
+                              <Select
+                                fullWidth
+                                value={employeeInfo.dutyType}
+                                onChange={handleChange}
+                                id="dutyType"
+                                name="dutyType"
+                              >
+                                <MenuItem value="DOCTOR_LEVER_1">
+                                  Bác sĩ cấp 1
+                                </MenuItem>
+                                <MenuItem value="DOCTOR_LEVER_2">
+                                  Bác sĩ cấp 2
+                                </MenuItem>
+                                <MenuItem value="NURSER">Y tá</MenuItem>
+                                <MenuItem value="MEDICINE_MANAGER">
+                                  Quản lý y tế
+                                </MenuItem>
+                                <MenuItem value="EQUIPMENT_MANAGER">
+                                  Quản lý thiết bị
+                                </MenuItem>
+                                <MenuItem value="DEAN">Admin</MenuItem>
+                              </Select>
+                            </Box>
+                          </Grid>
+                          <Grid item xs={5.5} marginLeft={'auto'}>
+                            <Box>
+                              <label className="label">
+                                Bằng cấp*
+                              </label>
+                              <Select
+                                fullWidth
+                                id="degreeType"
+                                name="degreeType"
+                                value={employeeInfo.degreeType}
+                                onChange={handleChange}
+                              >
+                                <MenuItem value="BACHELOR_OF_MEDICINE">
+                                  Bác sĩ cơ sở
+                                </MenuItem>
+                                <MenuItem value="BACHELOR_OF_MEDICAL_SCIENCES">
+                                  Bác sĩ y dược cơ bản
+                                </MenuItem>
+                                <MenuItem value="BACHELOR_OF_PUBLIC_HEALTH">
+                                  Y sĩ công cộng
+                                </MenuItem>
+                                <MenuItem value="BACHELOR_OF_SURGERY">
+                                  Bác sĩ phẫu thuật
+                                </MenuItem>
+                                <MenuItem value="BACHELOR">Bằng cử nhân</MenuItem>
+                                <MenuItem value="DOCTOR_OF_MEDICINE">
+                                  Tiến sĩ y học
+                                </MenuItem>
+                              </Select>
+                            </Box>
+                          </Grid>
+                        </Grid>
                       </Box>
                     </Grid>
                     <Grid item xs={5} sx={{ marginLeft: "10%" }}>
                       <Box className="box">
-                        <div>
-                          <label htmlFor="username">Tên người dùng*</label>
-                        </div>
-                        <input
-                          type="text"
-                          id="username"
+                        <label className="label">
+                          Tên người dùng*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="username"
                           value={employeeInfo.username}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <div>
-                          <label htmlFor="sex">Giới tính*</label>
-                        </div>
+                        <label className="label">
+                          Giới tính*
+                        </label>
                         <Select
-                          type="text"
+                          fullWidth
                           id="sex"
                           name="sex"
                           value={employeeInfo.sex}
@@ -237,38 +271,42 @@ const AddEmployee = () => {
                         >
                           <MenuItem value="male">Nam</MenuItem>
                           <MenuItem value="female">Nữ</MenuItem>
+                          <MenuItem value="other">Khác</MenuItem>
                         </Select>
                       </Box>
                       <Box className="box">
-                        <div>
-                          <label htmlFor="phone">Số điện thoại*</label>
-                        </div>
-                        <input
+                        <label className="label">
+                          Số điện thoại*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           type="number"
-                          id="phone"
                           name="phone"
                           value={employeeInfo.phone}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <div>
-                          <label htmlFor="address">Nhập địa chỉ*</label>
-                        </div>
-                        <input
-                          type="text"
-                          id="address"
+                        <label className="label">
+                          Nhập địa chỉ*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="address"
                           value={employeeInfo.address}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <div>
-                          <label htmlFor="department">Phòng ban*</label>
-                        </div>
+                        <label className="label">
+                          Phòng ban*
+                        </label>
                         <Select
-                          type="text"
+                          fullWidth
                           id="department"
                           name="department"
                           value={employeeInfo.department}
@@ -300,7 +338,9 @@ const AddEmployee = () => {
                 </div>
                 <div className="summitFooter" style={{ textAlign: "center" }}>
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
-                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    <LinkAdd to="/manage-employees">
+                      <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    </LinkAdd>
                   </div>
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
                     <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>

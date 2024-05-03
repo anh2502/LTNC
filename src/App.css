@@ -8,7 +8,6 @@
 
 body {
   background-color: #f3f4ff;
-  overflow-x: hidden;
 }
 
 /* -----------------------------------------------------------------
@@ -82,29 +81,6 @@ Nút bộ lọc của từng Page */
 .table {
   width: 95%;
   margin: 0 auto;
-}
-
-.drop-down {
-  display: flex;
-  width: 207px;
-  height: 60px;
-  padding: 16px 43px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 40px;
-  border: 2px solid var(--Color-Purple, #4D44B5);
-  /* Shadow */
-  box-shadow: 0px 20px 50px 0px rgba(191, 21, 108, 0.05);
-}
-
-.drop-down select {
-  border: 1px none;
-  background-color: #f3f4ff;
-  font-family: Lato;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 
 /* --------------------------------------------------------------------
@@ -417,14 +393,14 @@ Page thêm cho các trang quản lý */
 }
 
 /* Cài đặt cho input */
-.medicine-info input {
+/* .medicine-info input {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 27px;
   box-sizing: border-box;
   width: 100%;
   height: 48px;
-}
+} */
 
 .input-select {
   border-radius: 5px;
@@ -856,7 +832,6 @@ Lịch trực của page thông tin nhân viên */
   min-width: 80%;
   /* Adjust as needed for your layout */
   min-height: 820px;
-  margin: 0 auto;
   padding: 35px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -945,6 +920,38 @@ Lịch trực của page thông tin nhân viên */
   /* Soft shadow for depth */
 }
 
+.now {
+  color: white;
+  background-color: #4D44B5;
+  font-size: 24px;
+  outline: 3px solid #4D44B5;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  /* Light background for the cells */
+  border: 2px #fff solid;
+  /* Subtle border */
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  padding: 10px 10px;
+  /* Adjusted padding for more space */
+  border-radius: 8px;
+  /* Rounded corners for modern look */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  /* Smooth transitions for hover effects */
+}
+
+.now:hover {
+  background-color: #000;
+  /* Darker background on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Soft shadow for depth */
+}
+
 /* Specific event styles */
 .has-event:before {
   content: '';
@@ -980,4 +987,16 @@ Lịch trực của page thông tin nhân viên */
   /* Color for event count indicator */
   border-radius: 10px;
   padding: 0 5px;
+}
+
+.label {
+  line-height: 16px;
+}
+
+.box:not(:first-of-type) {
+  margin-top: 20px;
+}
+
+iframe#webpack-dev-server-client-overlay {
+  display: none !important
 }

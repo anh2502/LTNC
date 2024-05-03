@@ -4,8 +4,13 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableCell from "@mui/material/TableCell";
-import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button } from "@mui/material";
+import { Box, Grid, Select, MenuItem, Snackbar, Alert, Button, TextField, TextareaAutosize, styled } from "@mui/material";
 import api from "../../api"
+import { Link } from "react-router-dom";
+
+const LinkAdd = styled(Link)({
+  textDecoration: 'none',
+});
 
 const AddMedicine = () => {
   const [medicineInfo, setMedicineInfo] = useState({
@@ -98,22 +103,24 @@ const AddMedicine = () => {
                   <Grid container my={2}>
                     <Grid item xs={5}>
                       <Box className="box medicine">
-                        <label htmlFor="name">Tên thuốc*</label>
-                        <input
-                          type="text"
-                          id="name"
+                        <label className="label">
+                          Tên thuốc*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          variant="outlined"
                           name="name"
                           value={medicineInfo.name}
                           onChange={handleChange}
-                          dir="abd"
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="medicineType">Loại*</label>
+                        <label className="label">
+                          Loại*
+                        </label>
                         <Select
-                          className="input-select"
                           fullWidth
-                          type="text"
                           id="medicineType"
                           name="medicineType"
                           value={medicineInfo.medicineType}
@@ -127,11 +134,11 @@ const AddMedicine = () => {
                         </Select>
                       </Box>
                       <Box className="box">
-                        <label htmlFor="medicalUseType">Dược tính*</label>
+                        <label className="label">
+                          Dược tính*
+                        </label>
                         <Select
-                          className="input-select"
                           fullWidth
-                          type="text"
                           id="medicalUseType"
                           name="medicalUseType"
                           value={medicineInfo.medicalUseType}
@@ -148,20 +155,26 @@ const AddMedicine = () => {
                     </Grid>
                     <Grid item xs={5} sx={{ marginLeft: "10%" }}>
                       <Box className="box">
-                        <label htmlFor="price">Giá*</label>
-                        <input
-                          type="text"
-                          id="price"
+                        <label className="label">
+                          Giá*
+                        </label>
+                        <TextField
+                          className="textfield"
+                          fullWidth
+                          type="number"
+                          variant="outlined"
                           name="price"
                           value={medicineInfo.price}
                           onChange={handleChange}
                         />
                       </Box>
                       <Box className="box">
-                        <label htmlFor="ingredient">Thành phần*</label>
-                        <input
-                          type="text"
-                          id="ingredient"
+                        <label className="label">
+                          Thành phần*
+                        </label>
+                        <TextareaAutosize
+                          fullWidth
+                          minRows={7.8}
                           name="ingredient"
                           value={medicineInfo.ingredient}
                           onChange={handleChange}
@@ -172,7 +185,10 @@ const AddMedicine = () => {
                 </div>
                 <div className="summitFooter">
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
-                    <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    <LinkAdd to="/manage-medicines">
+
+                      <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                    </LinkAdd>
                   </div>
                   <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
                     <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>

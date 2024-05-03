@@ -30,7 +30,7 @@ const DeleteConfirmationDialog = ({ open, onClose, apiURL }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Hủy</Button>
-        <Button onClick={handleDelete} variant="contained" color="primary">Xóa</Button>
+        <Button onClick={handleDelete} variant="contained" style={{ backgroundColor: '#4d44b5'}}>Xóa</Button>
       </DialogActions>
     </Dialog>
   );

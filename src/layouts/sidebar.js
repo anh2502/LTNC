@@ -79,27 +79,27 @@ const Sidebar = () => {
         <HomeIcon style={{ marginRight: "5px" }} />
         Trang chủ
       </LinkItem>
-      <LinkItem to="/manage-patients" active={pathname === "/manage-patients" | pathname === "/manage-patients/add-patient" | pathname === "/manage-patients/info-patient"} id="patients">
+      <LinkItem to="/manage-patients" active={!pathname.indexOf("/manage-patients")} id="patients">
         <Diversity1Icon style={{ marginRight: "5px" }} />
         Quản lý bệnh nhân
       </LinkItem>
-      <LinkItem to="/manage-medicines" active={pathname === "/manage-medicines" | pathname === "/manage-medicines/add-medicine" | pathname === "/manage-medicines/info-medicine"} id="medicines">
+      <LinkItem to="/manage-medicines" active={!pathname.indexOf("/manage-medicines")} id="medicines">
         <VaccinesIcon style={{ marginRight: "5px" }} />
         Quản lý thuốc
       </LinkItem>
-      <LinkItem to="/manage-employees" active={pathname === "/manage-employees" | pathname === "/manage-employees/add-employee" | pathname === "/manage-employees/info-employee"} id="employees">
+      <LinkItem to="/manage-employees" active={!pathname.indexOf("/manage-employees")} id="employees">
         <BadgeIcon style={{ marginRight: "5px" }} />
         Quản lý nhân viên
       </LinkItem>
-      <LinkItem to="/manage-devices" active={pathname === "/manage-devices" | pathname === "/manage-devices/add-device" | pathname === "/manage-devices/info-device"} id="devices">
+      <LinkItem to="/manage-devices" active={!pathname.indexOf("/manage-devices")} id="devices">
         <ConstructionIcon style={{ marginRight: "5px" }} />
         Quản lý thiết bị
       </LinkItem>
-      <LinkItem to="/manage-preventions" active={pathname === "/manage-preventions"} id="preventions">
+      <LinkItem to="/manage-preventions" active={!pathname.indexOf("/manage-preventions")} id="preventions">
         <LocalHotelIcon style={{ marginRight: "5px" }} />
         Quản lý phòng bệnh
       </LinkItem>
-      <LinkItem to="/admin" active={pathname === "/admin"} id="admin">
+      <LinkItem to="/admin" active={!pathname.indexOf("/admin")} id="admin">
         <PersonIcon style={{ marginRight: "5px" }} />
         Admin
       </LinkItem>

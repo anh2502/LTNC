@@ -9,9 +9,21 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  styled,
+  InputLabel,
 } from '@mui/material';
-
+const CustomInputLabel = styled(InputLabel)(({ theme, isFocused }) => ({
+  position: 'absolute',
+  backgroundColor: 'white',
+  marginLeft: '7px',
+  marginTop: '-7px',
+  padding: '0 10px',
+  color: isFocused ? theme.palette.primary.main : ' rgba(0, 0, 0, 0.6);',
+  fontSize: '1rem',
+  fontWeight: '400',
+}));
 const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
+  const [isFocused, setIsFocused] = React.useState(false);
   const [deviceInfo, setDeviceInfo] = useState({
     name: '',
     code: '',
@@ -32,6 +44,7 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
     onClose(); // Đóng dialog sau khi đã xử lý
   };
 
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Chỉnh sửa thông tin thiết bị</DialogTitle>
@@ -43,6 +56,10 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
                 <TextField
                   fullWidth
                   label="Tên thiết bị"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  margin="normal"
                   variant="outlined"
                   name="name"
                   value={deviceInfo.name}
@@ -53,6 +70,10 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
                 <TextField
                   fullWidth
                   label="Mã số"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  margin="normal"
                   variant="outlined"
                   name="code"
                   value={deviceInfo.code}
@@ -60,10 +81,15 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
                 />
               </Grid>
               <Grid item xs={12}>
+                <CustomInputLabel shrink>Hướng dẫn sử dụng</CustomInputLabel>
                 <TextareaAutosize
                   fullWidth
+                  style={{
+                    width: '100%',
+                  }}
                   minRows={5}
-                  placeholder="Hướng dẫn sử dụng"
+                  onFocus={() => setIsFocused(true)}
+                  onClose={() => setIsFocused(false)}
                   name="uses"
                   value={deviceInfo.uses}
                   onChange={handleChange}
@@ -79,22 +105,30 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                Hạn sử dụng
                 <TextField
                   fullWidth
                   variant="outlined"
                   type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  label="Hạn sử dụng"
+                  margin="normal"
                   name="expiryDate"
                   value={deviceInfo.expiryDate}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
-                Thời hạn bảo trì
                 <TextField
                   fullWidth
                   variant="outlined"
                   type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  margin="normal"
+                  label="Thời hạn bảo trì"
                   name="manufactureDate"
                   value={deviceInfo.manufactureDate}
                   onChange={handleChange}

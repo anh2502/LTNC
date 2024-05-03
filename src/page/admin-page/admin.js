@@ -3,6 +3,8 @@ import '../../App.css'
 import styled from "@emotion/styled";
 import api from "../../api";
 import image from "../../img/doctor-icon.webp"; // Import the avatar image
+import { IconButton, InputBase } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 const ViewMore = styled('div')(
   ({ active }) => ({
@@ -55,7 +57,7 @@ const AdminPage = () => {
       // Xử lý lỗi nếu cần
     }
   };
-  
+
 
   useEffect(() => {
     fetchData();
@@ -66,8 +68,14 @@ const AdminPage = () => {
       <div className="approve">
         <h1 className="approve-title" style={{ width: '92.75%' }}>Phê duyệt xin nghỉ</h1>
         <div className="search">
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <input />
+          <IconButton type="button" sx={{ p: '15px', color: '#4D44B5' }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Tìm kiếm"
+            inputProps={{ 'aria-label': 'Tìm kiếm' }}
+          />
         </div>
         <div className="approve-list-items">
           {

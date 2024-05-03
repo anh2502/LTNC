@@ -20,7 +20,7 @@ const CollapsibleTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(6);
   const [rows, setRows] = useState([]);
-  const [open,setOpen]=useState(false);
+  const [open, setOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState()
   const [selectedPatitent, setSelectedPatient] = useState()
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -41,7 +41,7 @@ const CollapsibleTable = () => {
   const handleDeleteDialogClose = () => {
     fetchData()
     setOpenDeleteDialog(false);
-};
+  };
 
   const handleAdd = (row) => {
     setSelectedRow(row)
@@ -52,11 +52,11 @@ const CollapsibleTable = () => {
     setSelectedRow(row)
     setOpenDeleteDialog(true);
   };
-  const handleDelRoom = (row)=>{
+  const handleDelRoom = (row) => {
     setSelectedRow(row)
     setOpenDelRoomDialog(true)
   }
-  const handleCloseRoom=()=>{
+  const handleCloseRoom = () => {
     fetchData();
     setOpenDelRoomDialog(false)
   }
@@ -98,10 +98,9 @@ const CollapsibleTable = () => {
           <Table aria-label="collapsible table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Phòng</TableCell>
-                <TableCell align="center">Giường bệnh khả dụng</TableCell>
-                <TableCell>Bệnh nhân</TableCell>
-                <TableCell align="center"></TableCell>
+                <TableCell align="center" style={{ top: 0, fontSize: '17px', fontWeight: '700', textAlign: 'center' }}>Phòng</TableCell>
+                <TableCell align="center" style={{ top: 0, fontSize: '17px', fontWeight: '700', textAlign: 'center' }}>Giường bệnh khả dụng</TableCell>
+                <TableCell style={{ top: 0, fontSize: '17px', fontWeight: '700', textAlign: 'center' }}>Bệnh nhân</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -116,19 +115,19 @@ const CollapsibleTable = () => {
                           <div style={{ width: "30px", textAlign: "center", fontWeight: "bold" }}>{index + 1}</div>
                           <div style={{ flex: 1 }}>Tên: {patient.patientName}</div>
                           <div style={{ marginLeft: "20px" }}>Số giường: {patient.bedNumber}</div>
-                          <Button onClick={()=>handleDel(row.roomId,patient.patientId)}>Xóa bệnh nhân</Button>
+                          <Button onClick={() => handleDel(row.roomId, patient.patientId)}>Xóa bệnh nhân</Button>
                         </div>
                       ))}
                     </TableCell>
                     <TableCell align="center">
-                      <Button onClick={()=>handleAdd(row.roomId)}>Thêm bệnh nhân</Button>
-                      <Button onClick={()=>handleDelRoom(row.roomId)}>Xóa phòng</Button>
-                      
+                      <Button onClick={() => handleAdd(row.roomId)}>Thêm bệnh nhân</Button>
+                      <Button onClick={() => handleDelRoom(row.roomId)}>Xóa phòng</Button>
+
                     </TableCell>
                   </TableRow>
                   <AddPatientDialog open={open} onClose={handleClose} roomId={selectedRow} />
-                  <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose}  apiURL ={`rooms/${selectedRow}/patients/${selectedPatitent}`}/>
-                  <DeleteConfirmationDialog open={openDelRoomDialog} onClose={handleCloseRoom}  apiURL ={`rooms/${selectedRow}`}/>
+                  <DeleteConfirmationDialog open={openDeleteDialog} onClose={handleDeleteDialogClose} apiURL={`rooms/${selectedRow}/patients/${selectedPatitent}`} />
+                  <DeleteConfirmationDialog open={openDelRoomDialog} onClose={handleCloseRoom} apiURL={`rooms/${selectedRow}`} />
                 </React.Fragment>
               ))}
             </TableBody>

@@ -18,6 +18,7 @@ import EmployeeInfo from "./page/manage-employees-page/info-employee";
 import PatientInfo from "./page/manage-patients-page/info-patient";
 import DeviceInfo from "./page/manage-devices-page/info-device";
 import Login from "./page/UserAction/login";
+import Signin from "./page/UserAction/signin";
 export default function Router() {
   const isLoggedIn = useSelector(state => {
     if (state.auth.userData) {
@@ -135,7 +136,7 @@ export default function Router() {
   //       { index: true, element: <DeviceInfo /> },
   //     ],
   //   },
-    
+
   // ]);
   const routes = useRoutes([
     {
@@ -249,6 +250,13 @@ export default function Router() {
       element: isLoggedIn ? <Layout name="Thông tin thiết bị" /> : <Navigate to="/login" />,
       children: [
         { index: true, element: <DeviceInfo /> },
+      ],
+    },
+    {
+      path: "/signin",
+      element: <Signin />,
+      children: [
+        { index: true, element: <Signin /> },
       ],
     },
   ]);

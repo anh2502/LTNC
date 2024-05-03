@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Link, Grid } from '@mui/material';
+import { Container, TextField, Button, Typography, Grid, styled, makeStyles } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 import api from "../../api";
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/actions';
+import { Link } from "react-router-dom";
 
+const LinkAdd = styled(Link)(
+  ({ active }) => ({
+    color: 'blue',
+  })
+);
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,24 +28,13 @@ const Login = () => {
       console.error('Error logging in:', error);
     }
   };
-  const handleSignin = async () => {
-    // Xử lý logic đăng nhập ở đây
-    try {
-      const response = await api.post('accounts/create-employee', { username, password });
-      console.log(response)
-      const userData = response.data.data;
-      dispatch(loginSuccess(userData));
-      return <Navigate to="/LTNC-BTL" />;
-    } catch (error) {
-      console.error('Error logging in:', error);
-    }
-  };
+
 
   return (
     <Container maxWidth="xs">
       <div style={{ marginTop: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography variant="h4">Hospital</Typography>
-        <form style={{ marginTop: '20px', width: '100%' }}>
+        <Typography variant="h4" color={"#303972"}>Hospital</Typography>
+        <form style={{ marginTop: '20px', width: '100%', color: '#303972' }}>
           Tên đăng nhập
           <TextField
             variant="outlined"
@@ -60,12 +55,12 @@ const Login = () => {
           <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
             Đăng nhập
           </Button>
-          <Button variant="contained" color="primary" fullWidth onClick={handleSignin} style={{ marginTop: '20px' }}>
-            Đăng kí
-          </Button>
+          <div style={{ marginTop: '15px', fontWeight: '300' }}>
+            <LinkAdd to="/signin">Đăng kí tài khoản</LinkAdd>
+          </div>
         </form>
-      </div>
-    </Container>
+      </div >
+    </Container >
   );
 };
 

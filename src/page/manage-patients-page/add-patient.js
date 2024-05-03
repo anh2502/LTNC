@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
-import { Box, Grid, Button, TextField, FormControl, InputLabel, Select, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, Alert } from '@mui/material';
+import { Box, Grid, Button, TextField, FormControl, InputLabel, Select, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Snackbar, Alert, styled } from '@mui/material';
 import api from "../../api";
 import axios from 'axios'; // Import axios for making HTTP requests
+import { Link } from 'react-router-dom';
+
+const LinkAdd = styled(Link)({
+    textDecoration: 'none',
+});
 
 const AddPatient = () => {
     const [patientInfo, setPatientInfo] = useState({
         name: '',
         phone: '',
-        gender: '',
+        gender: 'SELECT',
         address: '',
         dob: '',
-        type: '',
+        type: 'INPATIENT',
         bhyt: ''
     });
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -61,96 +66,110 @@ const AddPatient = () => {
                                     <Grid container my={2}>
                                         <Grid item xs={5}>
                                             <Box className="box">
-                                                <label htmlFor="name">Họ và tên*</label>
-                                                <input
-                                                    type="text"
-                                                    id="name"
+                                                <label className='label'>
+                                                    Họ và tên*
+                                                </label>
+                                                <TextField
+                                                    className="textfield"
+                                                    fullWidth
+                                                    variant="outlined"
                                                     name="name"
                                                     value={patientInfo.name}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
                                             <Box className="box">
-                                                <label htmlFor="birthDay">Ngày sinh*</label>
-                                                <input
-                                                    type="date"
-                                                    id="dob"
+                                                <label className='label'>
+                                                    Ngày sinh*
+                                                </label>
+                                                <TextField
+                                                    className="textfield"
+                                                    fullWidth
+                                                    variant="outlined"
                                                     name="dob"
+                                                    type="date"
                                                     value={patientInfo.dob}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
                                             <Box className="box">
-                                                <Grid container my={3} sx={{ marginTop: '0' }}>
-
-                                                    <FormControl fullWidth variant="outlined">
-                                                        <InputLabel>Chọn Giới tính</InputLabel>
-                                                        <Select
-                                                            label="Giới tính"
-                                                            name="gender"
-                                                            value={patientInfo.gender}
-                                                            onChange={handleChange}
-                                                        >
-                                                            <MenuItem value="">Chọn giới tính</MenuItem>
-                                                            <MenuItem value="male">Nam</MenuItem>
-                                                            <MenuItem value="female">Nữ</MenuItem>
-                                                            <MenuItem value="other">Khác</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
+                                                <Grid container my={2}>
+                                                    <Grid item xs={5.5} >
+                                                        <Box>
+                                                            <FormControl fullWidth variant="outlined">
+                                                                <label className='label'>
+                                                                    Giới tính*
+                                                                </label>
+                                                                <Select
+                                                                    name="gender"
+                                                                    value={patientInfo.gender}
+                                                                    onChange={handleChange}
+                                                                >
+                                                                    <MenuItem value="SELECT">Chọn giới tính</MenuItem>
+                                                                    <MenuItem value="male">Nam</MenuItem>
+                                                                    <MenuItem value="female">Nữ</MenuItem>
+                                                                    <MenuItem value="other">Khác</MenuItem>
+                                                                </Select>
+                                                            </FormControl>
+                                                        </Box>
+                                                    </Grid>
+                                                    <Grid item xs={5.5} marginLeft={'auto'} >
+                                                        <Box >
+                                                            <FormControl fullWidth variant="outlined">
+                                                                <label className='label'>
+                                                                    Kiểu bệnh nhân*
+                                                                </label>
+                                                                <Select
+                                                                    name="type"
+                                                                    value={patientInfo.type}
+                                                                    onChange={handleChange}
+                                                                >
+                                                                    <MenuItem value="INPATIENT">Nhập viện</MenuItem>
+                                                                    <MenuItem value="OUTPATIENT">Khám bệnh</MenuItem>
+                                                                    <MenuItem value="other">Khác</MenuItem>
+                                                                </Select>
+                                                            </FormControl>
+                                                        </Box>
+                                                    </Grid>
                                                 </Grid>
                                             </Box>
-                                            <Box className="box">
-                                                <Grid container my={3} sx={{ marginTop: '0' }}>
-
-                                                    <FormControl fullWidth variant="outlined">
-                                                        <InputLabel>Kiểu bệnh nhân</InputLabel>
-                                                        <Select
-                                                            label="Kiểu bệnh nhân"
-                                                            name="type"
-                                                            value={patientInfo.type}
-                                                            onChange={handleChange}
-                                                        >
-                                                            <MenuItem value="INPATIENT">Nhập viện</MenuItem>
-                                                            <MenuItem value="OUTPATIENT">Khám bệnh</MenuItem>
-                                                            <MenuItem value="other">Khác</MenuItem>
-                                                        </Select>
-                                                    </FormControl>
-                                                </Grid>
-                                            </Box>
-
                                         </Grid>
                                         <Grid item xs={5} sx={{ marginLeft: '10%' }}>
-
-
                                             <Box className="box">
-
-                                                <label htmlFor="phoneNumber">Số điện thoại*</label>
-                                                <input
-                                                    type="text"
-                                                    id="phone"
+                                                <label className='label'>
+                                                    Số điện thoại*
+                                                </label>
+                                                <TextField
+                                                    className="textfield"
+                                                    fullWidth
+                                                    type='number'
+                                                    variant="outlined"
                                                     name="phone"
                                                     value={patientInfo.phone}
                                                     onChange={handleChange}
                                                 />
                                             </Box>
                                             <Box className="box">
-
-                                                <div><label htmlFor="address">Nhập địa chỉ*</label></div>
-                                                <input
-                                                    type="text"
-                                                    id="address"
+                                                <label className='label'>
+                                                    Nhập địa chỉ*
+                                                </label>
+                                                <TextField
+                                                    className="textfield"
+                                                    fullWidth
+                                                    variant="outlined"
                                                     name="address"
                                                     value={patientInfo.address}
                                                     onChange={handleChange}
                                                 />
-
                                             </Box>
-                                            <Box className="box" sx={{ marginTop: 3 }}>
-
-                                                <div><label htmlFor="insurance">Mã số BHYT*</label></div>
-                                                <input
-                                                    type="text"
-                                                    id="bhyt"
+                                            <Box className="box">
+                                                <label className='label'>
+                                                    Mã số BHYT*
+                                                </label>
+                                                <TextField
+                                                    className="textfield"
+                                                    fullWidth
+                                                    variant="outlined"
                                                     name="bhyt"
                                                     value={patientInfo.bhyt}
                                                     onChange={handleChange}
@@ -161,7 +180,9 @@ const AddPatient = () => {
                                 </div>
                                 <div className='summitFooter'>
                                     <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
-                                        <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                                        <LinkAdd to="/manage-patients">
+                                            <Button className="xinnghi" style={{ textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Hủy</Button>
+                                        </LinkAdd>
                                     </div>
                                     <div style={{ borderRadius: '40px', overflow: 'hidden' }}>
                                         <Button onClick={handleSubmit} className="xinnghi" style={{ backgroundColor: "#4d44b5", color: 'white', textTransform: 'none', fontWeight: '700', fontSize: '18px' }} >Gửi</Button>
