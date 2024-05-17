@@ -3,8 +3,16 @@ import { AppBar, Toolbar, Typography, Button, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useDispatch } from 'react-redux';
+import { logout } from './actions';
 
 const Navbar = ({ namePage }) => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Dispatch action đăng xuất khi người dùng click vào nút đăng xuất
+    dispatch(logout());
+  };
   return (
     <div className="header-title">
 
@@ -30,6 +38,7 @@ const Navbar = ({ namePage }) => {
             </div>
             <Avatar alt="User Avatar" />
           </div>
+          <Button onClick={handleLogout}>Đăng xuất</Button>
         </Toolbar>
       </AppBar>
     </div>
