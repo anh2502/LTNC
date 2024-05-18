@@ -2,11 +2,13 @@ import { React, useState, useEffect } from "react";
 import '../../App.css'
 import { Box, Paper, Stack, Table, TableBody, TableHead, Typography, TableCell, TableRow, Button, IconButton, colors } from "@mui/material";
 import api from "../../api"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import DeleteConfirmationDialog from "../../component/DeleteDialog";
 import AddRecordDialog from "./addRecord";
 import EditRecordDialog from "./editRecord";
-import AddIcon from "@mui/icons-material/Add"
+import icon from "../../img/patient.gif"
 
 
 const PatientInfo = () => {
@@ -65,7 +67,7 @@ const PatientInfo = () => {
         };
         fetchData();
     }, [id]);
-    const image = 'https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-5.jpg?v=1692246402739';
+    //const image = 'https://bizweb.dktcdn.net/100/438/408/files/meme-ech-xanh-yody-vn-5.jpg?v=1692246402739';
     return (
 
         <Box className="box-info" >
@@ -74,7 +76,7 @@ const PatientInfo = () => {
                 <Box className="rectangle yl"></Box>
             </Box>
             <Box className="avatar-info">
-                <img src={image} alt="con pepe" style={{ width: '100%', height: '100%' }} />
+                <img src={icon} alt="con pepe" style={{ width: '100%', height: '100%', backgroundColor: '#f6f6f6' }} />
             </Box>
             {/* <Typography className="title-info_typo" fontWeight={900} fontSize={32} lineHeight={1.5} fontFamily={"Lato"} textTransform={'capitalize'}>{name}</Typography> */}
             <Box className="paragraph-soyeulylich">
@@ -99,9 +101,12 @@ const PatientInfo = () => {
             <Box>
                 <Typography className="title-info_typo" fontWeight={900} fontSize={24} marginTop={1} fontFamily={"Lato"}>
                     Hồ sơ bệnh án:
-                    <IconButton onClick={handleAddClick}
+                    {/* <IconButton onClick={handleAddClick}
                         color="primary"
-                    ><AddIcon /></IconButton>
+                    ><AddIcon /></IconButton> */}
+                    <Button onClick={handleAddClick}>
+                    <FontAwesomeIcon icon={faPenToSquare} size="xl" />
+                    </Button>
                 </Typography>
                 <Table >
                     <TableHead style={{

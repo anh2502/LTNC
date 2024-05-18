@@ -110,22 +110,7 @@ const EditDeviceDialog = ({ open, onClose, deviceInfo1 }) => {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                {/* Input cho hình ảnh */}
-                <Button
-                  component="label"
-                  role={undefined}
-                  variant="contained"
-                  tabIndex={-1}
-                  startIcon={<CloudUploadIcon />}
-                  style={{
-                    backgroundColor: "#4d44b5"
-                  }}
-                >
-                  Chọn hình ảnh
-                  <VisuallyHiddenInput type="file" accept='image/*' />
-                </Button>
-              </Grid>
+              
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth

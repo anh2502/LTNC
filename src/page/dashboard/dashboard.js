@@ -33,7 +33,7 @@ const Calendar = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await api.get(`tasks/?employeeId=${isLoggedIn}&month=4`);
+      const response = await api.get(`tasks/?employeeId=${isLoggedIn}&month=${currentMonth}`);
       const eventData = {};
       response.data.data.forEach(event => {
         const dateKey = event.startTime.split('T')[0];

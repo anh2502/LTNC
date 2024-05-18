@@ -77,6 +77,7 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
                                     variant="outlined"
                                     name="name"
                                     value={acc.name}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -88,7 +89,8 @@ const Application = ({ open, onClose, deviceInfo1 }) => {
                                     }}
                                     variant="outlined"
                                     name="employeeId"
-                                    value={acc.employeeId}
+                                    value={acc.userId}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>

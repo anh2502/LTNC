@@ -1000,3 +1000,7 @@ Lịch trực của page thông tin nhân viên */
 iframe#webpack-dev-server-client-overlay {
   display: none !important
 }
+
+.logout-btn{
+  color: #000;
+}

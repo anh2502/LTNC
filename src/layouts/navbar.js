@@ -1,16 +1,28 @@
-import React from "react";
-import { AppBar, Toolbar, Typography, Button, Avatar } from "@mui/material";
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Button, Avatar, Menu, MenuItem} from "@mui/material";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { useDispatch } from 'react-redux';
-import { logout } from './actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/actions';
 
 const Navbar = ({ namePage }) => {
   const dispatch = useDispatch();
-
+  const acc = useSelector(state => {
+    if (state.auth.userData) {
+        return state.auth.userData;
+    }
+    return null;
+});
+  const name = acc.name;
+  console.log(acc)
   const handleLogout = () => {
     // Dispatch action đăng xuất khi người dùng click vào nút đăng xuất
+    localStorage.removeItem("token");
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
     dispatch(logout());
   };
   return (
@@ -30,15 +42,13 @@ const Navbar = ({ namePage }) => {
           <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
             <div style={{ textAlign: "right", marginRight: "10px", marginLeft: "5px" }}>
               <Typography variant="body1" style={{ color: "#303972", fontSize: "14px" }}>
-                Tên Người Dùng
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                Chức Vụ
+                {name}
               </Typography>
             </div>
             <Avatar alt="User Avatar" />
+            <Button onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} size="2xl" style={{color: "#4d44b5"}} /></Button>
           </div>
-          <Button onClick={handleLogout}>Đăng xuất</Button>
+          
         </Toolbar>
       </AppBar>
     </div>

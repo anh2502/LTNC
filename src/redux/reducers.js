@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS } from './actions';
+import { LOGIN_SUCCESS, LOGOUT } from './actions';
 
 const initialState = {
     userData: null,

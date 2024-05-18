@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Box, Grid, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions,Snackbar, Alert } from '@mui/material';
 import api from "../../api";
 import { useSelector } from 'react-redux';
 
 const EditRecordDialog = ({ open, onClose, info, id }) => {
+    console.log(info)
     const [openSnackbar2, setOpenSnackbar2] = useState(false);
     const acc = useSelector(state => {
         if (state.auth.userData) {
@@ -38,7 +39,7 @@ const EditRecordDialog = ({ open, onClose, info, id }) => {
         event.preventDefault();
         console.log(newPatientInfo);
         try {
-            const request = await api.post(`medicalRecords/create-record`, newPatientInfo);
+            const request = await api.put(`medicalRecords/${info.id}`, newPatientInfo);
             console.log(request);
             if (request.status === 200) {
                 onClose();
@@ -51,7 +52,8 @@ const EditRecordDialog = ({ open, onClose, info, id }) => {
     }
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <div>
+            <Dialog open={open} onClose={onClose}>
             <DialogTitle>Thêm bệnh án</DialogTitle>
             <DialogContent>
                 <Box sx={{ width: '400px', marginTop: "20px" }}>
@@ -108,7 +110,20 @@ const EditRecordDialog = ({ open, onClose, info, id }) => {
                 <Button type="submit" onClick={handleSubmit} variant="contained" color="primary">Lưu</Button>
             </DialogActions>
         </Dialog>
-
+        <Snackbar
+                open={openSnackbar2}
+                autoHideDuration={6000}
+                onClose={() => setOpenSnackbar2(false)}
+            >
+                <Alert
+                    onClose={() => setOpenSnackbar2(false)}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                    Thay đổi thành công!
+                </Alert>
+            </Snackbar>
+        </div>
     );
 };
 
