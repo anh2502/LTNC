@@ -47,7 +47,7 @@ const Login = () => {
     <Container maxWidth="xs">
       <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Paper elevation={6} sx={{ padding: 4, borderRadius: 2, backgroundColor: '#fff' }}>
-          <Typography variant="h4" color="primary" gutterBottom>Hospital</Typography>
+          <Typography variant="h4" color="primary" gutterBottom sx={{textAlign: "center"}}>Hospital</Typography>
           <Box component="form" sx={{ mt: 3, width: '100%' }}>
             <TextField
               label="Tên đăng nhập"
@@ -74,11 +74,11 @@ const Login = () => {
             <Button variant="contained" color="primary" fullWidth onClick={handleLogin} sx={{ mt: 2 }}>
               Đăng nhập
             </Button>
-            <Box sx={{ mt: 2, fontWeight: '300', textAlign: 'center' }}>
+            {/* <Box sx={{ mt: 2, fontWeight: '300', textAlign: 'center' }}>
               <Link href="/signin" variant="body2">
                 Đăng kí tài khoản
               </Link>
-            </Box>
+            </Box> */}
           </Box>
         </Paper>
       </Box>
